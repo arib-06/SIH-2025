@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #4CAF50;--secondary-color: #A5D6A7;--background-color: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4d4d4d;
+            --accent-color: #E8F5E9;}
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 6rem); 
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+<div class="flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-[var(--primary-color)] rounded-full">
+<span class="material-symbols-outlined text-white">travel_explore</span>
+</div>
+<h2 class="text-[var(--text-primary)] text-xl font-bold">Smart Travel Assistant</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-[var(--text-secondary)]">settings</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzIfQGxZ7C1LKVTAA7IDujDq08rc2WpU9a-wAK53cQDurXmKos5mejQcC7hFgNStfbr1DZ_BOxfTsYoittd10714eg5B3v0bjTqmkHfJuy1DOJndafx2wJ5b34EQCNYAZbGaBZLgT9KwtnLmELm9Iuqz3Pyj8_3hlRf8i9P4SbRQ0brflr1QCGdsSjeIecSwoGsMFhQmeszs-C8S0T6EAI2lLNuAx4jTaqjbCqYF_rOiRUipQwQNElGI4zwQ5Bt4DrRu6Hbhul_32n");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-2xl flex flex-col">
+<div class="text-center mb-8">
+<h1 class="text-3xl font-extrabold text-[var(--text-primary)] mb-2">Ask me anything</h1>
+<p class="text-lg text-[var(--text-secondary)] leading-relaxed">I'm here to help you with your travel plans. Ask me anything about destinations, flights, hotels, or activities.</p>
+</div>
+<div class="chat-container">
+<div class="chat-messages space-y-6">
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBHfjDj1e9J5BzJl-IDhsRJ-e5btU_w01YVGUR1ADeKg243Mc7IzFyv5zfuFaEf948iau3K6mmOd4QmqOmXRzYGx98flYVzsuOVRiSU03MA36h3lDusWYdkFIvDYw_gdnp5aYkjvF6wjg6I_WznXUav5oJfVPYg74g1WzsiCBP_TVy9N5XTEjVW1O1x_CCgEmmuEHCOMOz2EVjPJF-bKPnOlGCAfMcPaUHgQMGOc0ru0_S3TOo_dq9NG82hmVrED5bEBDwYQxQYYH8S");'></div>
+<div>
+<p class="font-bold text-[var(--text-primary)] text-sm">Travel Assistant</p>
+<div class="mt-1 bg-[var(--accent-color)] text-[var(--text-primary)] rounded-2xl p-3 inline-block max-w-md">
+<p>Hi there! How can I assist you today?</p>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 justify-end">
+<div>
+<p class="font-bold text-[var(--text-primary)] text-sm text-right">You</p>
+<div class="mt-1 bg-[var(--primary-color)] text-white rounded-2xl p-3 inline-block max-w-md">
+<p>I'm planning a trip to Paris. Can you suggest some must-see attractions?</p>
+</div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDi2d611iJDJHTGBdLQLuCjsFOEjycnMOjdIQMh4pVODjm7vrmpEaBi_ivIleddecZqsdejkTIpvWD9kf5Xv_qNFWryvYdVNBygjSDHjzY78Ah69aF3EeuTFvWamxma2IXkKTk5EhNCNcWb3hRMFzeJWoiaiYEC_dkrZIz_jnIGTuiTbSklgoep6bxjIDyVPTxxjbw0ldWnHifjMJaTpKaEE9jMycmKGuz-9iD7k0LopvoB_UtARZZUeFy2BI9b90rTN2VkIr1-2iMK");'></div>
+</div>
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCppT5LWvbb6fUmk-iDcBmVwmgHQ14xCwwcAo43bJvZQiOHO1B0ck2gsO_qqkJJE22xnEZ9ZIc5vG84I964YXhlCtx0UV3HL-KlZfR6OBBbdSC3elDheuO1wN31twQFfwhjTb7EHqGmp7Zvrr1qHcOJsLSEfh8NkQHopWTOW1A4P17eKcenh3yAIiuAvLv_c9TvWPjZHJfk4wNwrri_Kwc4KsgxzcQXWeOahOfsYN5gQRvP0m4Pvcax-7v7DfXSmZHp1Sqsedp89I-g");'></div>
+<div>
+<p class="font-bold text-[var(--text-primary)] text-sm">Travel Assistant</p>
+<div class="mt-1 bg-[var(--accent-color)] text-[var(--text-primary)] rounded-2xl p-3 inline-block max-w-md">
+<p>Of course! In Paris, you should definitely visit the Eiffel Tower, Louvre Museum, Notre Dame Cathedral, and take a stroll along the Champs-Élysées. Would you like more details on any of these?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4">
+<div class="relative">
+<input class="w-full p-4 pr-28 border border-gray-300 rounded-full bg-white text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition-shadow" placeholder="Type your message..." value=""/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-2">
+<button class="p-2 rounded-full hover:bg-gray-100 text-[var(--text-secondary)]">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 text-[var(--text-secondary)]">
+<span class="material-symbols-outlined">image</span>
+</button>
+<button class="ml-2 bg-[var(--primary-color)] text-white py-2 px-4 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200">
+                                    Send
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

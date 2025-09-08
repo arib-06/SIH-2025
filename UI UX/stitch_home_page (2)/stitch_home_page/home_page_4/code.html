@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Spline+Sans:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+      --primary-color: #4ade80;
+      --secondary-color: #86efac;
+      --background-color: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4d4d4d;
+      --accent-color: #ecfdf5;
+    }
+    body {
+      font-family: 'Spline Sans', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-[var(--text-primary)]">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z">
+</path>
+</svg>
+<h1 class="text-2xl font-bold tracking-tight">WanderWise</h1>
+</div>
+<nav class="flex items-center gap-8">
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Explore</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Trips</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Saved</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full h-11 w-11 hover:bg-gray-100 transition-colors">
+<svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z">
+</path>
+</svg>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-11" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFGa_dGfiU1JYST5yDXgQN8U-rR_1Y2nGEqE95aGtMkeF9tHEjbopdz4LohU1IUh0U-3iBnIvBceSS89HS3ZigjAAOJs65RvUQUAwE7fucE4pjVsbrj6ECrNPkmOpwz4DU0q-Kll_iOjzp4Q04PKUaXGGXIBCPli635q7w17smGO4M1Oq4U7NmyBaejYJHBfHt5tg_RvMzQVe4d-ANP2aJBBTbO2-X83aSNK6E3Xk9zGBl3C6-5kR8fuV7OPs_f_mOXFapwuUK8AdC");'>
+</div>
+</div>
+</header>
+<main class="flex-1 px-24 py-12">
+<div class="mx-auto max-w-4xl">
+<div class="relative mb-12">
+<label class="sr-only" for="search-input">Search</label>
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-6">
+<svg class="h-6 w-6 text-[var(--text-secondary)]" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
+</path>
+</svg>
+</div>
+<input class="w-full rounded-full border border-gray-300 bg-white py-4 pl-16 pr-6 text-lg text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" id="search-input" placeholder="Where to?" type="search"/>
+</div>
+<section class="mb-12 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+<h2 class="mb-6 text-3xl font-bold">Plan Your Next Adventure</h2>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl p-4 transition-colors hover:bg-gray-50">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<path d="M216,64V48a16,16,0,0,0-16-16H56A16,16,0,0,0,40,48V176H56V48H200V64h16Zm32,56V88a16,16,0,0,0-16-16H88a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16H232a16,16,0,0,0,16-16V144h-16v64H88V88H232v32Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-semibold">Accommodations</h3>
+</div>
+<div class="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl p-4 transition-colors hover:bg-gray-50">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<path d="M239.5,148.11l-32-104A16,16,0,0,0,192.4,32H63.6A16,16,0,0,0,48.5,44.11l-32,104A16,16,0,0,0,32,176v32a16,16,0,0,0,16,16H56a16,16,0,0,0,16-16V200H184v8a16,16,0,0,0,16,16h8a16,16,0,0,0,16-16V176a16,16,0,0,0-15.5-19.89ZM67.24,48H188.76l24,78H43.24ZM48,160H208v16H48Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-semibold">Tours</h3>
+</div>
+<div class="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl p-4 transition-colors hover:bg-gray-50">
+<div class="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.38,154.62l-24-80A16,16,0,0,0,174.05,64H81.95a16,16,0,0,0-15.33,10.62l-24,80A16,16,0,0,0,56,176v24a8,8,0,0,0,8,8H76a16,16,0,0,0,16-16v-8h72v8a16,16,0,0,0,16,16h12a8,8,0,0,0,8-8V176A16,16,0,0,0,213.38,154.62ZM85.28,80h85.44l21,70H64.28Zm-8.82,86a12,12,0,1,1,12,12A12,12,0,0,1,76.46,166Zm103.08,0a12,12,0,1,1,12,12A12,12,0,0,1,179.54,166Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-semibold">Transportation</h3>
+</div>
+</div>
+<button class="mt-8 w-full rounded-full bg-[var(--primary-color)] py-4 text-lg font-bold text-white transition-colors hover:bg-[var(--secondary-color)]">Book
+              Now</button>
+</section>
+<section class="mb-12">
+<h2 class="mb-6 text-3xl font-bold">Featured</h2>
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group flex cursor-pointer flex-col gap-4">
+<div class="w-full overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR85UwyFYg4zVYPsURI4e_93WW6WOvvstjQgsa5vG0M6tSOn-3kz7DXI82-gPXl8HNrhkzlcDwIjzrzYXIAwbKTPjJR1zZ1CMPHqMY8Gjg2CS8L7FDGeeVxIi43LNHr6TmqTh_CEe1dJOhkyQ2o5UbMK2AbVf-Aw4d_rlur5qpbwxMqRqVTNbFnlFNv1Jl4YMfyxCotqDkkqahNTj4MPOibDLbr7phrdq7zoGve9OHfvdLo5PvyrI6-Mqv5Tup4s5wkF8XTJkGfbmo");'>
+</div>
+</div>
+<p class="text-lg font-semibold leading-snug">Explore the Majestic Peaks</p>
+</div>
+<div class="group flex cursor-pointer flex-col gap-4">
+<div class="w-full overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXYwXfrpHR4SuWUX2AGPdLz6RQ8FOpERjywcwpKIpPrbWMG_LlWh7aTnovhPKr1CJcxeLG5-tjB9_2xFZG5UeI7dgF1rC_nzuMNgvUFflvl6-OC4Hf1HpbkKyPutf9D-ANm2WvqOdQF_fDLxIdtBNJTSDoRaCTihNPczo_Q2LqJXZlVcSkOAb1isctWT04DlZAiIAYFprtvSDGZNlEoxSSxTO3dtndtaz2t2yRlIHsuB_c-lhOg6E8ITHG_ob9KR8oxHYJvCudnHAb");'>
+</div>
+</div>
+<p class="text-lg font-semibold leading-snug">Discover the City's Vibrant Nightlife</p>
+</div>
+<div class="group flex cursor-pointer flex-col gap-4">
+<div class="w-full overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAv6fq3wA-EyN-n69PiEdLJuD953DJCgCBVYx7uhHdEM8o5G9marz0sl5fQ7PZzy8RKZJZjj8gFQclHVhyo2iEMZX7kM-Vx5-0WN3RFH9LWqS2RSiwN924CwEkM-jVHv9bfitNCvfn1NA9sm1try0CxAZ45lMD6mDKhLL3HwYPx8b2A6dwxHf-4MZ0THYoXxtDu4UBRdPMhAfdCxpYBvy8YSGM315D1b58IszWXNnip2xangVeC9aDTuHLVy5cOdaI1o87UrvFZkUu9");'>
+</div>
+</div>
+<p class="text-lg font-semibold leading-snug">Relax on Pristine Beaches</p>
+</div>
+</div>
+</section>
+<section>
+<h2 class="mb-6 text-3xl font-bold">Quick Access</h2>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="flex cursor-pointer items-center gap-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg fill="currentColor" height="28px" viewBox="0 0 256 256" width="28px" xmlns="http://www.w3.org/2000/svg">
+<path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-bold">Chatbot</h3>
+</div>
+<div class="flex cursor-pointer items-center gap-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg fill="currentColor" height="28px" viewBox="0 0 256 256" width="28px" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-bold">Local Info</h3>
+</div>
+<div class="flex cursor-pointer items-center gap-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
+<svg fill="currentColor" height="28px" viewBox="0 0 256 256" width="28px" xmlns="http://www.w3.org/2000/svg">
+<path d="M184,32H72A16,16,0,0,0,56,48V224a8,8,0,0,0,12.24,6.78L128,193.43l59.77,37.35A8,8,0,0,0,200,224V48A16,16,0,0,0,184,32Zm0,177.57-51.77-32.35a8,8,0,0,0-8.48,0L72,209.57V48H184Z">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-bold">Saved Places</h3>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

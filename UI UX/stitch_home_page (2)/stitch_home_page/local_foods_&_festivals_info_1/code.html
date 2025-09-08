@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #4CAF50;--secondary-color: #66BB6A;--background-color: #FFFFFF;--text-primary: #1a1a1a;
+            --text-secondary: #4d4d4d;
+            --accent-color: #E8F5E9;}
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .filter-button {
+            @apply flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white pl-4 pr-3 text-[var(--text-primary)] border border-gray-200 hover:bg-gray-50 transition-colors duration-200;
+        }
+        .filter-button.active {
+            @apply bg-[var(--primary-color)] border-[var(--primary-color)] text-white;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="flex min-h-screen flex-col">
+<header class="sticky top-0 z-10 w-full bg-white/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-[var(--text-primary)]" href="#">
+<span class="material-symbols-outlined text-2xl text-[var(--primary-color)]">explore</span>
+<h1 class="text-xl font-bold">Local Explorer</h1>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-[var(--text-primary)]" href="#">Explore</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Favorites</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">search</span>
+<input class="form-input w-full rounded-full border-gray-300 bg-gray-100 pl-10 pr-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]" placeholder="Search experiences..." type="search"/>
+</div>
+<button class="size-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9KVgJV0TCpZVq7DSeIfRLwP2V_SoIXBWxUb_7uSnRi1FZwA0kITAQytBwJPftut2jYhaiFuY6T-J3zyMza4dEP5zXsu4_iz9L3JK7hyuDfaAHGI3ik2pRMpxPagGMjlxgpWq52tDL6D9O3mtvTlpNs0CNJhh_VxQfU6FHILVXoKDtbmUlNOqmh6GRYH6-ev93tUUTs-HsNfaY11mz5w542sGy_CGQ4dLg-Xh8d9mm1zHvet-iHyaUcbMFTaH81F4LP5chHrpqoX0E");'></button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-8">
+<h2 class="text-4xl font-extrabold text-[var(--text-primary)] mb-2">Discover Local Gems</h2>
+<p class="text-lg text-[var(--text-secondary)]">Explore the best culinary and cultural experiences the city has to offer.</p>
+</div>
+<div class="mb-8 flex flex-wrap gap-3">
+<button class="filter-button active">
+<span class="text-sm font-medium">All</span>
+</button>
+<button class="filter-button">
+<span class="text-sm font-medium">Food</span>
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">keyboard_arrow_down</span>
+</button>
+<button class="filter-button">
+<span class="text-sm font-medium">Music</span>
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">keyboard_arrow_down</span>
+</button>
+<button class="filter-button">
+<span class="text-sm font-medium">Art</span>
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">keyboard_arrow_down</span>
+</button>
+</div>
+<section class="mb-12">
+<h3 class="text-3xl font-bold text-[var(--text-primary)] mb-6">Culinary Delights</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group flex flex-col gap-4">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBExBFENPFK71FFmtmk7NklASvcZTGCSHH_PbpdpqczMk2qTBENdrKqiAVbAAWUzJtN-5HOEYO-6VJVT8NY4C5wJ6iJ0xS64RLHl_4XFGUjsGJhRmAjKvm725_RG-J4Vj90ntty1Av7zpUW99zdFen65JRmooVMN09BZ-OVwC814ss35h-AaCAxMKPq8iSfzcXmaasetJcF3gc4ITv2tQO2InPuYQsL6VbfdBRWwwy_cO-jUu5rFzIlw46AsJjRQ9NdpyrLf-IZUhbJ");'></div>
+</div>
+<div>
+<h4 class="text-xl font-bold leading-tight text-[var(--text-primary)]">Taste of Tradition</h4>
+<p class="text-[var(--text-secondary)] mt-1">Experience authentic local cuisine at our top-rated restaurant.</p>
+<a class="text-sm font-semibold text-[var(--primary-color)] hover:text-[var(--secondary-color)] mt-2 inline-block" href="#">Explore more →</a>
+</div>
+</div>
+<div class="group flex flex-col gap-4">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXj7U3ki_Ys80-P5Tpwc0wLcZ1KjqgnllFvgogctaoXO4z8eJU8cLQcaZZ6QIt1fRsN9spewHIFEJMSBrM4Y-aKZ5v3qSCbnnzOrgD-bDLRREzz015kk_LThYgESqoava7zRN0XMjpytSv6QyPGecee94cddz7m1fJhb-slRQgKs3PgP2bwv2gQje4QOBmr6J_6JHWwkLroLdm7gJKEIBqZuKR9-PFwTsD4Pk0XGGinEMM63XPnzLLezkW0xFV_AZDQxfpChc-JG6x");'></div>
+</div>
+<div>
+<h4 class="text-xl font-bold leading-tight text-[var(--text-primary)]">Market Fresh</h4>
+<p class="text-[var(--text-secondary)] mt-1">Explore the vibrant local market with fresh produce and street food.</p>
+<a class="text-sm font-semibold text-[var(--primary-color)] hover:text-[var(--secondary-color)] mt-2 inline-block" href="#">Explore more →</a>
+</div>
+</div>
+<div class="group flex flex-col gap-4">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-R4kSUD1iEdVGeJEN3ucNgMQ63n_Lx8_XlTNyFlqByFZpVXDKqmeOZeyCK3dssy7Xpylyu3rxEOCAkjL2inqSYtPb1f7IFYfWWekbWQfdiSVzkVz7w5BcQqMLcm1S4d86mbcfoI47oaVFuO66tzkZA--gqcPFpJCgKJ3sYx8mCblE3HpEnEmpjDTptWIi5h-usV1aIdLsr3nfbGk-EgmZ0dWrxwCSDDDCu6geNV6E9kbg3QquqdivJL-i2OKJ-YtP7QDkbClxmHoV");'></div>
+</div>
+<div>
+<h4 class="text-xl font-bold leading-tight text-[var(--text-primary)]">Culinary Masterclass</h4>
+<p class="text-[var(--text-secondary)] mt-1">Join a cooking class with a renowned chef and learn to prepare regional specialties.</p>
+<a class="text-sm font-semibold text-[var(--primary-color)] hover:text-[var(--secondary-color)] mt-2 inline-block" href="#">Explore more →</a>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h3 class="text-3xl font-bold text-[var(--text-primary)] mb-6">Upcoming Cultural Events</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="group flex flex-col gap-3">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPeCvrYtBvfU_1ka7v0G8e4ieTes8bxj5Wv5ONHVUYSL5CynFyPp9lJtBDJFIIYbPSRhtp5nBa2B24fYteOCHEWmW9pJ2PR3-fh_12K8vaEu4STDPlpoain3yN-02c9vyOcDY4vf76nczY-M__DIcCiyT46XwCi_0YaMmabz76_MoSJYam_6TJ5tMP3563OWvnsjIaBjafjyNh1SegJO51aqSi7jL4og9K-Ah86o6vIhqkWWeaQJrdJox5lBiwaM2nZKWKRE-K3Kr6");'></div>
+</div>
+<div>
+<h4 class="text-lg font-bold leading-tight text-[var(--text-primary)]">Jazz Night</h4>
+<p class="text-sm text-[var(--text-secondary)] mt-1">Enjoy a night of soulful jazz music with local artists.</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcXPqTCXSZcHWUVegXEEb-r1f3zn4uyV-pls06AQ_Yoj3q6L706nkdZ0AfAv-qd-pwYyzmn8beG53dM_QSnlW2AQv2gp6rgeR2Hx6V1u2Ds9klQLawJFFQovT9D3cOX57bySLY5HOw59oYq8VjddzrSri2rWu2C5KO01BlDJkXOqIzIEHK9Sgfr9N7VGOTwZckCvK57iByPgpIYHnAD6hLJ8nHMx6rJFsd5LsaPsynWMdUJE11lnu95T9MUzOatnF96O540AF-SI-V");'></div>
+</div>
+<div>
+<h4 class="text-lg font-bold leading-tight text-[var(--text-primary)]">Art Exhibition</h4>
+<p class="text-sm text-[var(--text-secondary)] mt-1">Discover contemporary art from emerging and established artists.</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAG7Xkm-fgZaQCW55cMlD8bXclqirH7UptXFmdkdvZdfAZPaD7Y1FhCSjPU1sc9udA--iu3xK8fGhmIlCJLgpV9_Dx_5ElN7EOcgn7BDX1SgVvh_fzO44gXgTCBArc3_4UJykBc5s69Opqggj8AyfH1ZE7o5pAd_-W4fMtByepE8wxeN3RqjledeCeVkNVk34g3MxD6dgB-DwzHK_t-w0pnENO54jegd3Vcbvr0BDXQBPkyKejexFAun-cBLXkfHVV9ESIqFN9hOEJC");'></div>
+</div>
+<div>
+<h4 class="text-lg font-bold leading-tight text-[var(--text-primary)]">Folk Dance Festival</h4>
+<p class="text-sm text-[var(--text-secondary)] mt-1">Experience the vibrant energy of traditional folk dances.</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3">
+<div class="overflow-hidden rounded-2xl">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADDWrICIMUy0JTew3T08RZy-eQ7_THnmBsrD2mBzaBkrmr84vVRqQ4WJ8dxre9aCgq-iFNkta6vRDQiEKUoOrPLp1smhwBHnBVdFwb32dztfq8YqNemV-NnCeECS1v-tenxfvC4LaCFdfi69M6kKw7fQMzPb0uorAuIPr9xDP9rwHxyqgE6_Vqd8dhBuZ8jFZ-Ty-VHR5phFgKEPpWExVT6vnIfelbrSlGMfW02bAOSdEJKu_BPmhuYAHzfSaaOQxmt8vvCHy8j75x");'></div>
+</div>
+<div>
+<h4 class="text-lg font-bold leading-tight text-[var(--text-primary)]">Open Mic Night</h4>
+<p class="text-sm text-[var(--text-secondary)] mt-1">Showcase your talent or discover new voices from the city.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+</body></html>

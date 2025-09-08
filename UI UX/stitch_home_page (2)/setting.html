@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WanderWise - Settings</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #5e8986;
+            --secondary-color: #E8F5E9;
+            --background-color: #F7F9F7;
+            --text-primary: #1A202C;
+            --text-secondary: #4A5568;
+            --accent-color: #C8E6C9;
+            --card-background: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #5e8986;
+            --secondary-color: #2d3748;
+            --background-color: #1a202c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-color: #2d3748;
+            --card-background: #2d3748;
+            --border-color: #4a5568;
+        }
+        
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .settings-card {
+            background-color: var(--card-background);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .settings-item:hover {
+            background-color: var(--secondary-color);
+        }
+        .settings-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            color: var(--primary-color);
+        }
+        .theme-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .theme-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--card-background);
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 0.5rem;
+            z-index: 1;
+            border: 1px solid var(--border-color);
+        }
+        .theme-dropdown-content.show {
+            display: block;
+        }
+        .theme-option {
+            color: var(--text-primary);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .theme-option:hover {
+            background-color: var(--secondary-color);
+        }
+        .theme-option.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]">
+<div class="flex flex-col min-h-screen">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid px-10 py-4" style="border-color: var(--border-color);">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-[var(--text-primary)]">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Location pin outline -->
+<path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" 
+      fill="none" stroke="currentColor" stroke-width="3"/>
+
+<!-- Mountains -->
+<path d="M30 45 L35 35 L40 40 L45 30 L50 35 Z" fill="currentColor"/>
+
+<!-- Palm tree -->
+<g transform="translate(52, 40)">
+  <line x1="0" y1="0" x2="0" y2="15" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M-3 0 Q-5 -3, -2 -5 Q0 -3, -3 0" fill="currentColor"/>
+  <path d="M3 0 Q5 -3, 2 -5 Q0 -3, 3 0" fill="currentColor"/>
+  <path d="M0 -2 Q-2 -5, 0 -7 Q2 -5, 0 -2" fill="currentColor"/>
+</g>
+
+<!-- Building/Temple -->
+<g transform="translate(40, 45)">
+  <rect x="0" y="5" width="8" height="8" fill="currentColor"/>
+  <polygon points="0,5 4,0 8,5" fill="currentColor"/>
+  <rect x="2" y="7" width="1.5" height="4" fill="var(--background-color)"/>
+  <rect x="4.5" y="7" width="1.5" height="4" fill="var(--background-color)"/>
+</g>
+
+<!-- Location marker dot -->
+<circle cx="50" cy="35" r="3" fill="currentColor"/>
+</svg>
+<h1 class="text-2xl font-bold tracking-tight">Traverz</h1>
+</div>
+<nav class="flex items-center gap-8">
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="cover.html">Home</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="translate.html">Translate</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="AI.html">Help</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="sos.html">Emergency</a>
+<a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="setting.html">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-[var(--primary-color)] text-white px-6 py-2 rounded-full font-medium hover:bg-[var(--secondary-color)] transition-colors" onclick="window.location.href='signup.html'">
+Sign In
+</button>
+<button class="flex items-center justify-center rounded-full h-11 w-11 hover:bg-gray-100 transition-colors">
+<svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-11" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFGa_dGfiU1JYST5yDXgQN8U-rR_1Y2nGEqE95aGtMkeF9tHEjbopdz4LohU1IUh0U-3iBnIvBceSS89HS3ZigjAAOJs65RvUQUAwE7fucE4pjVsbrj6ECrNPkmOpwz4DU0q-Kll_iOjzp4Q04PKUaXGGXIBCPli635q7w17smGO4M1Oq4U7NmyBaejYJHBfHt5tg_RvMzQVe4d-ANP2aJBBTbO2-X83aSNK6E3Xk9zGBl3C6-5kR8fuV7OPs_f_mOXFapwuUK8AdC");'></div>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-4xl font-extrabold text-[var(--text-primary)] mb-8">Settings</h2>
+<div class="space-y-10">
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Account</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-full bg-center bg-no-repeat bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgnS36kfQJ3y2D-s2xB146-ogoI176Zm6rvZY_EWhlz2cKejdcbzCqkTELFffw7oJ-xFHYx8XkQUAwNJsJj9DtKYqop86-rBBF5xzKrN33DG9vhoAWnq2pMbOL6ZA1HjbjuY7BRtUXK0I0TlAjuj68XTV3L6LhAcFTGmfQfHGS9K5RpkNorge1ZoY0VQmyUmd8CG6v749ljeC01I4thmGp44olHoRCRFU-Z7t1fWDbNmfx5EPavZvsB7_pugvqHiWQOcU5yPgz6Fd-");'></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Profile</p>
+<p class="text-sm text-[var(--text-secondary)]">Manage your profile information</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">lock</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Password</p>
+<p class="text-sm text-[var(--text-secondary)]">Change your password</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Preferences</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">language</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Language</p>
+<p class="text-sm text-[var(--text-secondary)]">Choose your preferred language</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<p class="text-sm text-[var(--text-secondary)] font-medium">English</p>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">notifications</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Notifications</p>
+<p class="text-sm text-[var(--text-secondary)]">Enable or disable push notifications</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-[var(--primary-color)] peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--primary-color)]"></div>
+</label>
+</div>
+<div class="settings-item" onclick="toggleThemeDropdown()">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">contrast</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Theme</p>
+<p class="text-sm text-[var(--text-secondary)]">Adjust the app's appearance</p>
+</div>
+</div>
+<div class="theme-dropdown">
+<div class="flex items-center gap-2">
+<p class="text-sm text-[var(--text-secondary)] font-medium" id="current-theme">Light</p>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">expand_more</span>
+</div>
+<div class="theme-dropdown-content" id="theme-dropdown">
+<div class="theme-option" onclick="setTheme('light', event)">
+<span class="material-symbols-outlined" style="font-size: 16px; margin-right: 8px;">light_mode</span>
+Light
+</div>
+<div class="theme-option" onclick="setTheme('dark', event)">
+<span class="material-symbols-outlined" style="font-size: 16px; margin-right: 8px;">dark_mode</span>
+Dark
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Support</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">help_center</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Help Center</p>
+<p class="text-sm text-[var(--text-secondary)]">Get help with common issues</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">email</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Contact Us</p>
+<p class="text-sm text-[var(--text-secondary)]">Contact us for assistance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">info</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">About</p>
+<p class="text-sm text-[var(--text-secondary)]">Learn more about our app</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Legal</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">description</span></div>
+<p class="font-medium text-[var(--text-primary)]">Terms of Service</p>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">privacy_tip</span></div>
+<p class="font-medium text-[var(--text-primary)]">Privacy Policy</p>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full sm:w-auto bg-white text-[var(--text-secondary)] py-3 px-6 rounded-full font-semibold border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
+                            Log Out
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<script>
+// Theme management
+function toggleThemeDropdown() {
+    const dropdown = document.getElementById('theme-dropdown');
+    dropdown.classList.toggle('show');
+}
+
+function setTheme(theme, event) {
+    event.stopPropagation();
+    
+    // Update the data-theme attribute on the html element
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update the current theme display
+    const currentThemeElement = document.getElementById('current-theme');
+    currentThemeElement.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+    
+    // Update active state in dropdown
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => option.classList.remove('active'));
+    event.target.closest('.theme-option').classList.add('active');
+    
+    // Save theme preference to localStorage
+    localStorage.setItem('theme', theme);
+    
+    // Close dropdown
+    document.getElementById('theme-dropdown').classList.remove('show');
+    
+    // Apply theme to other pages by updating localStorage
+    // Other pages will check this on load
+}
+
+// Load saved theme on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Update the display
+    const currentThemeElement = document.getElementById('current-theme');
+    currentThemeElement.textContent = savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1);
+    
+    // Update active state
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => {
+        if (option.textContent.trim().toLowerCase() === savedTheme) {
+            option.classList.add('active');
+        }
+    });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('theme-dropdown');
+    const themeItem = event.target.closest('.settings-item');
+    
+    if (!themeItem || !themeItem.onclick) {
+        dropdown.classList.remove('show');
+    }
+});
+</script>
+
+</body></html>

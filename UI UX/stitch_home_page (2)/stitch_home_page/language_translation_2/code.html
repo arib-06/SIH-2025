@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design - Translate</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #22c55e;
+            --secondary-color: #4ade80;
+            --background-color: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4d4d4d;
+            --accent-color: #dcfce7;
+            --border-color: #e5e7eb;
+        }
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="flex flex-col min-h-screen">
+<header class="border-b border-[var(--border-color)]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold">Smart Tourist</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-[var(--primary-color)]" href="#">Translate</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">map</span> Offline Maps
+                        </a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined">
+                                language
+                            </span>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwaz41lVk5hGLjAF8SMdm2-_gDNqrXACvs8TexgftVKjOGZu5RECziBoLSopYHzNKnrXbmvJYgZIe7AQYJhWRC-J93UzUiwO7dF9lmUDyWLTAYlJDDE5e3WRX6GTB8PvCP0xlgJmYukhexhmQefImBNhmlQnLpVCh4EW5wPQAoQj-WzB_7_1XMK0wsfSC7Gad-g0BMy75l6ymccb7E-l8-kaoiI820xYjN3_C18TGLcPYczoHAwRZ1wpu4YkOlthn2HE6TQG1QBvrY");'></div>
+<button class="md:hidden p-2 rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-2xl space-y-8">
+<div>
+<h2 class="text-center text-4xl font-bold text-[var(--text-primary)]">Translate</h2>
+<p class="mt-2 text-center text-lg text-[var(--text-secondary)]">
+                        Communicate effectively across languages.
+                    </p>
+</div>
+<div class="bg-white p-8 shadow-xl rounded-2xl space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+<div class="md:col-span-1">
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="from-language">From</label>
+<select class="form-select mt-1 block w-full p-3 border border-[var(--border-color)] rounded-lg bg-white text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" id="from-language" name="from-language">
+<option>English</option>
+<option>Spanish</option>
+<option>French</option>
+<option>German</option>
+</select>
+</div>
+<div class="flex justify-center md:col-span-1">
+<button class="p-2 rounded-full text-[var(--text-secondary)] hover:bg-gray-100 transition-colors duration-200">
+<span class="material-symbols-outlined text-3xl">swap_horiz</span>
+</button>
+</div>
+<div class="md:col-span-1">
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="to-language">To</label>
+<select class="form-select mt-1 block w-full p-3 border border-[var(--border-color)] rounded-lg bg-white text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" id="to-language" name="to-language">
+<option>Spanish</option>
+<option>English</option>
+<option>French</option>
+<option>German</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative">
+<textarea class="w-full p-3 border border-[var(--border-color)] rounded-lg bg-white text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" id="from-text" name="from-text" placeholder="Enter text or use camera" rows="6"></textarea>
+<button class="absolute bottom-3 right-3 p-2 rounded-full bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] transition-colors">
+<span class="material-symbols-outlined">photo_camera</span>
+</button>
+</div>
+<div class="relative">
+<div class="w-full p-3 border border-[var(--border-color)] rounded-lg bg-gray-50 text-[var(--text-primary)] h-[138px]">
+<p class="text-[var(--text-secondary)]">Translation</p>
+</div>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="bg-[var(--primary-color)] text-white py-3 px-8 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-300 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined">translate</span>
+                            Translate
+                        </button>
+</div>
+</div>
+<div class="bg-white p-8 shadow-xl rounded-2xl space-y-6 mt-8">
+<h3 class="text-2xl font-bold text-[var(--text-primary)]">Camera Translation</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="border border-[var(--border-color)] rounded-lg p-4 bg-gray-900 flex items-center justify-center">
+<div class="text-center text-white">
+<span class="material-symbols-outlined text-6xl">photo_camera</span>
+<p class="mt-2">Camera Input</p>
+</div>
+</div>
+<div class="border border-[var(--border-color)] rounded-lg p-4 bg-gray-50 flex items-center justify-center">
+<div class="text-center text-[var(--text-secondary)]">
+<span class="material-symbols-outlined text-6xl text-[var(--primary-color)]">g_translate</span>
+<p class="mt-2 text-[var(--text-primary)]">Translated Output</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

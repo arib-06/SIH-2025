@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WanderWise - Settings</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #4CAF50;--secondary-color: #E8F5E9;--background-color: #F7F9F7;--text-primary: #1A202C;
+            --text-secondary: #4A5568;
+            --accent-color: #C8E6C9;}
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        .settings-card {
+            @apply bg-white rounded-2xl shadow-sm p-4 transition-all duration-200;
+        }
+        .settings-item {
+            @apply flex items-center justify-between py-3 px-4 rounded-xl hover:bg-[var(--secondary-color)] transition-colors duration-200 cursor-pointer;
+        }
+        .settings-icon {
+            @apply flex items-center justify-center size-12 bg-[var(--secondary-color)] rounded-full text-[var(--primary-color)];
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 bg-white z-10 border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4 text-[var(--text-primary)]">
+<div class="w-8 h-8 text-[var(--primary-color)]">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold">WanderWise</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 transition-colors duration-200">
+<span class="material-symbols-outlined text-[var(--text-secondary)]">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-center bg-no-repeat bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA67t4sQGb2IxMtlg9HrRmfXT4RAt-J_U2_thcwzvrAX7XYImoukguVeTDmKxLumrPPNl8lyipVx8-dpxx2mxik4AbIj8PQ9P4im3KiXBvpq9WIbZcGd4G9xIHCdhvsjq3ptN0VIs21tCm2tPq37ISMyMfPDjvMmy9qqKK8y5JrW67qEuv6zbKatyFuFpl9WJNtGjvJaSunaB0Vc5gl9xjmuzJdX2Dpig4u6E8zmrCHTdgkOTWWkiA5UjNdblMFHwN8CPYs3zpxkuDq");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-4xl font-extrabold text-[var(--text-primary)] mb-8">Settings</h2>
+<div class="space-y-10">
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Account</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-full bg-center bg-no-repeat bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgnS36kfQJ3y2D-s2xB146-ogoI176Zm6rvZY_EWhlz2cKejdcbzCqkTELFffw7oJ-xFHYx8XkQUAwNJsJj9DtKYqop86-rBBF5xzKrN33DG9vhoAWnq2pMbOL6ZA1HjbjuY7BRtUXK0I0TlAjuj68XTV3L6LhAcFTGmfQfHGS9K5RpkNorge1ZoY0VQmyUmd8CG6v749ljeC01I4thmGp44olHoRCRFU-Z7t1fWDbNmfx5EPavZvsB7_pugvqHiWQOcU5yPgz6Fd-");'></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Profile</p>
+<p class="text-sm text-[var(--text-secondary)]">Manage your profile information</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">lock</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Password</p>
+<p class="text-sm text-[var(--text-secondary)]">Change your password</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Preferences</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">language</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Language</p>
+<p class="text-sm text-[var(--text-secondary)]">Choose your preferred language</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<p class="text-sm text-[var(--text-secondary)] font-medium">English</p>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">notifications</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Notifications</p>
+<p class="text-sm text-[var(--text-secondary)]">Enable or disable push notifications</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-[var(--primary-color)] peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--primary-color)]"></div>
+</label>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">contrast</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Theme</p>
+<p class="text-sm text-[var(--text-secondary)]">Adjust the app's appearance</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<p class="text-sm text-[var(--text-secondary)] font-medium">Light</p>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Support</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">help_center</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Help Center</p>
+<p class="text-sm text-[var(--text-secondary)]">Get help with common issues</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">email</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">Contact Us</p>
+<p class="text-sm text-[var(--text-secondary)]">Contact us for assistance</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">info</span></div>
+<div>
+<p class="font-semibold text-[var(--text-primary)]">About</p>
+<p class="text-sm text-[var(--text-secondary)]">Learn more about our app</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4 px-4">Legal</h3>
+<div class="settings-card">
+<div class="space-y-2">
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">description</span></div>
+<p class="font-medium text-[var(--text-primary)]">Terms of Service</p>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+<div class="settings-item">
+<div class="flex items-center gap-4">
+<div class="settings-icon"><span class="material-symbols-outlined">privacy_tip</span></div>
+<p class="font-medium text-[var(--text-primary)]">Privacy Policy</p>
+</div>
+<span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full sm:w-auto bg-white text-[var(--text-secondary)] py-3 px-6 rounded-full font-semibold border border-gray-300 hover:bg-gray-50 transition-colors duration-200">
+                            Log Out
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
