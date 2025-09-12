@@ -44,39 +44,43 @@
 <body class="bg-[var(--background-color)] text-[var(--text-primary)]">
   <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
     <div class="layout-container flex h-full grow flex-col">
-      <header
-        class="flex items-center justify-between whitespace-nowrap bg-black px-10 py-4 relative z-10">
-        <div class="flex items-center gap-3 text-white">
-          <svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-            <!-- Location pin outline -->
-            <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" 
-                  fill="none" stroke="currentColor" stroke-width="3"/>
-            
-            <!-- Mountains -->
-            <path d="M30 45 L35 35 L40 40 L45 30 L50 35 Z" fill="currentColor"/>
-            
-            <!-- Palm tree -->
-            <g transform="translate(52, 40)">
-              <line x1="0" y1="0" x2="0" y2="15" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M-3 0 Q-5 -3, -2 -5 Q0 -3, -3 0" fill="currentColor"/>
-              <path d="M3 0 Q5 -3, 2 -5 Q0 -3, 3 0" fill="currentColor"/>
-              <path d="M0 -2 Q-2 -5, 0 -7 Q2 -5, 0 -2" fill="currentColor"/>
-            </g>
-            
-            <!-- Building/Temple -->
-            <g transform="translate(40, 45)">
-              <rect x="0" y="5" width="8" height="8" fill="currentColor"/>
-              <polygon points="0,5 4,0 8,5" fill="currentColor"/>
-              <rect x="2" y="7" width="1.5" height="4" fill="var(--background-color)"/>
-              <rect x="4.5" y="7" width="1.5" height="4" fill="var(--background-color)"/>
-            </g>
-            
-            <!-- Location marker dot -->
-            <circle cx="50" cy="35" r="3" fill="currentColor"/>
-          </svg>
-          <h1 class="text-2xl font-bold tracking-tight">Traverz</h1>
-        </div>
+      <header class="bg-black px-4 sm:px-6 lg:px-10 py-4 relative z-10">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center gap-3 text-white">
+            <svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg">
+              <!-- Location pin outline -->
+              <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" 
+                    fill="none" stroke="currentColor" stroke-width="3"/>
+              
+              <!-- Mountains -->
+              <path d="M30 45 L35 35 L40 40 L45 30 L50 35 Z" fill="currentColor"/>
+              
+              <!-- Palm tree -->
+              <g transform="translate(52, 40)">
+                <line x1="0" y1="0" x2="0" y2="15" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M-3 0 Q-5 -3, -2 -5 Q0 -3, -3 0" fill="currentColor"/>
+                <path d="M3 0 Q5 -3, 2 -5 Q0 -3, 3 0" fill="currentColor"/>
+                <path d="M0 -2 Q-2 -5, 0 -7 Q2 -5, 0 -2" fill="currentColor"/>
+              </g>
+              
+              <!-- Building/Temple -->
+              <g transform="translate(40, 45)">
+                <rect x="0" y="5" width="8" height="8" fill="currentColor"/>
+                <polygon points="0,5 4,0 8,5" fill="currentColor"/>
+                <rect x="2" y="7" width="1.5" height="4" fill="var(--background-color)"/>
+                <rect x="4.5" y="7" width="1.5" height="4" fill="var(--background-color)"/>
+              </g>
+              
+              <!-- Location marker dot -->
+              <circle cx="50" cy="35" r="3" fill="currentColor"/>
+            </svg>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight">Traverz</h1>
+          </div>
+
+          <!-- Mobile menu button -->
+          
         
         <nav class="flex items-center gap-8">
           <a class="flex items-center gap-2 text-base font-medium text-gray-300 hover:text-white transition-colors"
@@ -132,7 +136,7 @@
       </header>
       <main class="flex-1 relative">
         <!-- Background image section covering navbar and plan section -->
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('bg.webp'); height: 500px;"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('bg.jpg'); height: 500px;"></div>
         <div class="absolute inset-0 bg-black bg-opacity-40" style="height: 500px;"></div>
         
         <div class="relative z-10 px-24 py-12">
@@ -270,6 +274,12 @@
   </div>
 
 <script>
+// Mobile menu toggle
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+});
+
 // Load saved theme on page load
 document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
