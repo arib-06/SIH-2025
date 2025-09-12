@@ -8,38 +8,47 @@
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap"
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <style type="text/tailwindcss">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      --primary-color: #5e8986;
-      --secondary-color: #000000d2;
-      --background-color: #ffffff;
-      --text-primary: #1a1a1a;
-      --text-secondary: #4d4d4d;
-      --accent-color: #dcfce7;
-      --card-background: #ffffff;
-      --border-color: #e5e7eb;
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --accent: #f59e0b;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --border: #e2e8f0;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --emergency-red: #dc2626;
+      --emergency-orange: #f59e0b;
     }
-    
-    [data-theme="dark"] {
-      --primary-color: #5e8986;
-      --secondary-color: #2d3748;
-      --background-color: #1a202c;
-      --text-primary: #ffffff;
-      --text-secondary: #a0aec0;
-      --accent-color: #2d3748;
-      --card-background: #2d3748;
-      --border-color: #4a5568;
-    }
+
     body {
-      font-family: "Spline Sans", sans-serif;
-      background-color: var(--background-color);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
       color: var(--text-primary);
-      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
     .material-symbols-outlined {
       font-variation-settings:
         "FILL" 0,
@@ -47,13 +56,186 @@
         "GRAD" 0,
         "opsz" 24;
     }
+
+    /* Modern Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .animate-slideInRight {
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 3s infinite;
+    }
+
+    .animate-gradient {
+      animation: gradientShift 8s ease infinite;
+    }
+
+    /* Modern Utility Classes */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .gradient-bg {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-emergency {
+      background: linear-gradient(135deg, var(--emergency-red) 0%, #ef4444 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-emergency::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-emergency:hover::before {
+      left: 100%;
+    }
+
+    .btn-emergency:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(220, 38, 38, 0.4);
+    }
+
     @keyframes customPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.75; } /* instead of 0.5 */
-}
-.custom-pulse {
-  animation: customPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+    
+    .custom-pulse {
+      animation: customPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 
 @keyframes emergencyBlink {
   0%, 100% { 
@@ -143,98 +325,81 @@
   </style>
 </head>
 
-<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
   <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
     <div class="flex h-full grow flex-col">
       <header
-        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-4">
+        class="fixed top-0 w-full z-50 glass-effect animate-slideInLeft flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-4">
         <div class="flex items-center gap-8">
-          <div class="flex items-center gap-3 text-[var(--text-primary)]">
-            <svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg">
-              <!-- Location pin outline -->
-              <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" 
-                    fill="none" stroke="currentColor" stroke-width="3"/>
-              
-              <!-- Mountains -->
-              <path d="M30 45 L35 35 L40 40 L45 30 L50 35 Z" fill="currentColor"/>
-              
-              <!-- Palm tree -->
-              <g transform="translate(52, 40)">
-                <line x1="0" y1="0" x2="0" y2="15" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M-3 0 Q-5 -3, -2 -5 Q0 -3, -3 0" fill="currentColor"/>
-                <path d="M3 0 Q5 -3, 2 -5 Q0 -3, 3 0" fill="currentColor"/>
-                <path d="M0 -2 Q-2 -5, 0 -7 Q2 -5, 0 -2" fill="currentColor"/>
-              </g>
-              
-              <!-- Building/Temple -->
-              <g transform="translate(40, 45)">
-                <rect x="0" y="5" width="8" height="8" fill="currentColor"/>
-                <polygon points="0,5 4,0 8,5" fill="currentColor"/>
-                <rect x="2" y="7" width="1.5" height="4" fill="var(--background-color)"/>
-                <rect x="4.5" y="7" width="1.5" height="4" fill="var(--background-color)"/>
-              </g>
-              
-              <!-- Location marker dot -->
-              <circle cx="50" cy="35" r="3" fill="currentColor"/>
-            </svg>
-            <h1 class="text-2xl font-bold tracking-tight">Traverz</h1>
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse-slow">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
+                  <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                    fill="none" stroke="currentColor" stroke-width="3" />
+                  <circle cx="50" cy="35" r="3" fill="currentColor" />
+                </svg>
+              </div>
+            </div>
+            <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
           </div>
-          <nav class="flex items-center gap-8">
-            <a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              href="cover.html">Home</a>
-            <a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              href="translate.html">Translate</a>
-            <a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              href="AI.html">Help</a>
-            <a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              href="sos.html">Emergency</a>
-            <a class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-              href="setting.html">Settings</a>
+          <nav class="hidden md:flex items-center gap-8">
+            <a class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
+              href="cover.html">Home
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
+              href="translate.html">Translate
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
+              href="AI.html">Help
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a class="text-slate-700 hover:text-red-600 transition-all duration-300 font-medium relative group"
+              href="sos.html">Emergency
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group"
+              href="setting.html">Settings
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
           </nav>
         </div>
         <div class="flex items-center gap-4">
-          <button
-            class="bg-[var(--primary-color)] text-white px-6 py-2 rounded-full font-medium hover:bg-[var(--secondary-color)] transition-colors"
+          <button class="hidden sm:block px-6 py-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors"
             onclick="window.location.href='signup.html'">
             Sign In
           </button>
-          <button class="flex items-center justify-center rounded-full h-11 w-11 hover:bg-gray-100 transition-colors">
-            <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z">
-              </path>
-            </svg>
+          <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
+            Get Started
           </button>
-          <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-11"
-            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFGa_dGfiU1JYST5yDXgQN8U-rR_1Y2nGEqE95aGtMkeF9tHEjbopdz4LohU1IUh0U-3iBnIvBceSS89HS3ZigjAAOJs65RvUQUAwE7fucE4pjVsbrj6ECrNPkmOpwz4DU0q-Kll_iOjzp4Q04PKUaXGGXIBCPli635q7w17smGO4M1Oq4U7NmyBaejYJHBfHt5tg_RvMzQVe4d-ANP2aJBBTbO2-X83aSNK6E3Xk9zGBl3C6-5kR8fuV7OPs_f_mOXFapwuUK8AdC");'>
-          </div>
         </div>
       </header>
-      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 w-full">
         <div class="space-y-12">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 animate-fadeInUp">
             <div class="flex items-center gap-4">
-              <span class="material-symbols-outlined text-5xl text-red-600">emergency</span>
-              <h1 class="text-5xl font-extrabold text-primary mb-0">Safety &amp; Emergency</h1>
+              <span class="material-symbols-outlined text-5xl text-red-600 animate-pulse-slow">local_hospital</span>
+              <h1 class="text-5xl font-display font-extrabold text-black mb-0">Safety &amp; Emergency</h1>
             </div>
-            <button
-              class="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-10 rounded-full flex items-center gap-4 transition-all duration-300 shadow-2xl emergency-glow relative overflow-hidden">
-              <span class="material-symbols-outlined text-4xl">sos</span>
-              <div class="flex flex-col items-start">
-                <span class="text-xl font-black">🚨 EMERGENCY</span>
-                <span class="text-sm opacity-90">Share Location & Alert</span>
-              </div>
-            </button>
+              <button
+                class="btn-emergency text-white font-bold py-5 px-10 rounded-full flex items-center gap-4 shadow-2xl relative overflow-hidden hover-lift">
+                <span class="material-symbols-outlined text-4xl">sos</span>
+                <div class="flex flex-col items-start">
+                  <span class="text-xl font-black">EMERGENCY</span>
+                  <span class="text-sm opacity-90">Share Location & Alert</span>
+                </div>
+              </button>
           </div>
           <!-- Live Weather/Alert Widget -->
-          <section class="mb-8">
-            <div class="glassmorphism rounded-2xl p-6 hover-scale">
+          <section class="mb-8 animate-fadeInUp">
+            <div class="glass-effect rounded-2xl p-6 hover-lift">
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-3xl text-blue-600">cloud</span>
-                  <h3 class="text-xl font-bold">Live Weather & Alerts</h3>
+                  <span class="material-symbols-outlined text-3xl text-blue-600 animate-pulse-slow">cloud</span>
+                  <h3 class="text-xl font-display font-bold">Live Weather & Alerts</h3>
                 </div>
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -275,11 +440,11 @@
 
           <section>
             <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-orange-600">campaign</span>
-              <h2 class="text-3xl font-bold text-primary">Current Advisories</h2>
+              <span class="material-symbols-outlined text-4xl text-orange-600 animate-pulse-slow">campaign</span>
+              <h2 class="text-3xl font-display font-bold text-gradient">Current Advisories</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="glassmorphism rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-lift">
                 <div class="flex-shrink-0 text-red-600">
                   <span class="material-symbols-outlined text-4xl">dangerous</span>
                 </div>
@@ -292,7 +457,7 @@
                   style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVwqydcchIcGybqoM3Hyonhz9E0vu7V9xv_1N3h3FrvAHiR8YFf_dpgbhlqxQWN7Ij98ucX6J-rmjLn-f7pW8mIOGehlapyEbjSizxDn0aD0eIf-91_4qbVY7IsSuTfnmBnoXizKNoNIg2I_c6ZEuwO0jNA-xpA6QYbTQpBeAgBlU82_TZReHd8l9oJvygBA7OGVRpN3NrINGuUHKHpIH3_f6gBE3MFWc7UVooiiQoI-8LWqTFQH7md4AqBGTmAavg6eOGhDUJV0BK");'>
                 </div>
               </div>
-              <div class="glassmorphism rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-lift">
                 <div class="flex-shrink-0 text-yellow-600">
                   <span class="material-symbols-outlined text-4xl">warning</span>
                 </div>
@@ -309,11 +474,11 @@
           </section>
           <section>
             <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-blue-600">contact_phone</span>
-              <h2 class="text-3xl font-bold text-primary">Emergency Contacts</h2>
+              <span class="material-symbols-outlined text-4xl text-blue-600 animate-pulse-slow">contact_phone</span>
+              <h2 class="text-3xl font-display font-bold text-gradient">Emergency Contacts</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="glassmorphism p-6 rounded-xl flex items-center justify-between hover-scale">
+              <div class="glass-effect p-6 rounded-xl flex items-center justify-between hover-lift">
                 <div class="flex items-center gap-4">
                   <div
                     class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
@@ -324,10 +489,9 @@
                     <p class="text-sm text-[var(--text-secondary)]">Immediate assistance</p>
                   </div>
                 </div>
-                <button
-                  class="bg-[var(--primary-color)] text-white py-2 px-5 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200">Call</button>
+                <button class="btn-primary text-white py-2 px-5 rounded-full font-semibold">Call</button>
               </div>
-              <div class="glassmorphism p-6 rounded-xl flex items-center justify-between hover-scale">
+              <div class="glass-effect p-6 rounded-xl flex items-center justify-between hover-lift">
                 <div class="flex items-center gap-4">
                   <div
                     class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
@@ -338,10 +502,9 @@
                     <p class="text-sm text-[var(--text-secondary)]">Non-urgent issues</p>
                   </div>
                 </div>
-                <button
-                  class="bg-[var(--primary-color)] text-white py-2 px-5 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200">Call</button>
+                <button class="btn-primary text-white py-2 px-5 rounded-full font-semibold">Call</button>
               </div>
-              <div class="glassmorphism p-6 rounded-xl flex items-center justify-between hover-scale">
+              <div class="glass-effect p-6 rounded-xl flex items-center justify-between hover-lift">
                 <div class="flex items-center gap-4">
                   <div
                     class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
@@ -352,10 +515,9 @@
                     <p class="text-sm text-[var(--text-secondary)]">Medical assistance</p>
                   </div>
                 </div>
-                <button
-                  class="bg-[var(--primary-color)] text-white py-2 px-5 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200">Call</button>
+                <button class="btn-primary text-white py-2 px-5 rounded-full font-semibold">Call</button>
               </div>
-              <div class="glassmorphism p-6 rounded-xl flex items-center justify-between hover-scale">
+              <div class="glass-effect p-6 rounded-xl flex items-center justify-between hover-lift">
                 <div class="flex items-center gap-4">
                   <div
                     class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-color)] text-[var(--primary-color)]">
@@ -366,8 +528,7 @@
                     <p class="text-sm text-[var(--text-secondary)]">Assistance for tourists</p>
                   </div>
                 </div>
-                <button
-                  class="bg-[var(--primary-color)] text-white py-2 px-5 rounded-full font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200">Call</button>
+                <button class="btn-primary text-white py-2 px-5 rounded-full font-semibold">Call</button>
               </div>
             </div>
           </section>
@@ -375,10 +536,10 @@
           <!-- Interactive Map Section -->
           <section>
             <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-green-600">map</span>
-              <h2 class="text-3xl font-bold text-primary">Emergency Services Map</h2>
+              <span class="material-symbols-outlined text-4xl text-green-600 animate-pulse-slow">map</span>
+              <h2 class="text-3xl font-display font-bold text-gradient">Emergency Services Map</h2>
             </div>
-            <div class="glassmorphism rounded-2xl p-6 hover-scale">
+            <div class="glass-effect rounded-2xl p-6 hover-lift">
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <h3 class="text-xl font-bold mb-4">Nearest Emergency Services</h3>
@@ -413,13 +574,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="relative">
-                  <div class="bg-gradient-to-br from-blue-100 to-green-100 rounded-xl h-80 flex items-center justify-center border-2 border-dashed border-blue-300">
+                <div class="relative flex flex-col">
+                  <div class="bg-gradient-to-br from-blue-100 to-green-100 rounded-xl flex-1 flex items-center justify-center border-2 border-dashed border-blue-300 min-h-[320px]">
                     <div class="text-center">
                       <span class="material-symbols-outlined text-6xl text-blue-600 mb-4">map</span>
                       <p class="text-lg font-semibold text-blue-800 mb-2">Interactive Map</p>
                       <p class="text-sm text-blue-600 mb-4">Click to view live map with emergency services</p>
-                      <button class="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-600 transition-colors">
+                      <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
                         Open Map
                       </button>
                     </div>
@@ -436,11 +597,11 @@
 
           <section>
             <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-purple-600">security</span>
-              <h2 class="text-3xl font-bold text-primary">Safety Features</h2>
+              <span class="material-symbols-outlined text-4xl text-purple-600 animate-pulse-slow">security</span>
+              <h2 class="text-3xl font-display font-bold text-gradient">Safety Features</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white">
                     <span class="material-symbols-outlined text-2xl">notifications_active</span>
@@ -454,7 +615,7 @@
                 </div>
               </div>
 
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white">
                     <span class="material-symbols-outlined text-2xl">local_hospital</span>
@@ -462,12 +623,12 @@
                   <h3 class="text-xl font-bold text-blue-800">Nearest Hospital</h3>
                 </div>
                 <p class="text-blue-700 mb-4">Find the closest medical facilities with contact details and directions.</p>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors">
+                <button class="btn-primary text-white py-2 px-4 rounded-full text-sm font-semibold">
                   Find Now
                 </button>
               </div>
 
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-500 text-white">
                     <span class="material-symbols-outlined text-2xl">location_on</span>
@@ -475,12 +636,12 @@
                   <h3 class="text-xl font-bold text-green-800">Location Sharing</h3>
                 </div>
                 <p class="text-green-700 mb-4">Share your real-time location with emergency contacts and family.</p>
-                <button class="bg-green-500 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-green-600 transition-colors">
+                <button class="btn-primary text-white py-2 px-4 rounded-full text-sm font-semibold">
                   Share Location
                 </button>
               </div>
 
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-white">
                     <span class="material-symbols-outlined text-2xl">local_police</span>
@@ -488,12 +649,12 @@
                   <h3 class="text-xl font-bold text-yellow-800">Police Stations</h3>
                 </div>
                 <p class="text-yellow-700 mb-4">Locate nearby police stations and emergency services in your area.</p>
-                <button class="bg-yellow-500 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-yellow-600 transition-colors">
+                <button class="btn-primary text-white py-2 px-4 rounded-full text-sm font-semibold">
                   Find Police
                 </button>
               </div>
 
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500 text-white">
                     <span class="material-symbols-outlined text-2xl">emergency_share</span>
@@ -501,12 +662,12 @@
                   <h3 class="text-xl font-bold text-purple-800">Emergency Kit</h3>
                 </div>
                 <p class="text-purple-700 mb-4">Access emergency supplies checklist and first aid information.</p>
-                <button class="bg-purple-500 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-purple-600 transition-colors">
+                <button class="btn-primary text-white py-2 px-4 rounded-full text-sm font-semibold">
                   View Kit
                 </button>
               </div>
 
-              <div class="glassmorphism rounded-2xl p-6 hover-tilt">
+              <div class="glass-effect rounded-2xl p-6 hover-lift">
                 <div class="flex items-center gap-4 mb-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500 text-white">
                     <span class="material-symbols-outlined text-2xl">translate</span>
@@ -514,7 +675,7 @@
                   <h3 class="text-xl font-bold text-indigo-800">Emergency Phrases</h3>
                 </div>
                 <p class="text-indigo-700 mb-4">Essential emergency phrases in local languages for quick communication.</p>
-                <button class="bg-indigo-500 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-indigo-600 transition-colors">
+                <button class="btn-primary text-white py-2 px-4 rounded-full text-sm font-semibold">
                   Learn Phrases
                 </button>
               </div>
@@ -522,27 +683,25 @@
           </section>
           <section>
             <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-green-600">lightbulb</span>
-              <h2 class="text-3xl font-bold text-primary">Safety Tips</h2>
+              <span class="material-symbols-outlined text-4xl text-green-600 animate-pulse-slow">lightbulb</span>
+              <h2 class="text-3xl font-display font-bold text-gradient">Safety Tips</h2>
             </div>
             <div class="space-y-4">
-              <div class="flex items-center gap-4 rounded-lg bg-gray-50 p-4">
+              <div class="flex items-center gap-4 rounded-lg glass-effect p-4 hover-lift">
                 <span class="material-symbols-outlined text-gray-600">checklist</span>
-                <p class="text-base text-[var(--text-secondary)]">Keep emergency contacts handy and saved on your phone.
-                </p>
+                <p class="text-base text-slate-600">Keep emergency contacts handy and saved on your phone.</p>
               </div>
-              <div class="flex items-center gap-4 rounded-lg bg-gray-50 p-4">
+              <div class="flex items-center gap-4 rounded-lg glass-effect p-4 hover-lift">
                 <span class="material-symbols-outlined text-gray-600">newspaper</span>
-                <p class="text-base text-[var(--text-secondary)]">Stay updated on local news and weather forecasts.</p>
+                <p class="text-base text-slate-600">Stay updated on local news and weather forecasts.</p>
               </div>
-              <div class="flex items-center gap-4 rounded-lg bg-gray-50 p-4">
+              <div class="flex items-center gap-4 rounded-lg glass-effect p-4 hover-lift">
                 <span class="material-symbols-outlined text-gray-600">share_location</span>
-                <p class="text-base text-[var(--text-secondary)]">Share your itinerary with someone you trust.</p>
+                <p class="text-base text-slate-600">Share your itinerary with someone you trust.</p>
               </div>
-              <div class="flex items-center gap-4 rounded-lg bg-gray-50 p-4">
+              <div class="flex items-center gap-4 rounded-lg glass-effect p-4 hover-lift">
                 <span class="material-symbols-outlined text-gray-600">explore_off</span>
-                <p class="text-base text-[var(--text-secondary)]">high-risk areas, especially at night or when
-                  alone.</p>
+                <p class="text-base text-slate-600">Avoid high-risk areas, especially at night or when alone.</p>
               </div>
             </div>
           </section>
@@ -552,10 +711,126 @@
   </div>
 
 <script>
-// Load saved theme on page load
+// Modern JavaScript functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        observer.observe(el);
+    });
+
+    // Emergency button functionality
+    const emergencyBtn = document.querySelector('.btn-emergency');
+    if (emergencyBtn) {
+        emergencyBtn.addEventListener('click', function() {
+            // Add emergency animation
+            this.style.animation = 'pulse 0.5s ease-in-out 3';
+            
+            // Simulate emergency alert
+            setTimeout(() => {
+                alert('🚨 Emergency alert sent! Your location has been shared with emergency contacts.');
+            }, 1000);
+        });
+    }
+
+    // Button click animations
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', function () {
+        const nav = document.querySelector('header');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    // Interactive card hover effects
+    document.querySelectorAll('.glass-effect').forEach(card => {
+        card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-8px) rotateX(5deg)';
+            this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
+        });
+
+        card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0) rotateX(0deg)';
+            this.style.boxShadow = '';
+        });
+    });
+
+    console.log('🚀 Modern SOS page loaded successfully!');
 });
 </script>
 
