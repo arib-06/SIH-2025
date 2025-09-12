@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz - Travel Made Easy</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <!-- Animations (AOS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="cover.html" class="logo">
+        <img src="../logo.png" alt="Traverz Logo">
+        Traverz
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="cover.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="translate.html"><i class="fas fa-language"></i> Experiences</a></li>
+        <li><a href="AI.html"><i class="fas fa-robot"></i> AI</a></li>
+        <li><a href="sos.html"><i class="fas fa-exclamation-triangle"></i> Emergency</a></li>
+      </ul>
+      <div class="profile">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+        <img src="../final_logo.jpg" alt="Profile" id="profile-pic">
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- Responsive Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-green-50"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="animate-fadeInLeft">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Travel Made
+              <span class="bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent">
+                Simple
+              </span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
+              Experience seamless travel planning with our responsive platform that adapts to your device and needs.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+              <button class="btn-primary text-lg px-8 py-4">
+                <i class="fas fa-rocket"></i>
+                Get Started
+              </button>
+              <button class="btn-secondary text-lg px-8 py-4">
+                <i class="fas fa-play"></i>
+                Watch Demo
+              </button>
+            </div>
+            
+            <!-- Responsive Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-2xl sm:text-3xl font-bold text-teal-600">50K+</div>
+                <div class="text-sm text-gray-600">Users</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl sm:text-3xl font-bold text-green-600">100+</div>
+                <div class="text-sm text-gray-600">Countries</div>
+              </div>
+              <div class="text-center col-span-2 sm:col-span-1">
+                <div class="text-2xl sm:text-3xl font-bold text-blue-600">24/7</div>
+                <div class="text-sm text-gray-600">Support</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="animate-fadeInRight">
+            <div class="relative">
+              <!-- Mobile mockup -->
+              <div class="bg-white rounded-3xl shadow-2xl p-4 mx-auto max-w-sm">
+                <div class="bg-gradient-to-br from-teal-500 to-green-500 rounded-2xl p-6 text-white">
+                  <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold">Your Trip</h3>
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="bg-white/20 rounded-lg p-3">
+                      <div class="text-sm opacity-90">Destination</div>
+                      <div class="font-semibold">Tokyo, Japan</div>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-3">
+                      <div class="text-sm opacity-90">Duration</div>
+                      <div class="font-semibold">7 Days</div>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-3">
+                      <div class="text-sm opacity-90">Budget</div>
+                      <div class="font-semibold">$2,500</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Responsive Features -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Responsive
+            <span class="bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent">
+              Design
+            </span>
+          </h2>
+          <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            Perfect experience on every device, from mobile to desktop.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center p-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-mobile-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Mobile First</h3>
+            <p class="text-gray-600 text-sm">Optimized for mobile devices</p>
+          </div>
+          
+          <div class="text-center p-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-tablet-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Tablet Ready</h3>
+            <p class="text-gray-600 text-sm">Perfect for tablet viewing</p>
+          </div>
+          
+          <div class="text-center p-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-desktop text-white text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Desktop</h3>
+            <p class="text-gray-600 text-sm">Full desktop experience</p>
+          </div>
+          
+          <div class="text-center p-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-universal-access text-white text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Accessible</h3>
+            <p class="text-gray-600 text-sm">Built for everyone</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

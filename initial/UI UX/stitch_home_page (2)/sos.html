@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz Emergency - SOS Support</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <!-- Animations (AOS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    .emergency-pulse {
+      animation: pulse-red 2s infinite;
+    }
+    
+    @keyframes pulse-red {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+      }
+    }
+    
+    .btn-emergency {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: white;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      padding: 20px 40px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .btn-emergency:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+    }
+  </style>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="cover.html" class="logo">
+        <img src="../logo.png" alt="Traverz Logo">
+        Traverz
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="cover.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="translate.html"><i class="fas fa-language"></i> Experiences</a></li>
+        <li><a href="AI.html"><i class="fas fa-robot"></i> AI</a></li>
+        <li><a href="sos.html" class="active"><i class="fas fa-exclamation-triangle"></i> Emergency</a></li>
+      </ul>
+      <div class="profile">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+        <img src="../final_logo.jpg" alt="Profile" id="profile-pic">
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- Emergency Hero -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-50 via-white to-orange-50">
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fadeInUp">
+          <div class="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-8 emergency-pulse">
+            <i class="fas fa-exclamation-triangle text-white text-4xl"></i>
+          </div>
+          <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Emergency
+            <span class="bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              Support
+            </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Get immediate help when you need it most. 24/7 emergency assistance, location sharing, and direct access to local services.
+          </p>
+          
+          <!-- Emergency Actions -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
+            <button class="btn-emergency emergency-pulse">
+              <i class="fas fa-phone"></i>
+              Call Emergency Services
+            </button>
+            <button class="btn-emergency">
+              <i class="fas fa-map-marker-alt"></i>
+              Share My Location
+            </button>
+          </div>
+          
+          <!-- Quick Emergency Numbers -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Emergency Numbers</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="text-center p-4 bg-red-50 rounded-lg">
+                <div class="text-3xl font-bold text-red-600">911</div>
+                <div class="text-sm text-gray-600">USA Emergency</div>
+              </div>
+              <div class="text-center p-4 bg-blue-50 rounded-lg">
+                <div class="text-3xl font-bold text-blue-600">112</div>
+                <div class="text-sm text-gray-600">EU Emergency</div>
+              </div>
+              <div class="text-center p-4 bg-green-50 rounded-lg">
+                <div class="text-3xl font-bold text-green-600">999</div>
+                <div class="text-sm text-gray-600">UK Emergency</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Features -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Safety
+            <span class="bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              Features
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Comprehensive emergency support to keep you safe wherever you travel.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-phone text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">24/7 Hotline</h3>
+            <p class="text-gray-600 mb-6">
+              Direct access to emergency services and our support team around the clock.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Location Sharing</h3>
+            <p class="text-gray-600 mb-6">
+              Instantly share your precise location with emergency contacts and services.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-hospital text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Medical Info</h3>
+            <p class="text-gray-600 mb-6">
+              Store and share critical medical information with first responders.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-users text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Emergency Contacts</h3>
+            <p class="text-gray-600 mb-6">
+              Automatically notify your emergency contacts when you need help.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-language text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Multi-Language</h3>
+            <p class="text-gray-600 mb-6">
+              Communicate with local emergency services in their native language.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-shield-alt text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Travel Insurance</h3>
+            <p class="text-gray-600 mb-6">
+              Direct connection to your travel insurance provider for claims.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Checklist -->
+    <section class="py-20 bg-gradient-to-br from-red-50 to-orange-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Emergency
+            <span class="bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              Checklist
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Be prepared with these essential emergency steps.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">Stay Calm</h3>
+                <p class="text-gray-600">Take deep breaths and assess the situation clearly.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">Ensure Safety</h3>
+                <p class="text-gray-600">Move to a safe location if possible.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">Call for Help</h3>
+                <p class="text-gray-600">Use the emergency buttons above or call local emergency services.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">Share Location</h3>
+                <p class="text-gray-600">Enable location sharing so help can find you quickly.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">Provide Information</h3>
+                <p class="text-gray-600">Give clear details about your situation and location.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

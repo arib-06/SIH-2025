@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz Translation - Break Language Barriers</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <!-- Animations (AOS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="cover.html" class="logo">
+        <img src="../logo.png" alt="Traverz Logo">
+        Traverz
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="cover.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="translate.html" class="active"><i class="fas fa-language"></i> Experiences</a></li>
+        <li><a href="AI.html"><i class="fas fa-robot"></i> AI</a></li>
+        <li><a href="sos.html"><i class="fas fa-exclamation-triangle"></i> Emergency</a></li>
+      </ul>
+      <div class="profile">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+        <img src="../final_logo.jpg" alt="Profile" id="profile-pic">
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- Translation Hero -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-blue-50"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fadeInUp">
+          <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-language text-white text-3xl"></i>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            Break Language
+            <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              Barriers
+            </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Translate instantly with AI-powered real-time translation that works offline in 100+ languages.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Translation Interface -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+          <!-- Language Selection -->
+          <div class="bg-gradient-to-r from-purple-500 to-blue-600 p-6">
+            <div class="flex items-center justify-between text-white">
+              <div class="flex items-center gap-4">
+                <select class="bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-lg px-4 py-2">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                  <option>Japanese</option>
+                  <option>Chinese</option>
+                </select>
+                <button class="p-2 hover:bg-white/20 rounded-lg transition-colors">
+                  <i class="fas fa-exchange-alt"></i>
+                </button>
+                <select class="bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-lg px-4 py-2">
+                  <option>Spanish</option>
+                  <option>English</option>
+                  <option>French</option>
+                  <option>German</option>
+                  <option>Japanese</option>
+                  <option>Chinese</option>
+                </select>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="p-2 hover:bg-white/20 rounded-lg transition-colors" title="Voice input">
+                  <i class="fas fa-microphone"></i>
+                </button>
+                <button class="p-2 hover:bg-white/20 rounded-lg transition-colors" title="Camera translate">
+                  <i class="fas fa-camera"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Translation Areas -->
+          <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+            <div class="p-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Enter text to translate</label>
+              <textarea 
+                class="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Type your message here..."
+                data-auto-resize
+              ></textarea>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-sm text-gray-500">0/500 characters</span>
+                <button class="btn-primary">
+                  <i class="fas fa-language"></i>
+                  Translate
+                </button>
+              </div>
+            </div>
+            
+            <div class="p-6 bg-gray-50">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Translation</label>
+              <div class="w-full h-40 p-4 bg-white border border-gray-300 rounded-lg">
+                <p class="text-gray-500 italic">Translation will appear here...</p>
+              </div>
+              <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-gray-200 rounded-lg transition-colors" title="Copy translation">
+                    <i class="fas fa-copy text-gray-600"></i>
+                  </button>
+                  <button class="p-2 hover:bg-gray-200 rounded-lg transition-colors" title="Play audio">
+                    <i class="fas fa-volume-up text-gray-600"></i>
+                  </button>
+                </div>
+                <span class="text-sm text-gray-500">Confidence: --</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Translation
+            <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              Features
+            </span>
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-wifi-slash text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Offline Translation</h3>
+            <p class="text-gray-600">
+              Translate without internet connection. Perfect for remote travel destinations.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-camera text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Camera Translation</h3>
+            <p class="text-gray-600">
+              Point your camera at signs, menus, or text to get instant translations.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-microphone text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Voice Translation</h3>
+            <p class="text-gray-600">
+              Speak naturally and get real-time voice translations for conversations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

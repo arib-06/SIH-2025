@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz Clone - Responsive Travel App</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <!-- Animations (AOS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="cover.html" class="logo">
+        <img src="../logo.png" alt="Traverz Logo">
+        Traverz
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="cover.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="translate.html"><i class="fas fa-language"></i> Experiences</a></li>
+        <li><a href="AI.html"><i class="fas fa-robot"></i> AI</a></li>
+        <li><a href="sos.html"><i class="fas fa-exclamation-triangle"></i> Emergency</a></li>
+      </ul>
+      <div class="profile">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+        <img src="../final_logo.jpg" alt="Profile" id="profile-pic">
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fadeInUp">
+          <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            Clone Your Perfect
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Travel Experience
+            </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Duplicate and customize successful travel itineraries from experienced travelers around the world.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <button class="btn-primary text-lg px-8 py-4">
+              <i class="fas fa-copy"></i>
+              Start Cloning
+            </button>
+            <button class="btn-secondary text-lg px-8 py-4">
+              <i class="fas fa-search"></i>
+              Browse Templates
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Clone & Customize
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Travel Plans
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Save time by starting with proven travel itineraries and making them your own.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-copy text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">One-Click Clone</h3>
+            <p class="text-gray-600 mb-6">
+              Instantly duplicate any travel itinerary with a single click and start customizing.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-edit text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Easy Customization</h3>
+            <p class="text-gray-600 mb-6">
+              Modify destinations, activities, and schedules to match your preferences and budget.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-share text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Share & Collaborate</h3>
+            <p class="text-gray-600 mb-6">
+              Share your customized plans with friends and collaborate on group travel planning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

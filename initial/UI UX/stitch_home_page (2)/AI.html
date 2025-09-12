@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz AI Assistant - Your Travel Companion</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <!-- Animations (AOS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="cover.html" class="logo">
+        <img src="../logo.png" alt="Traverz Logo">
+        Traverz
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="cover.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="translate.html"><i class="fas fa-language"></i> Experiences</a></li>
+        <li><a href="Ai.html" class="active"><i class="fas fa-robot"></i> AI</a></li>
+        <li><a href="sos.html"><i class="fas fa-exclamation-triangle"></i> Emergency</a></li>
+      </ul>
+      <div class="profile">
+        <button class="btn-primary" onclick="window.location.href='signup.html'">
+          <i class="fas fa-user-plus"></i> Sign Up
+        </button>
+        <img src="../final_logo.jpg" alt="Profile" id="profile-pic">
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- AI Assistant Header -->
+    <section class="py-20 bg-gradient-to-br from-green-50 via-white to-blue-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fadeInUp">
+          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-robot text-white text-3xl"></i>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">AI Travel Assistant</h1>
+          <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Your intelligent travel companion is ready to help! Ask me about destinations, accommodations, activities, or anything travel-related.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Quick Actions -->
+        <div class="mb-8">
+          <div class="flex flex-wrap gap-3 justify-center">
+            <button class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              🇯🇵 Japan Travel
+            </button>
+            <button class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              💰 Budget Hotels
+            </button>
+            <button class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              🍜 Local Food
+            </button>
+            <button class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm hover:bg-blue-50 hover:border-blue-300 transition-colors">
+              🛡️ Safety Tips
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <!-- Chat Messages -->
+          <div class="h-96 overflow-y-auto p-6 space-y-4" id="chatMessages">
+            <!-- Welcome Message -->
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center shrink-0">
+                <i class="fas fa-robot text-white text-sm"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-semibold text-gray-900 text-sm">Travel Assistant</span>
+                  <span class="text-xs text-gray-500">now</span>
+                </div>
+                <div class="bg-gray-100 rounded-2xl rounded-bl-sm p-4 max-w-md">
+                  <p class="text-gray-800">Hello! 👋 I'm your AI travel assistant. I can help you with:</p>
+                  <ul class="mt-2 space-y-1 text-sm text-gray-700">
+                    <li>• Destination recommendations</li>
+                    <li>• Accommodation suggestions</li>
+                    <li>• Local attractions and activities</li>
+                    <li>• Travel tips and safety advice</li>
+                  </ul>
+                  <p class="mt-2 text-gray-800">What would you like to know about your next adventure?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="p-4 border-t border-gray-200">
+            <div class="flex items-end gap-3">
+              <div class="flex-1">
+                <textarea 
+                  id="messageInput"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-2xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Ask me anything about travel..."
+                  rows="1"
+                  data-auto-resize
+                ></textarea>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="p-3 rounded-full hover:bg-gray-100 text-gray-500 transition-colors" title="Voice input">
+                  <i class="fas fa-microphone"></i>
+                </button>
+                <button 
+                  id="sendButton"
+                  class="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50"
+                  disabled
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            AI
+            <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              Capabilities
+            </span>
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-brain text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Smart Recommendations</h3>
+            <p class="text-gray-600">
+              Get personalized travel suggestions based on your preferences and travel history.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-comments text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Natural Conversation</h3>
+            <p class="text-gray-600">
+              Chat naturally about your travel plans and get helpful, contextual responses.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <i class="fas fa-clock text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">24/7 Availability</h3>
+            <p class="text-gray-600">
+              Get instant answers to your travel questions anytime, anywhere in the world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+  
+  <script>
+    // Simple chat functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const messageInput = document.getElementById('messageInput');
+      const sendButton = document.getElementById('sendButton');
+      const chatMessages = document.getElementById('chatMessages');
+      
+      // Enable/disable send button based on input
+      messageInput.addEventListener('input', function() {
+        sendButton.disabled = this.value.trim() === '';
+      });
+      
+      // Send message on Enter key
+      messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+      
+      // Send button click
+      sendButton.addEventListener('click', sendMessage);
+      
+      function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message) {
+          addMessage(message, 'user');
+          messageInput.value = '';
+          sendButton.disabled = true;
+          
+          // Simulate AI response
+          setTimeout(() => {
+            addMessage("Thanks for your question! I'm here to help with your travel planning. This is a demo response.", 'assistant');
+          }, 1000);
+        }
+      }
+      
+      function addMessage(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'flex items-start gap-3';
+        
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        if (sender === 'user') {
+          messageDiv.innerHTML = `
+            <div class="flex-1"></div>
+            <div class="flex items-start gap-3 justify-end">
+              <div class="flex-1 text-right">
+                <div class="flex items-center gap-2 mb-1 justify-end">
+                  <span class="text-xs text-gray-500">${timeString}</span>
+                  <span class="font-semibold text-gray-900 text-sm">You</span>
+                </div>
+                <div class="bg-blue-600 text-white rounded-2xl rounded-br-sm p-4 max-w-md inline-block">
+                  <p>${content}</p>
+                </div>
+              </div>
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shrink-0">
+                <i class="fas fa-user text-white text-sm"></i>
+              </div>
+            </div>
+          `;
+        } else {
+          messageDiv.innerHTML = `
+            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center shrink-0">
+              <i class="fas fa-robot text-white text-sm"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-semibold text-gray-900 text-sm">Travel Assistant</span>
+                <span class="text-xs text-gray-500">${timeString}</span>
+              </div>
+              <div class="bg-gray-100 rounded-2xl rounded-bl-sm p-4 max-w-md">
+                <p class="text-gray-800">${content}</p>
+              </div>
+            </div>
+          `;
+        }
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Modern Traverz. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
