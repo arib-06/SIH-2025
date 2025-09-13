@@ -34,10 +34,10 @@
           </div>
           <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
         </div>
-
+            
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
-          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+          <a href="modern_traverz_website.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
             Home
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
@@ -47,18 +47,18 @@
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Experiences
+          <a href="modern_traverz_translate.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Translate
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Services
+          <a href="perplexitypart2.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            AI Assistance
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </a>
-          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Contact
+          <a href="sos.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Emergency
             <span
               class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </a>
@@ -74,8 +74,7 @@
           </button>
         </div>
       </div>
-    </div>
-  </nav>
+    </div></nav>
 
   <!-- Planning Section -->
   <section class="py-32 px-4 sm:px-6 lg:px-8 bgimg">
@@ -107,7 +106,8 @@
 
           <!-- Packages -->
           <div
-            class="interactive-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center cursor-pointer">
+            class="interactive-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center cursor-pointer"
+            onclick="showPackagesBookingForm()">
             <div
               class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
@@ -122,7 +122,8 @@
 
           <!-- Tourist Guide -->
           <div
-            class="interactive-card bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center cursor-pointer">
+            class="interactive-card bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center cursor-pointer"
+            onclick="closeAllBookingForms()">
             <div
               class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
@@ -137,7 +138,8 @@
 
           <!-- Hotel -->
           <div
-            class="interactive-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center cursor-pointer">
+            class="interactive-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center cursor-pointer"
+            onclick="showHotelBookingForm()">
             <div
               class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
@@ -235,6 +237,203 @@
                 <option>Economy</option>
                 <option>Business</option>
                 <option>First Class</option>
+              </select>
+            </div>
+          </div>
+          <div class="text-center mt-6">
+            <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+              Search & Book Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Hotel Booking Form (Hidden by default) -->
+        <div id="hotelBookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl">
+          <h4 class="text-2xl font-semibold mb-6 text-center">🏨 Book Your Hotel</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Destination</label>
+              <div class="relative">
+                <input type="text" placeholder="City, Property Name or Location"
+                  class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Check-In Date</label>
+              <div class="relative">
+                <input type="date"
+                  class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Check-Out Date</label>
+              <div class="relative">
+                <input type="date"
+                  class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Rooms & Guests</label>
+              <div class="relative">
+                <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                  <option>1 Room, 2 Guests</option>
+                  <option>1 Room, 1 Guest</option>
+                  <option>1 Room, 3 Guests</option>
+                  <option>1 Room, 4 Guests</option>
+                  <option>2 Rooms, 4 Guests</option>
+                  <option>2 Rooms, 6 Guests</option>
+                  <option>3 Rooms, 6 Guests</option>
+                </select>
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                </svg>
+                <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preferences Section -->
+          <div class="mt-6">
+            <h5 class="text-lg font-semibold mb-4 text-slate-700">Preferences</h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Star Rating -->
+              <div>
+                <label class="block text-sm font-medium mb-2">Star Rating</label>
+                <div class="relative">
+                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                    <option>Any Rating</option>
+                    <option>3 Star and Above</option>
+                    <option>4 Star and Above</option>
+                    <option>5 Stars Only</option>
+                  </select>
+                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Price Range -->
+              <div>
+                <label class="block text-sm font-medium mb-2">Price Range</label>
+                <div class="relative">
+                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                    <option>Any Price</option>
+                    <option>Under ₹2000</option>
+                    <option>₹2000 - ₹5000</option>
+                    <option>Above ₹5000</option>
+                  </select>
+                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Facilities -->
+              <div>
+                <label class="block text-sm font-medium mb-2">Facilities</label>
+                <div class="relative">
+                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                    <option>All Hotels</option>
+                    <option>Internet Access</option>
+                    <option>Parking</option>
+                    <option>Room Service</option>
+                  </select>
+                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label class="block text-sm font-medium mb-2">Location</label>
+                <div class="relative">
+                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                    <option>Any Location</option>
+                    <option>City Center</option>
+                    <option>Near Airport</option>
+                    <option>Beach Front</option>
+                  </select>
+                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+              Search Hotels
+            </button>
+          </div>
+        </div>
+
+        <!-- Packages Booking Form (Hidden by default) -->
+        <div id="packagesBookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl">
+          <h4 class="text-2xl font-semibold mb-6 text-center">🎒 Book Your Package</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">From</label>
+              <input type="text" placeholder="Departure city"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">To</label>
+              <input type="text" placeholder="Destination city"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Departure Date</label>
+              <input type="date"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Return Date</label>
+              <input type="date"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Passengers</label>
+              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <option>1 Passenger</option>
+                <option>2 Passengers</option>
+                <option>3 Passengers</option>
+                <option>4+ Passengers</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Class</label>
+              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <option>Economy Package</option>
+                <option>Premium Package</option>
+                <option>Luxury Package</option>
+                <option>Deluxe Package</option>
               </select>
             </div>
           </div>
@@ -518,20 +717,31 @@
     function toggleBookingOptions() {
       const bookingOptions = document.getElementById('bookingOptions');
       const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
 
       if (bookingOptions.classList.contains('hidden')) {
         bookingOptions.classList.remove('hidden');
         bookingForm.classList.add('hidden');
+        hotelBookingForm.classList.add('hidden');
+        packagesBookingForm.classList.add('hidden');
       } else {
         bookingOptions.classList.add('hidden');
+        bookingForm.classList.add('hidden');
+        hotelBookingForm.classList.add('hidden');
+        packagesBookingForm.classList.add('hidden');
       }
     }
 
     function showBookingForm(type) {
       const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
       const bookingTitle = document.getElementById('bookingTitle');
       const classSelect = document.getElementById('classSelect');
 
+      hotelBookingForm.classList.add('hidden');
+      packagesBookingForm.classList.add('hidden');
       bookingForm.classList.remove('hidden');
 
       switch (type) {
@@ -564,6 +774,52 @@
           `;
           break;
       }
+    }
+
+    function showHotelBookingForm() {
+      const bookingOptions = document.getElementById('bookingOptions');
+      const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
+
+      // Toggle hotel booking form
+      if (hotelBookingForm.classList.contains('hidden')) {
+        bookingOptions.classList.add('hidden');
+        bookingForm.classList.add('hidden');
+        packagesBookingForm.classList.add('hidden');
+        hotelBookingForm.classList.remove('hidden');
+      } else {
+        hotelBookingForm.classList.add('hidden');
+      }
+    }
+
+    function showPackagesBookingForm() {
+      const bookingOptions = document.getElementById('bookingOptions');
+      const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
+
+      // Toggle packages booking form
+      if (packagesBookingForm.classList.contains('hidden')) {
+        bookingOptions.classList.add('hidden');
+        bookingForm.classList.add('hidden');
+        hotelBookingForm.classList.add('hidden');
+        packagesBookingForm.classList.remove('hidden');
+      } else {
+        packagesBookingForm.classList.add('hidden');
+      }
+    }
+
+    function closeAllBookingForms() {
+      const bookingOptions = document.getElementById('bookingOptions');
+      const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
+
+      bookingOptions.classList.add('hidden');
+      bookingForm.classList.add('hidden');
+      hotelBookingForm.classList.add('hidden');
+      packagesBookingForm.classList.add('hidden');
     }
 
     // Smooth scrolling for navigation links
