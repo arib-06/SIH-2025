@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Tourist Guides - Traverz</title>
+  <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --accent: #f59e0b;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+    }
+
+    .filter-tag {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .filter-tag:hover {
+      transform: translateY(-2px);
+    }
+
+    .filter-tag.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+
+    .guide-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .availability-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .available { background-color: #10b981; }
+    .busy { background-color: #f59e0b; }
+    .offline { background-color: #ef4444; }
+
+    .star-rating {
+      color: #fbbf24;
+    }
+
+    .specialty-badge {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .price-badge {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .floating-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .floating-contact:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.6);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .language-flag {
+      width: 20px;
+      height: 15px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 3s infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass-effect animate-slideInLeft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse-slow">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
+                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                  fill="none" stroke="currentColor" stroke-width="3" />
+                <circle cx="50" cy="35" r="3" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="modern_traverz_website.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Home
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Destinations
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="modern_traverz_translate.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Translate
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="perplexitypart2.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            AI Assistance
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="sos.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Emergency
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center space-x-4">
+          <button class="hidden sm:block px-6 py-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+            Sign In
+          </button>
+          <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div></nav>
+
+  <!-- Filter Tags -->
+  
+
+  <!-- Header Section -->
+  <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        
+        <!-- Enhanced Search Bar -->
+        <div class="relative max-w-3xl mx-auto">
+          <div class="glass-effect rounded-3xl p-2 shadow-xl border border-white/20">
+            <div class="flex items-center gap-3">
+              <div class="flex-1 relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <input type="text" 
+                       placeholder="Search by location, specialty, guide name, or language..." 
+                       class="w-full pl-12 pr-4 py-4 bg-transparent border-0 focus:ring-0 focus:outline-none text-slate-700 placeholder-slate-400 text-lg"
+                       onkeyup="filterGuides(this.value)">
+              </div>
+              <button class="btn-primary px-8 py-4 rounded-2xl text-white font-semibold hover:scale-105 transition-all duration-200 shadow-lg">
+                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+          
+          <!-- Current Location -->
+          <div class="mt-4 text-center">
+            <p class="text-slate-600">📍 Currently showing guides in: <span class="font-semibold text-blue-600">Kanpur, Uttar Pradesh</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Tourist Guides Grid -->
+  <section class="pb-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="guidesGrid">
+        
+        <!-- Guide 1 - Cultural Heritage Expert -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="cultural">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Rajesh Kumar" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot available"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">Available</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹800/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">🏛️ Heritage</span>
+                <span class="specialty-badge">📚 History</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Rajesh Kumar</h3>
+                <p class="text-slate-600 text-sm">📍 2.3 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★★</div>
+                <p class="text-sm text-slate-600">4.9 (127 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Expert in Mughal architecture and local heritage sites. 15+ years of experience guiding tourists through historical landmarks.</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇫🇷 French</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('rajesh')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('rajesh')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 2 - Adventure Sports -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="adventure">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Arjun Singh" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot busy"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">Busy Until 6 PM</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹1200/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">🏔️ Trekking</span>
+                <span class="specialty-badge">🚣 Adventure</span>
+                <span class="specialty-badge">🧗 Climbing</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Arjun Singh</h3>
+                <p class="text-slate-600 text-sm">📍 1.8 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★★</div>
+                <p class="text-sm text-slate-600">4.8 (89 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Certified adventure guide specializing in mountain trekking, rock climbing, and water sports. Safety-first approach with 10+ years experience.</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('arjun')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('arjun')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 3 - Food & Culinary -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="food">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Priya Sharma" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot available"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">Available</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹1000/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">🍽️ Food Tours</span>
+                <span class="specialty-badge">👩‍🍳 Cooking</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Priya Sharma</h3>
+                <p class="text-slate-600 text-sm">📍 0.9 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★★</div>
+                <p class="text-sm text-slate-600">4.9 (156 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Culinary expert and food blogger. Take you on authentic street food tours and cooking classes. Knows all the hidden foodie gems!</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇯🇵 Japanese</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('priya')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('priya')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 4 - Photography Tours -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="photography">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Vikram Patel" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot available"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">Available</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹1500/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">📸 Photography</span>
+                <span class="specialty-badge">🌅 Landscapes</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Vikram Patel</h3>
+                <p class="text-slate-600 text-sm">📍 3.1 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★☆</div>
+                <p class="text-sm text-slate-600">4.7 (73 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Professional photographer and photo tour guide. Knows the best spots for golden hour shots, sunrise/sunset locations, and Instagram-worthy places.</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇩🇪 German</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('vikram')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('vikram')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 5 - Wildlife & Nature -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="wildlife">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Dr. Suresh Menon" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot offline"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">On Tour (Back Tomorrow)</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹2000/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">🦌 Wildlife</span>
+                <span class="specialty-badge">🌿 Nature</span>
+                <span class="specialty-badge">🐅 Safari</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Dr. Suresh Menon</h3>
+                <p class="text-slate-600 text-sm">📍 25 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★★</div>
+                <p class="text-sm text-slate-600">5.0 (45 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Marine biologist turned wildlife guide. Expert in national parks, bird watching, and wildlife photography. PhD in Ecology & Conservation.</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('suresh')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('suresh')" class="flex-1 bg-slate-300 text-slate-500 py-3 rounded-xl font-semibold cursor-not-allowed" disabled>
+                Currently Away
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 6 - Spiritual Tours -->
+        <div class="guide-card glass-effect rounded-3xl overflow-hidden hover-lift" data-category="spiritual">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                 alt="Meera Devi" class="w-full h-64 object-cover">
+            <div class="absolute top-4 left-4">
+              <div class="availability-dot available"></div>
+              <span class="text-white text-sm font-medium bg-black/50 px-2 py-1 rounded">Available</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <div class="price-badge">₹600/day</div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="flex flex-wrap gap-1">
+                <span class="specialty-badge">🕉️ Spiritual</span>
+                <span class="specialty-badge">🏛️ Temples</span>
+                <span class="specialty-badge">🧘 Meditation</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="text-xl font-bold mb-1">Meera Devi</h3>
+                <p class="text-slate-600 text-sm">📍 1.5 km away</p>
+              </div>
+              <div class="text-right">
+                <div class="star-rating mb-1">★★★★★</div>
+                <p class="text-sm text-slate-600">4.9 (201 reviews)</p>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 mb-4">Spiritual guide and yoga instructor. Specializes in temple tours, meditation sessions, and spiritual healing experiences. 20+ years in spiritual tourism.</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Hindi</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇺🇸 English</span>
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">🇮🇳 Sanskrit</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="showGuideProfile('meera')" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                View Profile
+              </button>
+              <button onclick="bookGuide('meera')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-12">
+        <button onclick="loadMoreGuides()" class="glass-effect px-8 py-4 rounded-full text-slate-700 font-semibold hover-lift">
+          Load More Guides (12 more available)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-display font-bold mb-4">Why Choose Our Tourist Guides?</h2>
+        <p class="text-xl text-slate-600">Professional, verified, and passionate local experts</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.72,225.86,102.82Zm-52.2,6.84-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Verified Experts</h3>
+          <p class="text-slate-600">All guides are background-verified and certified professionals</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Real-Time Availability</h3>
+          <p class="text-slate-600">See live availability and book instantly</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M243.83,154.83l-32,32a8,8,0,0,1-11.32,0L168,154.34V216a8,8,0,0,1-16,0V154.34l-32.49,32.49a8,8,0,0,1-11.32-11.32l32-32a8,8,0,0,1,11.32,0l32,32A8,8,0,0,1,243.83,154.83ZM88,154.34V216a8,8,0,0,1-16,0V154.34L39.51,186.83a8,8,0,0,1-11.32-11.32l32-32a8,8,0,0,1,11.32,0l32,32a8,8,0,0,1-11.32,11.32ZM128,112A40,40,0,1,0,88,72,40,40,0,0,0,128,112Zm0-64a24,24,0,1,1-24,24A24,24,0,0,1,128,48Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Multilingual Guides</h3>
+          <p class="text-slate-600">Communicate in your preferred language</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">24/7 Support</h3>
+          <p class="text-slate-600">Round-the-clock customer support and assistance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Contact Button -->
+  <div class="floating-contact" onclick="showContactModal()">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M231.88,175.08A56,56,0,0,1,176,224C96.6,224,32,159.4,32,80A56,56,0,0,1,80.92,24.12a16,16,0,0,1,16.62,9.52l21.12,47.15,0,.12A16,16,0,0,1,117.39,96c-.18.27-.37.52-.57.77L96,121.45c7.49,15.22,23.41,31,38.83,38.51l24.34-20.71a8,8,0,0,1,.75-.56,16,16,0,0,1,15.17-1.4l.13.06,47.11,21.11A16,16,0,0,1,231.88,175.08Z"></path>
+    </svg>
+  </div>
+
+  <!-- Guide Profile Modal -->
+  <div id="guideModal" class="modal">
+    <div class="modal-content">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Guide Profile</h2>
+          <button onclick="closeModal('guideModal')" class="text-slate-400 hover:text-slate-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <div id="guideProfileContent">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Need Help?</h2>
+          <button onclick="closeModal('contactModal')" class="text-slate-400 hover:text-slate-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <button class="w-full bg-green-500 text-white p-4 rounded-xl font-semibold hover:bg-green-600 transition-colors">
+            📱 WhatsApp Support
+          </button>
+          <button class="w-full bg-blue-500 text-white p-4 rounded-xl font-semibold hover:bg-blue-600 transition-colors">
+            📞 Call Support
+          </button>
+          <button class="w-full bg-purple-500 text-white p-4 rounded-xl font-semibold hover:bg-purple-600 transition-colors">
+            💬 Live Chat
+          </button>
+          <button class="w-full bg-slate-500 text-white p-4 rounded-xl font-semibold hover:bg-slate-600 transition-colors">
+            ✉️ Email Support
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Modal -->
+  <div id="locationModal" class="modal">
+    <div class="modal-content">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Change Location</h2>
+          <button onclick="closeModal('locationModal')" class="text-slate-400 hover:text-slate-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <input type="text" placeholder="🔍 Enter city or location..." 
+                 class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          
+          <div class="space-y-2">
+            <h3 class="font-semibold text-slate-700">Popular Locations:</h3>
+            <div class="grid grid-cols-2 gap-2">
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 New Delhi</button>
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 Mumbai</button>
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 Bangalore</button>
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 Chennai</button>
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 Kolkata</button>
+              <button class="p-3 text-left border rounded-lg hover:bg-blue-50 transition-colors">📍 Hyderabad</button>
+            </div>
+          </div>
+          
+          <button class="w-full btn-primary p-4 rounded-xl text-white font-semibold">
+            📍 Use Current Location
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll to guides section
+    function scrollToGuides() {
+      document.getElementById('guidesGrid').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Filter guides by category
+    function filterByCategory(category) {
+      const guides = document.querySelectorAll('.guide-card');
+      const filterTags = document.querySelectorAll('.filter-tag');
+      
+      // Update active filter tag
+      filterTags.forEach(tag => {
+        tag.classList.remove('active', 'bg-blue-600', 'text-white');
+        tag.classList.add('bg-white');
+      });
+      
+      event.target.classList.add('active', 'bg-blue-600', 'text-white');
+      event.target.classList.remove('bg-white');
+      
+      // Show/hide guides
+      guides.forEach(guide => {
+        if (category === 'all' || guide.dataset.category === category) {
+          guide.style.display = 'block';
+          guide.style.animation = 'fadeInUp 0.5s ease-out';
+        } else {
+          guide.style.display = 'none';
+        }
+      });
+    }
+
+    // Filter guides by search term
+    function filterGuides(searchTerm) {
+      const guides = document.querySelectorAll('.guide-card');
+      const term = searchTerm.toLowerCase();
+      
+      guides.forEach(guide => {
+        const name = guide.querySelector('h3').textContent.toLowerCase();
+        const description = guide.querySelector('p').textContent.toLowerCase();
+        const specialties = Array.from(guide.querySelectorAll('.specialty-badge')).map(badge => badge.textContent.toLowerCase()).join(' ');
+        
+        if (name.includes(term) || description.includes(term) || specialties.includes(term)) {
+          guide.style.display = 'block';
+        } else {
+          guide.style.display = 'none';
+        }
+      });
+    }
+
+    // Show guide profile modal
+    function showGuideProfile(guideId) {
+      const profiles = {
+        'rajesh': {
+          name: 'Rajesh Kumar',
+          image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+          rating: '4.9 (127 reviews)',
+          experience: '15+ years',
+          specialties: ['Heritage Tours', 'Historical Sites', 'Mughal Architecture'],
+          languages: ['Hindi', 'English', 'French'],
+          description: 'Rajesh is a certified heritage guide with extensive knowledge of Mughal architecture and Indian history. He has been guiding tourists for over 15 years and is known for his engaging storytelling.',
+          tours: ['Red Fort Heritage Walk', 'Taj Mahal Sunrise Tour', 'Old Delhi Historical Tour'],
+          price: '₹800/day',
+          certificates: ['Certified Tourist Guide - ASI', 'Heritage Interpretation Certificate']
+        },
+        'arjun': {
+          name: 'Arjun Singh',
+          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+          rating: '4.8 (89 reviews)',
+          experience: '10+ years',
+          specialties: ['Adventure Sports', 'Trekking', 'Rock Climbing'],
+          languages: ['Hindi', 'English'],
+          description: 'Adventure enthusiast and certified guide specializing in mountain activities. Safety is his top priority with extensive training in first aid and rescue operations.',
+          tours: ['Himalayan Base Camp Trek', 'Rock Climbing Adventures', 'River Rafting Expeditions'],
+          price: '₹1200/day',
+          certificates: ['Wilderness First Aid', 'Rock Climbing Instructor', 'Adventure Tourism Certificate']
+        }
+      };
+      
+      const profile = profiles[guideId] || profiles['rajesh'];
+      const content = `
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="md:w-1/3">
+            <img src="${profile.image}" alt="${profile.name}" class="w-full h-64 object-cover rounded-2xl">
+            <div class="mt-4 space-y-2">
+              <div class="star-rating text-lg">${profile.rating}</div>
+              <div class="text-slate-600">📍 Experience: ${profile.experience}</div>
+              <div class="price-badge text-center">${profile.price}</div>
+            </div>
+          </div>
+          
+          <div class="md:w-2/3">
+            <h3 class="text-2xl font-bold mb-4">${profile.name}</h3>
+            <p class="text-slate-600 mb-6">${profile.description}</p>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Specialties:</h4>
+              <div class="flex flex-wrap gap-2">
+                ${profile.specialties.map(s => `<span class="specialty-badge">${s}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Popular Tours:</h4>
+              <ul class="list-disc list-inside text-slate-600 space-y-1">
+                ${profile.tours.map(t => `<li>${t}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="mb-4">
+              <h4 class="font-semibold mb-2">Languages:</h4>
+              <div class="flex gap-2">
+                ${profile.languages.map(l => `<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">${l}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="font-semibold mb-2">Certificates:</h4>
+              <ul class="list-disc list-inside text-slate-600 space-y-1">
+                ${profile.certificates.map(c => `<li>${c}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="flex gap-3">
+              <button onclick="bookGuide('${guideId}')" class="flex-1 btn-primary py-3 rounded-xl text-white font-semibold">
+                Book This Guide
+              </button>
+              <button class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('guideProfileContent').innerHTML = content;
+      document.getElementById('guideModal').classList.add('show');
+    }
+
+    // Book guide function
+    function bookGuide(guideId) {
+      alert(`Booking ${guideId}... This would redirect to booking form in a real application.`);
+      closeModal('guideModal');
+    }
+
+    // Load more guides
+    function loadMoreGuides() {
+      alert('Loading more guides... This would fetch additional guides from the server.');
+    }
+
+    // Modal functions
+    function showContactModal() {
+      document.getElementById('contactModal').classList.add('show');
+    }
+
+    function showLocationModal() {
+      document.getElementById('locationModal').classList.add('show');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('show');
+    }
+
+    // Close modals when clicking outside
+    window.addEventListener('click', function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.classList.remove('show');
+        }
+      });
+    });
+
+    // Smooth scrolling and navigation effects
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
+      } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+      }
+    });
+  </script>
+</body>
+</html>
