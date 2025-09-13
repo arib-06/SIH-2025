@@ -306,6 +306,7 @@
           </a>
           <a href="#" class="text-blue-600 font-medium relative">
             Settings
+
             <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600"></span>
           </a>
         </div>
@@ -324,84 +325,189 @@
   <main class="pt-24 px-4 sm:px-6 lg:px-8 pb-16">
     <div class="max-w-4xl mx-auto">
       <!-- Page Header -->
-      <div class="text-center mb-12 animate-fadeInUp">
-        <h2 class="text-4xl font-display font-bold mb-4">Settings</h2>
-        <p class="text-xl" style="color: var(--text-secondary)">
-          Customize your Traverz experience
-        </p>
+      <div class="text-center mb-8 animate-fadeInUp">
+        <h2 class="text-4xl font-display font-bold mb-4">Profile</h2>
       </div>
 
       <!-- Settings Sections -->
       <div class="space-y-8">
         <!-- Account Section -->
-        <div class="animate-fadeInUp">
-          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Account</h3>
-          <div class="settings-card hover-lift">
+        <div class="settings-section animate-fadeInUp">
+          <div class="section-header" onclick="toggleSection('account')">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold" style="color: var(--text-primary)">Account</h3>
+            <div class="section-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="transform transition-transform duration-200" id="account-toggle">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="section-content" id="account-content">
+            <div class="settings-card hover-lift">
             <div class="space-y-4">
               <!-- Profile -->
               <div class="settings-item interactive-card">
                 <div class="flex items-center space-x-4">
-                  <div class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                    <span class="text-white font-semibold text-lg">JD</span>
+                  <div class="profile-upload">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center" id="profile-avatar">
+                      <span class="text-white font-semibold text-lg" id="profile-initials">JD</span>
+                    </div>
+                    <div class="profile-upload-overlay">
+                      <div class="upload-icon">📷</div>
+                    </div>
+                    <input type="file" accept="image/*" onchange="handleProfileUpload(event)">
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">John Doe</p>
                     <p class="text-sm" style="color: var(--text-secondary)">Manage your profile information</p>
                   </div>
                 </div>
-                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Edit
+                </button>
+              </div>
+
+              <!-- Email -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Email</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">john.doe@example.com</p>
+                  </div>
+                </div>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Edit
+                </button>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Phone Number</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">+1 (555) 123-4567</p>
+                  </div>
+                </div>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Edit
+                </button>
               </div>
 
               <!-- Password -->
-              <div class="settings-item interactive-card">
+              <div class="settings-item">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    🔒
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM15.1 8H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Password</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Change your password</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">••••••••</p>
                   </div>
                 </div>
-                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Change
+                </button>
+              </div>
+
+              <!-- Two-Factor Authentication -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Two-Factor Authentication</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Add an extra layer of security</p>
+                  </div>
+                </div>
+                <div class="toggle-switch" id="twoFactorToggle" onclick="toggleTwoFactor()">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+
+              <!-- Login Activity -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Login Activity</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Last login: Today at 2:30 PM • Chrome on Windows</p>
+                  </div>
+                </div>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  View All
+                </button>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
         <!-- Preferences Section -->
-        <div class="animate-fadeInUp">
-          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Preferences</h3>
-          <div class="settings-card hover-lift">
+        <div class="settings-section animate-fadeInUp">
+          <div class="section-header" onclick="toggleSection('preferences')">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.82,11.69,4.82,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold" style="color: var(--text-primary)">Preferences</h3>
+            <div class="section-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="transform transition-transform duration-200" id="preferences-toggle">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="section-content" id="preferences-content">
+            <div class="settings-card hover-lift">
             <div class="space-y-4">
               <!-- Language -->
-              <div class="settings-item interactive-card">
+              <div class="settings-item">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    🌐
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Language</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Choose your preferred language</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">English</p>
                   </div>
                 </div>
-                <div class="flex items-center space-x-2">
-                  <span class="text-sm font-medium" style="color: var(--text-secondary)">English</span>
-                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Edit
+                </button>
               </div>
 
               <!-- Notifications -->
               <div class="settings-item">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    🔔
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Notifications</p>
@@ -417,7 +523,9 @@
               <div class="settings-item">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    🎨
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Theme</p>
@@ -430,83 +538,53 @@
               </div>
 
               <!-- Currency -->
-              <div class="settings-item interactive-card">
+              <div class="settings-item">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    💰
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Currency</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Select your preferred currency</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">USD</p>
                   </div>
                 </div>
-                <div class="flex items-center space-x-2">
-                  <span class="text-sm font-medium" style="color: var(--text-secondary)">USD</span>
-                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
+                <button class="px-4 py-2 text-sm bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg font-medium transition-colors">
+                  Edit
+                </button>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Travel Preferences Section -->
-        <div class="animate-fadeInUp">
-          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Travel Preferences</h3>
-          <div class="settings-card hover-lift">
-            <div class="space-y-4">
-              <!-- Default Seat Preference -->
-              <div class="settings-item interactive-card">
-                <div class="flex items-center space-x-4">
-                  <div class="settings-icon">
-                    ✈️
-                  </div>
-                  <div>
-                    <p class="font-semibold" style="color: var(--text-primary)">Seat Preference</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Default seat selection for flights</p>
-                  </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <span class="text-sm font-medium" style="color: var(--text-secondary)">Window</span>
-                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Meal Preference -->
-              <div class="settings-item interactive-card">
-                <div class="flex items-center space-x-4">
-                  <div class="settings-icon">
-                    🍽️
-                  </div>
-                  <div>
-                    <p class="font-semibold" style="color: var(--text-primary)">Meal Preference</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Default meal selection for flights</p>
-                  </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <span class="text-sm font-medium" style="color: var(--text-secondary)">Vegetarian</span>
-                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+
 
         <!-- Support Section -->
-        <div class="animate-fadeInUp">
-          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Support</h3>
-          <div class="settings-card hover-lift">
+        <div class="settings-section animate-fadeInUp">
+          <div class="section-header" onclick="toggleSection('support')">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold" style="color: var(--text-primary)">Support</h3>
+            <div class="section-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="transform transition-transform duration-200" id="support-toggle">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="section-content" id="support-content">
+            <div class="settings-card hover-lift">
             <div class="space-y-4">
               <!-- Help Center -->
               <div class="settings-item interactive-card">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    ❓
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Help Center</p>
@@ -522,27 +600,13 @@
               <div class="settings-item interactive-card">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    📧
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
                   </div>
                   <div>
                     <p class="font-semibold" style="color: var(--text-primary)">Contact Us</p>
                     <p class="text-sm" style="color: var(--text-secondary)">Contact us for assistance</p>
-                  </div>
-                </div>
-                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-
-              <!-- About -->
-              <div class="settings-item interactive-card">
-                <div class="flex items-center space-x-4">
-                  <div class="settings-icon">
-                    ℹ️
-                  </div>
-                  <div>
-                    <p class="font-semibold" style="color: var(--text-primary)">About Traverz</p>
-                    <p class="text-sm" style="color: var(--text-secondary)">Learn more about our platform</p>
                   </div>
                 </div>
                 <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
@@ -554,15 +618,30 @@
         </div>
 
         <!-- Legal Section -->
-        <div class="animate-fadeInUp">
-          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Legal</h3>
-          <div class="settings-card hover-lift">
+        <div class="settings-section animate-fadeInUp">
+          <div class="section-header" onclick="toggleSection('legal')">
+            <div class="section-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold" style="color: var(--text-primary)">Legal</h3>
+            <div class="section-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="transform transition-transform duration-200" id="legal-toggle">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="section-content" id="legal-content">
+            <div class="settings-card hover-lift">
             <div class="space-y-4">
               <!-- Terms of Service -->
               <div class="settings-item interactive-card">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    📄
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
                   </div>
                   <p class="font-medium" style="color: var(--text-primary)">Terms of Service</p>
                 </div>
@@ -575,7 +654,9 @@
               <div class="settings-item interactive-card">
                 <div class="flex items-center space-x-4">
                   <div class="settings-icon">
-                    🛡️
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
+                    </svg>
                   </div>
                   <p class="font-medium" style="color: var(--text-primary)">Privacy Policy</p>
                 </div>
@@ -586,13 +667,34 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Logout Section -->
-        <div class="pt-8 text-center">
-          <button class="bg-red-50 hover:bg-red-100 text-red-600 py-3 px-8 rounded-full font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg">
-            Sign Out
-          </button>
+      <!-- Footer -->
+      <footer class="mt-16 pt-8 border-t border-gray-200" style="border-color: var(--border)">
+        <div class="text-center">
+          <div class="flex items-center justify-center space-x-4 mb-4">
+            <div class="settings-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+              </svg>
+            </div>
+            <p class="font-semibold" style="color: var(--text-primary)">About Traverz</p>
+          </div>
+          <p class="text-sm mb-4" style="color: var(--text-secondary)">
+            Your trusted travel companion for seamless journeys and unforgettable experiences.
+          </p>
+          <p class="text-xs" style="color: var(--text-secondary)">
+            © 2024 Traverz. All rights reserved.
+          </p>
         </div>
+      </footer>
+
+      <!-- Logout Section -->
+      <div class="pt-8 text-center">
+        <button class="bg-red-50 hover:bg-red-100 text-red-600 py-3 px-8 rounded-full font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg">
+          Sign Out
+        </button>
+      </div>
       </div>
     </div>
   </main>
@@ -730,6 +832,131 @@
 
     // Initialize theme on page load
     document.addEventListener('DOMContentLoaded', initializeTheme);
+
+    // Toast notification functionality
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <div class="toast-icon">${type === 'success' ? '✓' : '!'}</div>
+        <div>
+          <div style="font-weight: 600; color: var(--text-primary);">${message}</div>
+        </div>
+      `;
+      
+      document.body.appendChild(toast);
+      
+      // Trigger animation
+      setTimeout(() => toast.classList.add('show'), 100);
+      
+      // Remove toast after 3 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => document.body.removeChild(toast), 300);
+      }, 3000);
+    }
+
+    // Section toggle functionality for mobile
+    function toggleSection(sectionId) {
+      const content = document.getElementById(`${sectionId}-content`);
+      const toggle = document.getElementById(`${sectionId}-toggle`);
+      
+      if (window.innerWidth <= 768) {
+        content.classList.toggle('collapsed');
+        toggle.style.transform = content.classList.contains('collapsed') 
+          ? 'rotate(-90deg)' 
+          : 'rotate(0deg)';
+      }
+    }
+
+    // Profile upload functionality
+    function handleProfileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const avatar = document.getElementById('profile-avatar');
+          const initials = document.getElementById('profile-initials');
+          
+          // Create image element
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'w-full h-full object-cover rounded-full';
+          
+          // Replace initials with image
+          avatar.innerHTML = '';
+          avatar.appendChild(img);
+          
+          showToast('Profile picture updated!', 'success');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Initialize collapsed state for mobile on page load
+    function initializeMobileView() {
+      if (window.innerWidth <= 768) {
+        const sections = ['account', 'preferences', 'support', 'legal'];
+        sections.forEach(sectionId => {
+          const content = document.getElementById(`${sectionId}-content`);
+          const toggle = document.getElementById(`${sectionId}-toggle`);
+          if (content && toggle) {
+            content.classList.add('collapsed');
+            toggle.style.transform = 'rotate(-90deg)';
+          }
+        });
+      }
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        // Reset all sections to expanded on desktop
+        const sections = ['account', 'preferences', 'support', 'legal'];
+        sections.forEach(sectionId => {
+          const content = document.getElementById(`${sectionId}-content`);
+          const toggle = document.getElementById(`${sectionId}-toggle`);
+          if (content && toggle) {
+            content.classList.remove('collapsed');
+            toggle.style.transform = 'rotate(0deg)';
+          }
+        });
+      } else {
+        initializeMobileView();
+      }
+    });
+
+    // Initialize mobile view on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeMobileView();
+    });
+
+    // Two-Factor Authentication toggle
+    function toggleTwoFactor() {
+      const toggle = document.getElementById('twoFactorToggle');
+      toggle.classList.toggle('active');
+    }
+
+
+    // Keep sections expanded by default on desktop
+    function initializeDesktopView() {
+      if (window.innerWidth > 768) {
+        const sections = ['account', 'preferences', 'support', 'legal'];
+        sections.forEach(sectionId => {
+          const content = document.getElementById(`${sectionId}-content`);
+          const toggle = document.getElementById(`${sectionId}-toggle`);
+          if (content && toggle) {
+            content.classList.remove('collapsed');
+            toggle.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
+    }
+
+    // Initialize desktop view on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeDesktopView();
+    });
   </script>
 
   <style>
@@ -775,6 +1002,199 @@
     /* Smooth transitions for all interactive elements */
     * {
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Toast notification styles */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      transform: translateX(400px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 280px;
+    }
+
+    .toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .toast.success {
+      border-left: 4px solid #10b981;
+    }
+
+    .toast-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .toast.success .toast-icon {
+      background: #10b981;
+      color: white;
+    }
+
+    /* Section header with icons */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 0 16px;
+    }
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+
+    /* Section dividers and backgrounds */
+    .settings-section {
+      position: relative;
+      padding: 24px 0;
+    }
+
+    .settings-section:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .settings-section:nth-child(even) {
+      background: rgba(248, 250, 252, 0.3);
+      border-radius: 16px;
+      margin: 0 -16px;
+      padding: 24px 16px;
+    }
+
+    [data-theme="dark"] .settings-section:nth-child(even) {
+      background: rgba(30, 41, 59, 0.3);
+    }
+
+    /* Collapsible sections for mobile */
+    .section-toggle {
+      display: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .section-toggle:hover {
+      background: var(--bg-secondary);
+    }
+
+    .section-content {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .section-toggle {
+        display: block;
+      }
+      
+      .section-header {
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 16px;
+        background: var(--bg-primary);
+        border-radius: 12px;
+        margin-bottom: 0;
+        border: 1px solid var(--border);
+      }
+      
+      .section-content.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+      }
+      
+      .section-content {
+        max-height: 1000px;
+        margin-top: 16px;
+      }
+    }
+
+    /* Profile upload styles */
+    .profile-upload {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-upload input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .profile-upload-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .profile-upload:hover .profile-upload-overlay {
+      opacity: 1;
+    }
+
+    .upload-icon {
+      color: white;
+      font-size: 20px;
+    }
+
+    /* Enhanced toggle animations */
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: var(--border);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-switch.active {
+      background: var(--primary);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
     }
   </style>
 </body>
