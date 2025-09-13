@@ -71,7 +71,12 @@
     Sign In
   </button>
   
-  
+          <!-- Profile Icon -->
+          <button onclick="window.location.href='settings.html';" class="flex items-center justify-center w-10 h-10  rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </button>
          
         </div>
       </div>
@@ -124,7 +129,7 @@
           <!-- Tourist Guide -->
           <div
             class="interactive-card bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center cursor-pointer"
-            onclick="closeAllBookingForms()">
+            onclick="showTouristGuideBookingForm()">
             <div
               class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
@@ -442,6 +447,51 @@
             <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
               Search & Book Now
             </button>
+          </div>
+        </div>
+
+        <!-- Tourist Guide Booking Form (Hidden by default) -->
+        <div id="touristGuideBookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl">
+          <h4 class="text-2xl font-semibold mb-6 text-center">🗺️ Book Your Tourist Guide</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">From Date</label>
+              <input type="date"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">To Date</label>
+              <input type="date"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Destination / Place</label>
+              <input type="text" placeholder="Where do you need a guide?"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Number of Persons</label>
+              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                <option>1 Person</option>
+                <option>2 Persons</option>
+                <option>3 Persons</option>
+                <option>4 Persons</option>
+                <option>5 Persons</option>
+                <option>6 Persons</option>
+                <option>7 Persons</option>
+                <option>8 Persons</option>
+                <option>9 Persons</option>
+                <option>10 Persons</option>
+                <option>10+ Persons</option>
+              </select>
+            </div>
+          </div>
+          <div class="text-center mt-6">
+            <button onclick="window.location.href='tourist_guide.html';" 
+        class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+  Search & Book Now
+</button>
+
           </div>
         </div>
       </div>
@@ -782,12 +832,14 @@
       const bookingForm = document.getElementById('bookingForm');
       const hotelBookingForm = document.getElementById('hotelBookingForm');
       const packagesBookingForm = document.getElementById('packagesBookingForm');
+      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
 
       // Toggle hotel booking form
       if (hotelBookingForm.classList.contains('hidden')) {
         bookingOptions.classList.add('hidden');
         bookingForm.classList.add('hidden');
         packagesBookingForm.classList.add('hidden');
+        touristGuideBookingForm.classList.add('hidden');
         hotelBookingForm.classList.remove('hidden');
       } else {
         hotelBookingForm.classList.add('hidden');
@@ -799,15 +851,36 @@
       const bookingForm = document.getElementById('bookingForm');
       const hotelBookingForm = document.getElementById('hotelBookingForm');
       const packagesBookingForm = document.getElementById('packagesBookingForm');
+      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
 
       // Toggle packages booking form
       if (packagesBookingForm.classList.contains('hidden')) {
         bookingOptions.classList.add('hidden');
         bookingForm.classList.add('hidden');
         hotelBookingForm.classList.add('hidden');
+        touristGuideBookingForm.classList.add('hidden');
         packagesBookingForm.classList.remove('hidden');
       } else {
         packagesBookingForm.classList.add('hidden');
+      }
+    }
+
+    function showTouristGuideBookingForm() {
+      const bookingOptions = document.getElementById('bookingOptions');
+      const bookingForm = document.getElementById('bookingForm');
+      const hotelBookingForm = document.getElementById('hotelBookingForm');
+      const packagesBookingForm = document.getElementById('packagesBookingForm');
+      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
+
+      // Toggle tourist guide booking form
+      if (touristGuideBookingForm.classList.contains('hidden')) {
+        bookingOptions.classList.add('hidden');
+        bookingForm.classList.add('hidden');
+        hotelBookingForm.classList.add('hidden');
+        packagesBookingForm.classList.add('hidden');
+        touristGuideBookingForm.classList.remove('hidden');
+      } else {
+        touristGuideBookingForm.classList.add('hidden');
       }
     }
 
@@ -816,11 +889,13 @@
       const bookingForm = document.getElementById('bookingForm');
       const hotelBookingForm = document.getElementById('hotelBookingForm');
       const packagesBookingForm = document.getElementById('packagesBookingForm');
+      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
 
       bookingOptions.classList.add('hidden');
       bookingForm.classList.add('hidden');
       hotelBookingForm.classList.add('hidden');
       packagesBookingForm.classList.add('hidden');
+      touristGuideBookingForm.classList.add('hidden');
     }
 
     // Smooth scrolling for navigation links
