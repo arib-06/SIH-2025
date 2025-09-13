@@ -180,6 +180,14 @@ body{
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
 
+    /* Disable hover effects on navbar */
+    nav .hover-lift,
+    nav .hover-lift:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      transition: none !important;
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       transition: all 0.3s ease;
@@ -333,6 +341,7 @@ body{
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+<<<<<<< HEAD
    <nav class="fixed top-0 w-full z-50 glass-effect animate-slideInLeft">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
@@ -392,6 +401,58 @@ body{
       </div>
     </div>
   </nav>
+=======
+  <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
+    <div class="flex h-full grow flex-col">
+      <nav class="fixed top-0 w-full z-50" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-4">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+              <div class="relative">
+                <div
+                  class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
+                    <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                      fill="none" stroke="currentColor" stroke-width="3" />
+                    <circle cx="50" cy="35" r="3" fill="currentColor" />
+                  </svg>
+                </div>
+              </div>
+              <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
+            </div>
+    
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+              <a href="modern_traverz_website.html" class="text-slate-700 font-medium">
+                Home
+              </a>
+              <a href="#" class="text-slate-700 font-medium">
+                Destinations
+              </a>
+              <a href="modern_traverz_translate.html" class="text-slate-700 font-medium">
+                Translate
+              </a>
+              <a href="perplexitypart2.html" class="text-slate-700 font-medium">
+                AI Assistance
+              </a>
+              <a href="sos.html" class="text-slate-700 font-medium">
+                Emergency
+              </a>
+            </div>
+    
+            <!-- CTA Buttons -->
+            <div class="flex items-center space-x-4">
+              <button onclick="window.location.href='signin.html';" 
+        class="hidden sm:block px-6 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
+  Sign In
+</button>
+
+            
+            </div>
+          </div>
+        </div></nav>
+>>>>>>> d10cbfc7c6961a02aac0601021d2b71fca867d44
       <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 w-full">
         <div class="space-y-12">
           <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 animate-fadeInUp">
@@ -453,40 +514,6 @@ body{
             </div>
           </section>
 
-          <section>
-            <div class="flex items-center gap-3 mb-6">
-              <span class="material-symbols-outlined text-4xl text-orange-600 animate-pulse-slow">campaign</span>
-              <h2 class="text-3xl font-display font-bold text-gradient">Current Advisories</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="glass-effect rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-lift">
-                <div class="flex-shrink-0 text-red-600">
-                  <span class="material-symbols-outlined text-4xl">dangerous</span>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-red-800">High Alert: Coastal Areas</h3>
-                  <p class="text-base text-red-700 mt-2">Due to recent weather patterns, coastal regions are
-                    experiencing an increased risk of flooding. Avoid travel to these areas.</p>
-                </div>
-                <div class="w-full md:w-48 h-32 mt-4 md:mt-0 rounded-xl bg-cover bg-center"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVwqydcchIcGybqoM3Hyonhz9E0vu7V9xv_1N3h3FrvAHiR8YFf_dpgbhlqxQWN7Ij98ucX6J-rmjLn-f7pW8mIOGehlapyEbjSizxDn0aD0eIf-91_4qbVY7IsSuTfnmBnoXizKNoNIg2I_c6ZEuwO0jNA-xpA6QYbTQpBeAgBlU82_TZReHd8l9oJvygBA7OGVRpN3NrINGuUHKHpIH3_f6gBE3MFWc7UVooiiQoI-8LWqTFQH7md4AqBGTmAavg6eOGhDUJV0BK");'>
-                </div>
-              </div>
-              <div class="glass-effect rounded-2xl p-6 flex flex-col md:flex-row items-start gap-6 hover-lift">
-                <div class="flex-shrink-0 text-yellow-600">
-                  <span class="material-symbols-outlined text-4xl">warning</span>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-yellow-800">Travel Advisory: Mountain Trails</h3>
-                  <p class="text-base text-yellow-700 mt-2">Mountain trails are currently closed due to heavy snowfall.
-                    Check local updates before planning any hikes.</p>
-                </div>
-                <div class="w-full md:w-48 h-32 mt-4 md:mt-0 rounded-xl bg-cover bg-center"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB1_SBp8rpbRvyxvKn7Qfc2tG9lUBo_2H0N04LCte9WeQ_3rvbPlsCFzwALNpT3JtyJF-PZkikSiVua5zhEd2HHL-J97bMb-awhZgfg1NtLNKqw0ddSkHLtY-05YUDrZU0wV8kdNKrgE8ZCGTbGzHmh2Utawie_i-E9dSyOGrE-TZHHWnUrtMyzMbbLG_l-cUIAkUobICqpYv0URvZoBF77TVn9bC1avPGzcBsUdzJf21VjqnsBR-nDaC6TxMeDUwjvetw48WyjkOno");'>
-                </div>
-              </div>
-            </div>
-          </section>
           <section>
             <div class="flex items-center gap-3 mb-6">
               <span class="material-symbols-outlined text-4xl text-blue-600 animate-pulse-slow">contact_phone</span>
@@ -824,7 +851,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add scroll effect to navigation
     window.addEventListener('scroll', function () {
-        const nav = document.querySelector('header');
+        const nav = document.querySelector('nav');
         if (window.scrollY > 100) {
             nav.style.background = 'rgba(255, 255, 255, 0.98)';
         } else {
@@ -832,8 +859,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Interactive card hover effects
+    // Interactive card hover effects (excluding navbar completely)
     document.querySelectorAll('.glass-effect').forEach(card => {
+        // Skip if the element is inside nav or is the nav itself
+        if (card.closest('nav') || card.tagName === 'NAV') {
+            return;
+        }
+        
         card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-8px) rotateX(5deg)';
             this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
