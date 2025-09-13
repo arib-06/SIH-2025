@@ -82,8 +82,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-<<<<<<< HEAD
-=======
+
 }
 
 /* Hotel Booking Form Specific Styles */
@@ -141,6 +140,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
->>>>>>> d10cbfc7c6961a02aac0601021d2b71fca867d44
+
   background-attachment: fixed; /* 👈 key change */
 }
