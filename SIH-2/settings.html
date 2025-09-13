@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Traverz - Settings</title>
+  <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --accent: #f59e0b;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --border: #e2e8f0;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --border: #334155;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 3s infinite;
+    }
+
+    /* Custom Utilities */
+    .glass-effect {
+      background: var(--bg-primary);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+    }
+
+    .settings-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .settings-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .settings-item:hover {
+      background-color: var(--bg-secondary);
+      transform: translateX(4px);
+    }
+
+    .settings-icon {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      font-size: 1.25rem;
+    }
+
+    /* Toggle Switch Styles */
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: var(--border);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+
+    .toggle-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-switch.active .toggle-slider {
+      transform: translateX(30px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Dark theme adjustments */
+    [data-theme="dark"] .glass-effect {
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    [data-theme="dark"] .settings-card {
+      background: var(--bg-primary);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Interactive Elements */
+    .interactive-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .interactive-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%) rotate(45deg);
+      transition: transform 0.6s;
+    }
+
+    .interactive-card:hover::before {
+      transform: translateX(100%) rotate(45deg);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen" data-theme="light">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass-effect animate-slideInLeft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse-slow">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
+                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                  fill="none" stroke="currentColor" stroke-width="3" />
+                <circle cx="50" cy="35" r="3" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Home
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Destinations
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#" class="text-blue-600 font-medium relative">
+            Settings
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600"></span>
+          </a>
+        </div>
+
+        <!-- User Profile -->
+        <div class="flex items-center space-x-4">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+            <span class="text-white font-semibold text-sm">JD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-24 px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- Page Header -->
+      <div class="text-center mb-12 animate-fadeInUp">
+        <h2 class="text-4xl font-display font-bold mb-4">Settings</h2>
+        <p class="text-xl" style="color: var(--text-secondary)">
+          Customize your Traverz experience
+        </p>
+      </div>
+
+      <!-- Settings Sections -->
+      <div class="space-y-8">
+        <!-- Account Section -->
+        <div class="animate-fadeInUp">
+          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Account</h3>
+          <div class="settings-card hover-lift">
+            <div class="space-y-4">
+              <!-- Profile -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                    <span class="text-white font-semibold text-lg">JD</span>
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">John Doe</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Manage your profile information</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+
+              <!-- Password -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🔒
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Password</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Change your password</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preferences Section -->
+        <div class="animate-fadeInUp">
+          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Preferences</h3>
+          <div class="settings-card hover-lift">
+            <div class="space-y-4">
+              <!-- Language -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🌐
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Language</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Choose your preferred language</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-medium" style="color: var(--text-secondary)">English</span>
+                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Notifications -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🔔
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Notifications</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Enable or disable push notifications</p>
+                  </div>
+                </div>
+                <div class="toggle-switch active" id="notificationToggle" onclick="toggleNotifications()">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+
+              <!-- Theme -->
+              <div class="settings-item">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🎨
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Theme</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Switch between light and dark mode</p>
+                  </div>
+                </div>
+                <div class="toggle-switch" id="themeToggle" onclick="toggleTheme()">
+                  <div class="toggle-slider"></div>
+                </div>
+              </div>
+
+              <!-- Currency -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    💰
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Currency</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Select your preferred currency</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-medium" style="color: var(--text-secondary)">USD</span>
+                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel Preferences Section -->
+        <div class="animate-fadeInUp">
+          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Travel Preferences</h3>
+          <div class="settings-card hover-lift">
+            <div class="space-y-4">
+              <!-- Default Seat Preference -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    ✈️
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Seat Preference</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Default seat selection for flights</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-medium" style="color: var(--text-secondary)">Window</span>
+                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Meal Preference -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🍽️
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Meal Preference</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Default meal selection for flights</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-medium" style="color: var(--text-secondary)">Vegetarian</span>
+                  <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="animate-fadeInUp">
+          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Support</h3>
+          <div class="settings-card hover-lift">
+            <div class="space-y-4">
+              <!-- Help Center -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    ❓
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Help Center</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Get help with common issues</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+
+              <!-- Contact Us -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    📧
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">Contact Us</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Contact us for assistance</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+
+              <!-- About -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    ℹ️
+                  </div>
+                  <div>
+                    <p class="font-semibold" style="color: var(--text-primary)">About Traverz</p>
+                    <p class="text-sm" style="color: var(--text-secondary)">Learn more about our platform</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal Section -->
+        <div class="animate-fadeInUp">
+          <h3 class="text-2xl font-semibold mb-6 px-4" style="color: var(--text-primary)">Legal</h3>
+          <div class="settings-card hover-lift">
+            <div class="space-y-4">
+              <!-- Terms of Service -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    📄
+                  </div>
+                  <p class="font-medium" style="color: var(--text-primary)">Terms of Service</p>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+
+              <!-- Privacy Policy -->
+              <div class="settings-item interactive-card">
+                <div class="flex items-center space-x-4">
+                  <div class="settings-icon">
+                    🛡️
+                  </div>
+                  <p class="font-medium" style="color: var(--text-primary)">Privacy Policy</p>
+                </div>
+                <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logout Section -->
+        <div class="pt-8 text-center">
+          <button class="bg-red-50 hover:bg-red-100 text-red-600 py-3 px-8 rounded-full font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JavaScript for Interactive Features -->
+  <script>
+    // Theme Toggle Functionality
+    let isDarkMode = false;
+
+    function toggleTheme() {
+      const body = document.body;
+      const themeToggle = document.getElementById('themeToggle');
+
+      isDarkMode = !isDarkMode;
+
+      if (isDarkMode) {
+        body.setAttribute('data-theme', 'dark');
+        body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)';
+        themeToggle.classList.add('active');
+      } else {
+        body.setAttribute('data-theme', 'light');
+        body.style.background = 'linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%)';
+        themeToggle.classList.remove('active');
+      }
+    }
+
+    // Notification Toggle Functionality
+    let notificationsEnabled = true;
+
+    function toggleNotifications() {
+      const notificationToggle = document.getElementById('notificationToggle');
+      
+      notificationsEnabled = !notificationsEnabled;
+      
+      if (notificationsEnabled) {
+        notificationToggle.classList.add('active');
+      } else {
+        notificationToggle.classList.remove('active');
+      }
+    }
+
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.98)' : 'rgba(255, 255, 255, 0.98)';
+      } else {
+        nav.style.background = isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+      }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      observer.observe(el);
+    });
+
+    // Add click handlers for settings items
+    document.querySelectorAll('.settings-item.interactive-card').forEach(item => {
+      item.addEventListener('click', function() {
+        // Add ripple effect
+        const ripple = document.createElement('div');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(14, 165, 233, 0.3)';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.animation = 'ripple 0.6s linear';
+        ripple.style.left = '50%';
+        ripple.style.top = '50%';
+        ripple.style.marginLeft = -size / 2 + 'px';
+        ripple.style.marginTop = -size / 2 + 'px';
+        
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Add ripple animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize theme based on user preference or system preference
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('traverz-theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        toggleTheme();
+      }
+    }
+
+    // Save theme preference
+    function saveThemePreference() {
+      localStorage.setItem('traverz-theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // Update toggleTheme to save preference
+    const originalToggleTheme = toggleTheme;
+    toggleTheme = function() {
+      originalToggleTheme();
+      saveThemePreference();
+    };
+
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', initializeTheme);
+  </script>
+
+  <style>
+    /* Additional mobile optimizations */
+    @media (max-width: 768px) {
+      .settings-card {
+        padding: 1rem;
+      }
+      
+      .settings-item {
+        padding: 0.75rem;
+      }
+      
+      .settings-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+      }
+      
+      .animate-fadeInUp,
+      .animate-slideInLeft {
+        animation: none;
+      }
+    }
+
+    /* Focus states for accessibility */
+    .settings-item:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .toggle-switch:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* Improved hover states */
+    .settings-item:hover .settings-icon {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+    }
+
+    /* Smooth transitions for all interactive elements */
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+  </style>
+</body>
+
+</html>
