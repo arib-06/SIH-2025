@@ -1,0 +1,18 @@
+/* Mobile Optimizations and Responsive Design */
+@media (max-width: 768px) {
+  .animate-fadeInUp,
+  .animate-slideInLeft,
+  .animate-slideInRight {
+    animation: none;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Add tablet-specific styles here if needed */
+}
+
+/* Desktop Styles */
+@media (min-width: 1025px) {
+  /* Add desktop-specific styles here if needed */
+}
