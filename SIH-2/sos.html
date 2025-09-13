@@ -180,6 +180,14 @@ body{
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     }
 
+    /* Disable hover effects on navbar */
+    nav .hover-lift,
+    nav .hover-lift:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      transition: none !important;
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       transition: all 0.3s ease;
@@ -335,7 +343,7 @@ body{
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
   <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
     <div class="flex h-full grow flex-col">
-      <nav class="fixed top-0 w-full z-50 glass-effect">
+      <nav class="fixed top-0 w-full z-50" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center py-4">
             <!-- Logo -->
@@ -374,12 +382,12 @@ body{
     
             <!-- CTA Buttons -->
             <div class="flex items-center space-x-4">
-              <button class="hidden sm:block px-6 py-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                Sign In
-              </button>
-              <button class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
-                Get Started
-              </button>
+              <button onclick="window.location.href='signin.html';" 
+        class="hidden sm:block px-6 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
+  Sign In
+</button>
+
+            
             </div>
           </div>
         </div></nav>
@@ -789,8 +797,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Interactive card hover effects (excluding navbar)
-    document.querySelectorAll('.glass-effect:not(nav .glass-effect)').forEach(card => {
+    // Interactive card hover effects (excluding navbar completely)
+    document.querySelectorAll('.glass-effect').forEach(card => {
+        // Skip if the element is inside nav or is the nav itself
+        if (card.closest('nav') || card.tagName === 'NAV') {
+            return;
+        }
+        
         card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-8px) rotateX(5deg)';
             this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
