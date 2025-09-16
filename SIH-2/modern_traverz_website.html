@@ -13,6 +13,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/navbar-fixes.css">
   <!-- Navbar Loader Script -->
   <script src="js/navbar-loader.js"></script>
 </head>
@@ -199,7 +200,7 @@
             <div>
               <label class="block text-sm font-medium mb-2">Destination</label>
               <div class="relative">
-                <input type="text" placeholder="City, Property Name or Location"
+                <input type="text" id="hotelDestination" placeholder="City, Property Name or Location"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                 <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
@@ -209,7 +210,7 @@
             <div>
               <label class="block text-sm font-medium mb-2">Check-In Date</label>
               <div class="relative">
-                <input type="date"
+                <input type="date" id="hotelCheckin"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                 <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
@@ -219,7 +220,7 @@
             <div>
               <label class="block text-sm font-medium mb-2">Check-Out Date</label>
               <div class="relative">
-                <input type="date"
+                <input type="date" id="hotelCheckout"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
                 <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
@@ -248,90 +249,9 @@
             </div>
           </div>
 
-          <!-- Preferences Section -->
-          <div class="mt-6">
-            <h5 class="text-lg font-semibold mb-4 text-slate-700">Preferences</h5>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <!-- Star Rating -->
-              <div>
-                <label class="block text-sm font-medium mb-2">Star Rating</label>
-                <div class="relative">
-                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
-                    <option>Any Rating</option>
-                    <option>3 Star and Above</option>
-                    <option>4 Star and Above</option>
-                    <option>5 Stars Only</option>
-                  </select>
-                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Price Range -->
-              <div>
-                <label class="block text-sm font-medium mb-2">Price Range</label>
-                <div class="relative">
-                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
-                    <option>Any Price</option>
-                    <option>Under ₹2000</option>
-                    <option>₹2000 - ₹5000</option>
-                    <option>Above ₹5000</option>
-                  </select>
-                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Facilities -->
-              <div>
-                <label class="block text-sm font-medium mb-2">Facilities</label>
-                <div class="relative">
-                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
-                    <option>All Hotels</option>
-                    <option>Internet Access</option>
-                    <option>Parking</option>
-                    <option>Room Service</option>
-                  </select>
-                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                  </svg>
-                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Location -->
-              <div>
-                <label class="block text-sm font-medium mb-2">Location</label>
-                <div class="relative">
-                  <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
-                    <option>Any Location</option>
-                    <option>City Center</option>
-                    <option>Near Airport</option>
-                    <option>Beach Front</option>
-                  </select>
-                  <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="text-center mt-6">
-            <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+            <button onclick="searchHotels()" class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
               Search Hotels
             </button>
           </div>
@@ -882,6 +802,35 @@
       el.style.transform = 'translateY(30px)';
       observer.observe(el);
     });
+
+    // Hotel search validation function
+    function searchHotels() {
+      const destination = document.getElementById('hotelDestination').value.trim();
+      const checkin = document.getElementById('hotelCheckin').value;
+      const checkout = document.getElementById('hotelCheckout').value;
+
+      // Validation
+      if (!destination || !checkin || !checkout) {
+        alert('Please enter full details');
+        if (!destination) document.getElementById('hotelDestination').focus();
+        else if (!checkin) document.getElementById('hotelCheckin').focus();
+        else document.getElementById('hotelCheckout').focus();
+        return;
+      }
+
+      // Check if checkout is after checkin
+      if (new Date(checkout) <= new Date(checkin)) {
+        alert('Check-out date must be after check-in date');
+        document.getElementById('hotelCheckout').focus();
+        return;
+      }
+
+      // Store destination for results page
+      localStorage.setItem('hotelDestination', destination);
+      
+      // Redirect to hotel results page
+      window.location.href = `hotel-results.html?destination=${encodeURIComponent(destination)}&checkin=${checkin}&checkout=${checkout}`;
+    }
   </script>
 </body>
 

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Hotel Search Results - Traverz</title>
+  <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/navbar-fixes.css">
+  <!-- Navbar Loader Script -->
+  <script src="js/navbar-loader.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+  <!-- Navigation Container - Will be populated by navbar-loader.js -->
+  <div id="navbar-container"></div>
+
+  <!-- Hotel Results Section -->
+  <section class="py-32 px-4 sm:px-6 lg:px-8 bgimg min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header with destination info and filter -->
+      <div class="flex flex-col lg:flex-row justify-between items-center mb-12 animate-fadeInUp">
+        <!-- Destination Info - Left Side -->
+        <div class="text-center lg:text-left mb-6 lg:mb-0">
+          <h2 class="text-4xl font-display font-bold mb-4 text-white">
+            Showing Properties in <span id="destinationName" class="text-gradient bg-white bg-clip-text">Mumbai</span>
+          </h2>
+        </div>
+
+        <!-- Filter Section - Right Side -->
+        <div>
+          <div class="glass-effect rounded-2xl p-4">
+            <div class="flex flex-wrap gap-3">
+              <!-- Star Rating Filter -->
+              <select id="ratingFilter" class="px-4 py-2 rounded-lg bg-white/90 border border-white/20 text-sm font-medium focus:ring-2 focus:ring-orange-500 focus:border-transparent" onchange="applyFilters()">
+                <option value="">Any Rating</option>
+                <option value="3">3 Star and Above</option>
+                <option value="4">4 Star and Above</option>
+                <option value="5">5 Stars Only</option>
+              </select>
+              
+              <!-- Price Range Filter -->
+              <select id="priceFilter" class="px-4 py-2 rounded-lg bg-white/90 border border-white/20 text-sm font-medium focus:ring-2 focus:ring-orange-500 focus:border-transparent" onchange="applyFilters()">
+                <option value="">Any Price</option>
+                <option value="0-2000">Under ₹2000</option>
+                <option value="2000-5000">₹2000 - ₹5000</option>
+                <option value="5000+">Above ₹5000</option>
+              </select>
+              
+              <!-- Facilities Filter -->
+              <select id="facilityFilter" class="px-4 py-2 rounded-lg bg-white/90 border border-white/20 text-sm font-medium focus:ring-2 focus:ring-orange-500 focus:border-transparent" onchange="applyFilters()">
+                <option value="">All Hotels</option>
+                <option value="internet">Internet Access</option>
+                <option value="parking">Parking</option>
+                <option value="room-service">Room Service</option>
+              </select>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotel Cards Grid -->
+      <div id="hotelGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Hotel Card 1 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="4.8" data-price="8500" data-facilities="internet,parking,room-service" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Luxury Palace Hotel" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Superhost</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Luxury Palace Hotel</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">4.8 (142)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Premium Suite with City View</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹8,500</span>
+                <span class="text-slate-600"> + ₹850 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 2 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="2.6" data-price="6200" data-facilities="internet,parking" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Grand Heritage Resort" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Guest favourite</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Grand Heritage Resort</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">2.6 (89)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Deluxe Room with Pool Access</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹6,200</span>
+                <span class="text-slate-600"> + ₹620 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 3 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="4.7" data-price="12800" data-facilities="internet,parking,room-service" data-location="beach">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Seaside Boutique Hotel" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Eco-friendly</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Seaside Boutique Hotel</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">4.7 (203)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Ocean View Suite with Balcony</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹12,800</span>
+                <span class="text-slate-600"> + ₹1,280 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 4 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="2.3" data-price="4500" data-facilities="internet" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Mountain View Lodge" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">New</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Mountain View Lodge</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">2.3 (67)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Cozy Mountain Cabin Experience</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹4,500</span>
+                <span class="text-slate-600"> + ₹450 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 5 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="4.4" data-price="5800" data-facilities="internet,parking,room-service" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Urban Business Hotel" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Business</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Urban Business Hotel</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">4.4 (156)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Executive Room with Work Desk</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹5,800</span>
+                <span class="text-slate-600"> + ₹580 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 6 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="4.9" data-price="7200" data-facilities="internet,parking" data-location="beach">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Riverside Retreat" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Riverside</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Riverside Retreat</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">4.9 (78)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Peaceful River View Room</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹7,200</span>
+                <span class="text-slate-600"> + ₹720 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 7 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="2.2" data-price="9800" data-facilities="internet,room-service" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Garden Paradise Resort" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Garden View</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Garden Paradise Resort</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">2.2 (95)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Tropical Garden Suite with Spa</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹9,800</span>
+                <span class="text-slate-600"> + ₹980 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 8 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="4.5" data-price="11200" data-facilities="internet,parking,room-service" data-location="city-center">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Metropolitan Suites" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">City Center</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Metropolitan Suites</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">4.5 (234)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Executive Suite with Skyline View</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹11,200</span>
+                <span class="text-slate-600"> + ₹1,120 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Card 9 -->
+        <div class="hotel-card glass-effect rounded-3xl overflow-hidden hover-lift group" data-rating="3.1" data-price="6800" data-facilities="internet,parking" data-location="beach">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Coastal Breeze Hotel" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 left-4">
+              <span class="bg-cyan-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Beachfront</span>
+            </div>
+            <div class="absolute top-4 right-4">
+              <button class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Coastal Breeze Hotel</h3>
+            <div class="flex items-center mb-2">
+              <div class="flex text-yellow-400 mr-2">
+                ⭐⭐⭐
+              </div>
+              <span class="text-sm text-slate-600">3.1 (112)</span>
+            </div>
+            <p class="text-slate-600 mb-4">Beachfront Room with Ocean Breeze</p>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-bold">₹6,800</span>
+                <span class="text-slate-600"> + ₹680 taxes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Back to Search Button -->
+      <div class="text-center mt-12">
+        <button onclick="window.history.back()" class="glass-effect px-8 py-4 rounded-full text-slate-700 font-semibold hover-lift mr-4">
+          ← Back to Search
+        </button>
+        <button onclick="resetFilters()" class="btn-primary px-8 py-4 rounded-full text-white font-semibold">
+          Reset
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-slate-400">© 2024 Traverz. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Get destination from URL parameters or localStorage
+    function getDestination() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const destination = urlParams.get('destination') || localStorage.getItem('hotelDestination') || 'Mumbai';
+      document.getElementById('destinationName').textContent = destination;
+    }
+
+    // Filter functionality
+    function applyFilters() {
+      const ratingFilter = document.getElementById('ratingFilter').value;
+      const priceFilter = document.getElementById('priceFilter').value;
+      const facilityFilter = document.getElementById('facilityFilter').value;
+
+      const hotelCards = document.querySelectorAll('.hotel-card');
+
+      hotelCards.forEach(card => {
+        let showCard = true;
+
+        // Rating filter
+        if (ratingFilter) {
+          const cardRating = parseFloat(card.dataset.rating);
+          const minRating = parseFloat(ratingFilter);
+          if (cardRating < minRating) {
+            showCard = false;
+          }
+        }
+
+        // Price filter
+        if (priceFilter) {
+          const cardPrice = parseInt(card.dataset.price);
+          if (priceFilter === '0-2000' && cardPrice >= 2000) {
+            showCard = false;
+          } else if (priceFilter === '2000-5000' && (cardPrice < 2000 || cardPrice >= 5000)) {
+            showCard = false;
+          } else if (priceFilter === '5000+' && cardPrice < 5000) {
+            showCard = false;
+          }
+        }
+
+        // Facility filter
+        if (facilityFilter) {
+          const cardFacilities = card.dataset.facilities.split(',');
+          if (!cardFacilities.includes(facilityFilter)) {
+            showCard = false;
+          }
+        }
+
+        // Show or hide card
+        card.style.display = showCard ? 'block' : 'none';
+      });
+    }
+
+    // Reset filters function
+    function resetFilters() {
+      document.getElementById('ratingFilter').value = '';
+      document.getElementById('priceFilter').value = '';
+      document.getElementById('facilityFilter').value = '';
+      
+      // Show all cards
+      const hotelCards = document.querySelectorAll('.hotel-card');
+      hotelCards.forEach(card => {
+        card.style.display = 'block';
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      getDestination();
+    });
+  </script>
+</body>
+</html>
