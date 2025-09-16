@@ -61,22 +61,6 @@
   cursor: pointer;
 }
 
-.interactive-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: translateX(-100%) rotate(45deg);
-  transition: transform 0.6s;
-}
-
-.interactive-card:hover::before {
-  transform: translateX(100%) rotate(45deg);
-}
-
 .bgimg{
    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
   background-size: cover;
@@ -103,11 +87,6 @@
   transition: all 0.3s ease;
 }
 
-#hotelBookingForm .relative:hover svg {
-  color: rgb(251 146 60);
-  transform: scale(1.1);
-}
-
 /* Enhanced input styling for hotel form */
 #hotelBookingForm input[type="text"],
 #hotelBookingForm input[type="date"],
@@ -115,14 +94,6 @@
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-}
-
-#hotelBookingForm input[type="text"]:hover,
-#hotelBookingForm input[type="date"]:hover,
-#hotelBookingForm select:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.15);
 }
 
 /* Hotel booking button styling */
