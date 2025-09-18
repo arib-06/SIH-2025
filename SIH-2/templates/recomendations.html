@@ -1390,10 +1390,12 @@ adow-l      </div>
     } );
 
     // Add click handlers for booking buttons
-    document.querySelectorAll( 'button' ).forEach( button => {
-      if ( button.textContent.includes( 'Book' ) || button.textContent.includes( 'Buy' ) ) {
-        button.addEventListener( 'click', function () {
-          const eventName = this.closest( '.interactive-card' ).querySelector( 'h3' ).textContent;
-          alert( Redirecting to booking page for: ${ eventName } );
-          // In a real application, this would redirect to a booking system
-        } )
+    document.querySelectorAll('button').forEach(button => {
+  if (button.textContent.includes('Book') || button.textContent.includes('Buy')) {
+    button.addEventListener('click', function () {
+      const eventName = this.closest('.interactive-card').querySelector('h3').textContent;
+      alert(`Redirecting to booking page for: ${eventName}`);
+      // In a real application, this would redirect to a booking system
+    });
+  }
+});
