@@ -1,55 +1,56 @@
+/** @format */
+
 // Navbar Loader Script
 // This script dynamically loads the navbar into all pages
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadNavbar();
+document.addEventListener('DOMContentLoaded', function () {
+	loadNavbar();
 });
 
 async function loadNavbar() {
-    try {
-        const response = await fetch('navbar.html');
-        const navbarHTML = await response.text();
-        
-        // Find the navbar placeholder or create one if it doesn't exist
-        let navbarContainer = document.getElementById('navbar-container');
-        
-        if (!navbarContainer) {
-            // If no container exists, insert navbar at the beginning of body
-            navbarContainer = document.createElement('div');
-            navbarContainer.id = 'navbar-container';
-            document.body.insertBefore(navbarContainer, document.body.firstChild);
-        }
-        
-        navbarContainer.innerHTML = navbarHTML;
-        
-        // Highlight current page in navigation
-        highlightCurrentPage();
-        
-    } catch (error) {
-        console.error('Error loading navbar:', error);
-        // Fallback: create a basic navbar if loading fails
-        createFallbackNavbar();
-    }
+	try {
+		const response = await fetch('navbar.html');
+		const navbarHTML = await response.text();
+
+		// Find the navbar placeholder or create one if it doesn't exist
+		let navbarContainer = document.getElementById('navbar-container');
+
+		if (!navbarContainer) {
+			// If no container exists, insert navbar at the beginning of body
+			navbarContainer = document.createElement('div');
+			navbarContainer.id = 'navbar-container';
+			document.body.insertBefore(navbarContainer, document.body.firstChild);
+		}
+
+		navbarContainer.innerHTML = navbarHTML;
+
+		// Highlight current page in navigation
+		highlightCurrentPage();
+	} catch (error) {
+		console.error('Error loading navbar:', error);
+		// Fallback: create a basic navbar if loading fails
+		createFallbackNavbar();
+	}
 }
 
 function highlightCurrentPage() {
-    const currentPage = window.location.pathname.split('/').pop();
-    const navLinks = document.querySelectorAll('nav a');
-    
-    navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
-            link.classList.add('text-blue-600');
-            const underline = link.querySelector('span');
-            if (underline) {
-                underline.classList.add('w-full');
-            }
-        }
-    });
+	const currentPage = window.location.pathname.split('/').pop();
+	const navLinks = document.querySelectorAll('nav a');
+
+	navLinks.forEach(link => {
+		const linkPage = link.getAttribute('href');
+		if (linkPage === currentPage) {
+			link.classList.add('text-blue-600');
+			const underline = link.querySelector('span');
+			if (underline) {
+				underline.classList.add('w-full');
+			}
+		}
+	});
 }
 
 function createFallbackNavbar() {
-    const fallbackNavbar = `
+	const fallbackNavbar = `
         <nav class="fixed top-0 w-full z-50 glass-effect">
             <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-4">
@@ -68,15 +69,15 @@ function createFallbackNavbar() {
 
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="modern_traverz_website.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="/" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             Home
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="modern_traverz_translate.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="/translate.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             Translate
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="perplexitypart2.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="assistant.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             AI Assistance
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
@@ -101,12 +102,12 @@ function createFallbackNavbar() {
             </div>
         </nav>
     `;
-    
-    let navbarContainer = document.getElementById('navbar-container');
-    if (!navbarContainer) {
-        navbarContainer = document.createElement('div');
-        navbarContainer.id = 'navbar-container';
-        document.body.insertBefore(navbarContainer, document.body.firstChild);
-    }
-    navbarContainer.innerHTML = fallbackNavbar;
+
+	let navbarContainer = document.getElementById('navbar-container');
+	if (!navbarContainer) {
+		navbarContainer = document.createElement('div');
+		navbarContainer.id = 'navbar-container';
+		document.body.insertBefore(navbarContainer, document.body.firstChild);
+	}
+	navbarContainer.innerHTML = fallbackNavbar;
 }

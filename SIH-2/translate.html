@@ -18,7 +18,7 @@
   <!-- Navbar Loader Script -->
   <script src="js/navbar-loader.js"></script>
 
-    
+
 
 </head>
 
@@ -44,48 +44,57 @@
         <div class="bg-gradient-to-r from-purple-500 to-blue-600 p-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <select id="sourceLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
-                <option value="en">🇺🇸 English</option>
-                <option value="es">🇪🇸 Spanish</option>
-                <option value="fr">🇫🇷 French</option>
-                <option value="de">🇩🇪 German</option>
-                <option value="ja">🇯🇵 Japanese</option>
-                <option value="zh">🇨🇳 Chinese</option>
-                <option value="ar">🇸🇦 Arabic</option>
-                <option value="hi">🇮🇳 Hindi</option>
-                <option value="ru">🇷🇺 Russian</option>
-                <option value="pt">🇧🇷 Portuguese</option>
+              <select title="Source Language" id="sourceLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Arabic">Arabic</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Russian">Russian</option>
+                <option value="Portuguese">Portuguese</option>
               </select>
-              
-              <button onclick="swapLanguages()" class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white">
+
+              <button onclick="swapLanguages()"
+                class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,1,0,16H40a8,8,0,0,1-8-8V128a8,8,0,0,1,16,0v28.69l14.63-14.62A79.52,79.52,0,0,1,118.52,119h.45a79.56,79.56,0,0,1,56.13,23.43A8,8,0,0,1,186.41,183.29Z"/>
+                  <path
+                    d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,1,0,16H40a8,8,0,0,1-8-8V128a8,8,0,0,1,16,0v28.69l14.63-14.62A79.52,79.52,0,0,1,118.52,119h.45a79.56,79.56,0,0,1,56.13,23.43A8,8,0,0,1,186.41,183.29Z" />
                 </svg>
               </button>
-              
-              <select id="targetLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
-                <option value="es">🇪🇸 Spanish</option>
-                <option value="en">🇺🇸 English</option>
-                <option value="fr">🇫🇷 French</option>
-                <option value="de">🇩🇪 German</option>
-                <option value="ja">🇯🇵 Japanese</option>
-                <option value="zh">🇨🇳 Chinese</option>
-                <option value="ar">🇸🇦 Arabic</option>
-                <option value="hi">🇮🇳 Hindi</option>
-                <option value="ru">🇷🇺 Russian</option>
-                <option value="pt">🇧🇷 Portuguese</option>
+
+              <select title="Target Language" id="targetLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
+                <option value="Spanish">Spanish</option>
+                <option value="English">English</option>
+                <option value="English">Hindi</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Arabic">Arabic</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Russian">Russian</option>
+                <option value="Portuguese">Portuguese</option>
               </select>
             </div>
-            
+
             <div class="flex items-center gap-2">
-              <button onclick="startVoiceInput()" id="voiceBtn" class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white" title="Voice Input">
+              <button onclick="startVoiceInput()" id="voiceBtn"
+                class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white"
+                title="Voice Input">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/>
+                  <path
+                    d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z" />
                 </svg>
               </button>
-              <button onclick="openCamera()" class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white" title="Camera Translate">
+              <button onclick="openCamera()"
+                class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white"
+                title="Camera Translate">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.72,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.65-3.56L100.28,48h55.44l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"/>
+                  <path
+                    d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.72,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.65-3.56L100.28,48h55.44l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
                 </svg>
               </button>
             </div>
@@ -98,25 +107,24 @@
           <div class="p-8">
             <div class="mb-4">
               <label class="block text-sm font-semibold text-slate-700 mb-2">Enter text to translate</label>
-              <textarea 
-                id="inputText"
+              <textarea id="inputText"
                 class="translation-textarea w-full h-48 p-4 rounded-xl resize-none focus:outline-none"
-                placeholder="Type your message here..."
-                oninput="translateText()"
-              ></textarea>
+                placeholder="Type your message here..." oninput="translateText()"></textarea>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <button onclick="clearText()" class="text-slate-500 hover:text-slate-700 transition-colors">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/>
+                    <path
+                      d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z" />
                   </svg>
                 </button>
                 <span id="charCount" class="text-sm text-slate-500">0/500 characters</span>
               </div>
               <button onclick="translateText()" class="btn-primary px-6 py-2 rounded-full text-white font-semibold">
                 <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,100,126.93,103.65,103.65,0,0,0,127.69,64H152a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H40a8,8,0,0,0,0,16H111.94A87.72,87.72,0,0,1,96.4,98.65a87.38,87.38,0,0,1-19-31,8,8,0,0,0-15.12,5.78A103.63,103.63,0,0,0,85.28,114.93,104.41,104.41,0,0,1,49.32,140.65a8,8,0,0,0,13.36,8.7,88.05,88.05,0,0,0,36.72-20.78,72,72,0,0,0,45.37,14.2L123.85,180.42a8,8,0,0,0,14.31,7.16L148.94,168h70.11l10.78,21.58a8,8,0,1,0,14.31-7.16ZM156.94,152,184,98.32,211.05,152Z"/>
+                  <path
+                    d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,100,126.93,103.65,103.65,0,0,0,127.69,64H152a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H40a8,8,0,0,0,0,16H111.94A87.72,87.72,0,0,1,96.4,98.65a87.38,87.38,0,0,1-19-31,8,8,0,0,0-15.12,5.78A103.63,103.63,0,0,0,85.28,114.93,104.41,104.41,0,0,1,49.32,140.65a8,8,0,0,0,13.36,8.7,88.05,88.05,0,0,0,36.72-20.78,72,72,0,0,0,45.37,14.2L123.85,180.42a8,8,0,0,0,14.31,7.16L148.94,168h70.11l10.78,21.58a8,8,0,1,0,14.31-7.16ZM156.94,152,184,98.32,211.05,152Z" />
                 </svg>
                 Translate
               </button>
@@ -127,20 +135,25 @@
           <div class="p-8 bg-gradient-to-br from-slate-50 to-blue-50">
             <div class="mb-4">
               <label class="block text-sm font-semibold text-slate-700 mb-2">Translation</label>
-              <div id="outputText" class="w-full h-48 p-4 bg-white rounded-xl border-2 border-slate-100 flex items-start">
+              <div id="outputText"
+                class="w-full h-48 p-4 bg-white rounded-xl border-2 border-slate-100 flex items-start">
                 <p class="text-slate-500 italic">Translation will appear here...</p>
               </div>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <button onclick="copyTranslation()" class="text-slate-500 hover:text-slate-700 transition-colors" title="Copy translation">
+                <button onclick="copyTranslation()" class="text-slate-500 hover:text-slate-700 transition-colors"
+                  title="Copy translation">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/>
+                    <path
+                      d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z" />
                   </svg>
                 </button>
-                <button onclick="playAudio()" class="text-slate-500 hover:text-slate-700 transition-colors" title="Play audio">
+                <button onclick="playAudio()" class="text-slate-500 hover:text-slate-700 transition-colors"
+                  title="Play audio">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM144,207.64,81.75,161.69A8,8,0,0,0,77.25,160H32V96H77.25a8,8,0,0,0,4.5-1.31L144,48.36Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67A64,64,0,0,0,216,64a8,8,0,0,1,0-16A80,80,0,0,1,248,128Z"/>
+                    <path
+                      d="M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM144,207.64,81.75,161.69A8,8,0,0,0,77.25,160H32V96H77.25a8,8,0,0,0,4.5-1.31L144,48.36Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67A64,64,0,0,0,216,64a8,8,0,0,1,0-16A80,80,0,0,1,248,128Z" />
                   </svg>
                 </button>
               </div>
@@ -156,40 +169,49 @@
       <!-- Quick Actions -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <div class="interactive-card glass-effect rounded-2xl p-6 text-center hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/>
+              <path
+                d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z" />
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2 text-slate-800">Camera Translate</h3>
-          <p class="text-slate-600 text-sm mb-4">Point your camera at signs, menus, or documents for instant translation</p>
+          <p class="text-slate-600 text-sm mb-4">Point your camera at signs, menus, or documents for instant translation
+          </p>
           <button onclick="openCamera()" class="btn-primary px-4 py-2 rounded-full text-white font-medium text-sm">
             Open Camera
           </button>
         </div>
 
         <div class="interactive-card glass-effect rounded-2xl p-6 text-center hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/>
+              <path
+                d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z" />
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2 text-slate-800">Voice Conversation</h3>
           <p class="text-slate-600 text-sm mb-4">Have real-time conversations with instant voice translation</p>
-          <button onclick="startConversation()" class="btn-primary px-4 py-2 rounded-full text-white font-medium text-sm">
+          <button onclick="startConversation()"
+            class="btn-primary px-4 py-2 rounded-full text-white font-medium text-sm">
             Start Talking
           </button>
         </div>
 
         <div class="interactive-card glass-effect rounded-2xl p-6 text-center hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/>
+              <path
+                d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z" />
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2 text-slate-800">Offline Mode</h3>
           <p class="text-slate-600 text-sm mb-4">Download languages for translation without internet connection</p>
-          <button onclick="downloadLanguages()" class="btn-primary px-4 py-2 rounded-full text-white font-medium text-sm">
+          <button onclick="downloadLanguages()"
+            class="btn-primary px-4 py-2 rounded-full text-white font-medium text-sm">
             Download
           </button>
         </div>
@@ -208,9 +230,11 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Real-time Translation -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/>
+              <path
+                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Real-time Translation</h3>
@@ -221,9 +245,11 @@
 
         <!-- Context Awareness -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H216V88H40ZM40,200V104H216v96Z"/>
+              <path
+                d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H216V88H40ZM40,200V104H216v96Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Context Awareness</h3>
@@ -234,9 +260,11 @@
 
         <!-- Multi-modal Input -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/>
+              <path
+                d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Multi-modal Input</h3>
@@ -247,9 +275,11 @@
 
         <!-- Offline Capability -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/>
+              <path
+                d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Offline Capability</h3>
@@ -260,9 +290,11 @@
 
         <!-- Privacy Focused -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"/>
+              <path
+                d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Privacy Focused</h3>
@@ -273,9 +305,11 @@
 
         <!-- Cultural Context -->
         <div class="interactive-card glass-effect rounded-3xl p-8 hover-lift">
-          <div class="w-16 h-16 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
+          <div
+            class="w-16 h-16 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 animate-pulse-slow">
             <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/>
+              <path
+                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-4">Cultural Context</h3>
@@ -327,7 +361,7 @@
           <span class="text-gradient">Language Barriers?</span>
         </h2>
         <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-          Start translating instantly with our AI-powered translation assistant. 
+          Start translating instantly with our AI-powered translation assistant.
           Available on all your devices.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -359,7 +393,7 @@
             <h3 class="text-2xl font-display font-bold">Traverz</h3>
           </div>
           <p class="text-slate-400 mb-6 max-w-md">
-            Breaking language barriers with AI-powered translation technology. 
+            Breaking language barriers with AI-powered translation technology.
             Connect with the world, one conversation at a time.
           </p>
           <div class="flex space-x-4">
@@ -421,108 +455,101 @@
     let translationCache = {};
 
     function scrollToTranslator() {
-      document.getElementById('translator').scrollIntoView({
+      document.getElementById( 'translator' ).scrollIntoView( {
         behavior: 'smooth',
         block: 'start'
-      });
+      } );
     }
 
     function swapLanguages() {
-      const sourceSelect = document.getElementById('sourceLanguage');
-      const targetSelect = document.getElementById('targetLanguage');
-      
+      const sourceSelect = document.getElementById( 'sourceLanguage' );
+      const targetSelect = document.getElementById( 'targetLanguage' );
+
       const sourceValue = sourceSelect.value;
       const targetValue = targetSelect.value;
-      
+
       sourceSelect.value = targetValue;
       targetSelect.value = sourceValue;
-      
+
       // Swap text content if available
-      const inputText = document.getElementById('inputText').value;
-      const outputText = document.getElementById('outputText').innerHTML;
-      
-      if (inputText && !outputText.includes('Translation will appear here')) {
-        document.getElementById('inputText').value = outputText.replace(/<[^>]*>/g, '');
+      const inputText = document.getElementById( 'inputText' ).value;
+      const outputText = document.getElementById( 'outputText' ).innerHTML;
+
+      if ( inputText && !outputText.includes( 'Translation will appear here' ) ) {
+        document.getElementById( 'inputText' ).value = outputText.replace( /<[^>]*>/g, '' );
         translateText();
       }
     }
 
-    function translateText() {
-      const inputText = document.getElementById('inputText').value;
-      const outputDiv = document.getElementById('outputText');
-      const charCount = document.getElementById('charCount');
-      const confidence = document.getElementById('confidence');
-      
+    async function translateText() {
+      const inputText = document.getElementById( 'inputText' ).value;
+      const outputDiv = document.getElementById( 'outputText' );
+      const charCount = document.getElementById( 'charCount' );
+      const confidence = document.getElementById( 'confidence' );
+      const targetLanguage=document.getElementById('targetLanguage').value
+      const sourceLanguage=document.getElementById('sourceLanguage').value
       // Update character count
-      charCount.textContent = `${inputText.length}/500 characters`;
-      
-      if (!inputText.trim()) {
+      charCount.textContent = `${ inputText.length }/500 characters`;
+      if ( !inputText.trim() ) {
         outputDiv.innerHTML = '<p class="text-slate-500 italic">Translation will appear here...</p>';
         confidence.textContent = 'Confidence: --';
         return;
       }
-
-      // Simulate translation delay
       outputDiv.innerHTML = '<div class="flex items-center gap-2"><div class="animate-spin w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full"></div><span class="text-slate-500">Translating...</span></div>';
-      
-      setTimeout(() => {
-        // Mock translation (in real app, this would be an API call)
-        const mockTranslations = {
-          'Hello': 'Hola',
-          'How are you?': '¿Cómo estás?',
-          'Good morning': 'Buenos días',
-          'Thank you': 'Gracias',
-          'Where is the bathroom?': '¿Dónde está el baño?',
-          'I need help': 'Necesito ayuda',
-          'How much does this cost?': '¿Cuánto cuesta esto?'
-        };
-        
-        const translatedText = mockTranslations[inputText] || 
-          `${inputText} (translated to ${document.getElementById('targetLanguage').selectedOptions[0].text})`;
-        
-        outputDiv.innerHTML = `<p class="text-slate-800">${translatedText}</p>`;
-        confidence.textContent = `Confidence: ${Math.floor(Math.random() * 10) + 90}%`;
-      }, 1000);
+      const response = await fetch( 'http://localhost:5000/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( {
+          q:inputText,
+          target: targetLanguage,
+          source: sourceLanguage
+        } )
+      } )
+      const data = await response.text()
+      const translatedText = data
+
+      outputDiv.innerHTML = `<p class="text-slate-800">${ translatedText }</p>`;
+      confidence.textContent = `Confidence: ${ Math.floor( Math.random() * 10 ) + 90 }%`;
     }
 
     function clearText() {
-      document.getElementById('inputText').value = '';
-      document.getElementById('outputText').innerHTML = '<p class="text-slate-500 italic">Translation will appear here...</p>';
-      document.getElementById('charCount').textContent = '0/500 characters';
-      document.getElementById('confidence').textContent = 'Confidence: --';
+      document.getElementById( 'inputText' ).value = '';
+      document.getElementById( 'outputText' ).innerHTML = '<p class="text-slate-500 italic">Translation will appear here...</p>';
+      document.getElementById( 'charCount' ).textContent = '0/500 characters';
+      document.getElementById( 'confidence' ).textContent = 'Confidence: --';
     }
 
     function copyTranslation() {
-      const outputText = document.getElementById('outputText').textContent;
-      if (outputText && !outputText.includes('Translation will appear here')) {
-        navigator.clipboard.writeText(outputText);
-        showNotification('Translation copied to clipboard!');
+      const outputText = document.getElementById( 'outputText' ).textContent;
+      if ( outputText && !outputText.includes( 'Translation will appear here' ) ) {
+        navigator.clipboard.writeText( outputText );
+        showNotification( 'Translation copied to clipboard!' );
       }
     }
 
     function playAudio() {
-      const outputText = document.getElementById('outputText').textContent;
-      if (outputText && !outputText.includes('Translation will appear here')) {
+      const outputText = document.getElementById( 'outputText' ).textContent;
+      if ( outputText && !outputText.includes( 'Translation will appear here' ) ) {
         // In a real app, this would use text-to-speech API
-        showNotification('Audio playback started!');
+        showNotification( 'Audio playback started!' );
       }
     }
 
     function startVoiceInput() {
-      const voiceBtn = document.getElementById('voiceBtn');
-      
-      if (!isRecording) {
+      const voiceBtn = document.getElementById( 'voiceBtn' );
+
+      if ( !isRecording ) {
         isRecording = true;
         voiceBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></svg>';
-        voiceBtn.classList.add('voice-recording');
-        showNotification('Listening... Speak now!');
-        
+        voiceBtn.classList.add( 'voice-recording' );
+        showNotification( 'Listening... Speak now!' );
+
         // Simulate voice recognition
-        setTimeout(() => {
-          document.getElementById('inputText').value = 'Hello, how are you today?';
+        setTimeout( () => {
+          document.getElementById( 'inputText' ).value = 'Hello, how are you today?';
           translateText();
           stopVoiceInput();
-        }, 3000);
+        }, 3000 );
       } else {
         stopVoiceInput();
       }
@@ -530,87 +557,87 @@
 
     function stopVoiceInput() {
       isRecording = false;
-      const voiceBtn = document.getElementById('voiceBtn');
+      const voiceBtn = document.getElementById( 'voiceBtn' );
       voiceBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></svg>';
-      voiceBtn.classList.remove('voice-recording');
+      voiceBtn.classList.remove( 'voice-recording' );
     }
 
     function openCamera() {
-      showNotification('Camera translation feature coming soon!');
+      showNotification( 'Camera translation feature coming soon!' );
     }
 
     function startConversation() {
-      showNotification('Voice conversation mode coming soon!');
+      showNotification( 'Voice conversation mode coming soon!' );
     }
 
     function downloadLanguages() {
-      showNotification('Language pack download started!');
+      showNotification( 'Language pack download started!' );
     }
 
-    function showNotification(message) {
+    function showNotification( message ) {
       // Create notification element
-      const notification = document.createElement('div');
+      const notification = document.createElement( 'div' );
       notification.className = 'fixed top-20 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
       notification.textContent = message;
-      
-      document.body.appendChild(notification);
-      
+
+      document.body.appendChild( notification );
+
       // Animate in
-      setTimeout(() => {
+      setTimeout( () => {
         notification.style.transform = 'translateX(0)';
-      }, 100);
-      
+      }, 100 );
+
       // Remove after 3 seconds
-      setTimeout(() => {
+      setTimeout( () => {
         notification.style.transform = 'translateX(full)';
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 300);
-      }, 3000);
+        setTimeout( () => {
+          document.body.removeChild( notification );
+        }, 300 );
+      }, 3000 );
     }
 
     // Auto-resize textarea
-    document.getElementById('inputText').addEventListener('input', function() {
+    document.getElementById( 'inputText' ).addEventListener( 'input', function () {
       this.style.height = 'auto';
-      this.style.height = Math.min(this.scrollHeight, 300) + 'px';
-      
+      this.style.height = Math.min( this.scrollHeight, 300 ) + 'px';
+
       // Update character count
-      const charCount = document.getElementById('charCount');
+      const charCount = document.getElementById( 'charCount' );
       const length = this.value.length;
-      charCount.textContent = `${length}/500 characters`;
-      
-      if (length > 450) {
+      charCount.textContent = `${ length }/500 characters`;
+
+      if ( length > 450 ) {
         charCount.style.color = '#ef4444';
-      } else if (length > 400) {
+      } else if ( length > 400 ) {
         charCount.style.color = '#f59e0b';
       } else {
         charCount.style.color = '#64748b';
       }
-    });
+    } );
 
     // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll( 'a[href^="#"]' ).forEach( anchor => {
+      anchor.addEventListener( 'click', function ( e ) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
+        const target = document.querySelector( this.getAttribute( 'href' ) );
+        if ( target ) {
+          target.scrollIntoView( {
             behavior: 'smooth',
             block: 'start'
-          });
+          } );
         }
-      });
-    });
+      } );
+    } );
 
     // Add scroll effect to navigation
-    window.addEventListener('scroll', function () {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 100) {
+    window.addEventListener( 'scroll', function () {
+      const nav = document.querySelector( 'nav' );
+      if ( window.scrollY > 100 ) {
         nav.style.background = 'rgba(255, 255, 255, 0.98)';
       } else {
         nav.style.background = 'rgba(255, 255, 255, 0.95)';
       }
-    });
+    } );
 
     // Intersection Observer for animations
     const observerOptions = {
@@ -618,50 +645,50 @@
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const observer = new IntersectionObserver( ( entries ) => {
+      entries.forEach( entry => {
+        if ( entry.isIntersecting ) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
         }
-      });
-    }, observerOptions);
+      } );
+    }, observerOptions );
 
     // Observe elements for animation
-    document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight').forEach(el => {
+    document.querySelectorAll( '.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight' ).forEach( el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
-      observer.observe(el);
-    });
+      observer.observe( el );
+    } );
 
     // Interactive card hover effects
-    document.querySelectorAll('.interactive-card').forEach(card => {
-      card.addEventListener('mouseenter', function () {
+    document.querySelectorAll( '.interactive-card' ).forEach( card => {
+      card.addEventListener( 'mouseenter', function () {
         this.style.transform = 'translateY(-8px) rotateX(5deg)';
         this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
-      });
+      } );
 
-      card.addEventListener('mouseleave', function () {
+      card.addEventListener( 'mouseleave', function () {
         this.style.transform = 'translateY(0) rotateX(0deg)';
         this.style.boxShadow = '';
-      });
-    });
+      } );
+    } );
 
     // Button ripple effect
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
+    document.querySelectorAll( 'button' ).forEach( button => {
+      button.addEventListener( 'click', function ( e ) {
+        const ripple = document.createElement( 'span' );
         const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
+        const size = Math.max( rect.width, rect.height );
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
 
         ripple.style.cssText = `
           position: absolute;
-          width: ${size}px;
-          height: ${size}px;
-          left: ${x}px;
-          top: ${y}px;
+          width: ${ size }px;
+          height: ${ size }px;
+          left: ${ x }px;
+          top: ${ y }px;
           background: rgba(255, 255, 255, 0.3);
           border-radius: 50%;
           transform: scale(0);
@@ -671,16 +698,16 @@
 
         this.style.position = 'relative';
         this.style.overflow = 'hidden';
-        this.appendChild(ripple);
+        this.appendChild( ripple );
 
-        setTimeout(() => {
+        setTimeout( () => {
           ripple.remove();
-        }, 600);
-      });
-    });
+        }, 600 );
+      } );
+    } );
 
     // Add ripple animation
-    const style = document.createElement('style');
+    const style = document.createElement( 'style' );
     style.textContent = `
       @keyframes ripple {
         to {
@@ -689,81 +716,81 @@
         }
       }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild( style );
 
     // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener( 'keydown', function ( e ) {
       // Ctrl/Cmd + Enter to translate
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      if ( ( e.ctrlKey || e.metaKey ) && e.key === 'Enter' ) {
         e.preventDefault();
         translateText();
       }
-      
+
       // Escape to clear
-      if (e.key === 'Escape') {
+      if ( e.key === 'Escape' ) {
         clearText();
       }
-      
+
       // Ctrl/Cmd + Shift + S to swap languages
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+      if ( ( e.ctrlKey || e.metaKey ) && e.shiftKey && e.key === 'S' ) {
         e.preventDefault();
         swapLanguages();
       }
-    });
+    } );
 
     // Auto-save translation history (mock implementation)
-    function saveToHistory(input, output, sourceLang, targetLang) {
-      const history = JSON.parse(localStorage.getItem('traverz-translations') || '[]');
-      history.unshift({
+    function saveToHistory( input, output, sourceLang, targetLang ) {
+      const history = JSON.parse( localStorage.getItem( 'traverz-translations' ) || '[]' );
+      history.unshift( {
         input,
         output,
         sourceLang,
         targetLang,
         timestamp: Date.now()
-      });
-      
+      } );
+
       // Keep only last 50 translations
-      if (history.length > 50) {
-        history.splice(50);
+      if ( history.length > 50 ) {
+        history.splice( 50 );
       }
-      
-      localStorage.setItem('traverz-translations', JSON.stringify(history));
+
+      localStorage.setItem( 'traverz-translations', JSON.stringify( history ) );
     }
 
     // Performance optimization: Debounce translation
-    function debounce(func, wait) {
+    function debounce( func, wait ) {
       let timeout;
-      return function executedFunction(...args) {
+      return function executedFunction( ...args ) {
         const later = () => {
-          clearTimeout(timeout);
-          func(...args);
+          clearTimeout( timeout );
+          func( ...args );
         };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        clearTimeout( timeout );
+        timeout = setTimeout( later, wait );
       };
     }
 
     // Apply debounced translation to input
-    const debouncedTranslate = debounce(translateText, 1000);
-    document.getElementById('inputText').addEventListener('input', debouncedTranslate);
+    const debouncedTranslate = debounce( translateText, 1000 );
+    document.getElementById( 'inputText' ).addEventListener( 'input', debouncedTranslate );
 
     // Mobile responsive adjustments
     function handleResize() {
       const isMobile = window.innerWidth < 768;
-      const translationInterface = document.querySelector('.translation-interface');
-      
-      if (isMobile) {
-        translationInterface.classList.add('mobile-optimized');
+      const translationInterface = document.querySelector( '.translation-interface' );
+
+      if ( isMobile ) {
+        translationInterface.classList.add( 'mobile-optimized' );
       } else {
-        translationInterface.classList.remove('mobile-optimized');
+        translationInterface.classList.remove( 'mobile-optimized' );
       }
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener( 'resize', handleResize );
     handleResize(); // Call on load
 
     // Add mobile-specific styles
-    const mobileStyle = document.createElement('style');
+    const mobileStyle = document.createElement( 'style' );
     mobileStyle.textContent = `
       .mobile-optimized .translation-textarea {
         height: 120px !important;
@@ -783,14 +810,15 @@
         }
       }
     `;
-    document.head.appendChild(mobileStyle);
+    document.head.appendChild( mobileStyle );
 
-    console.log('🌍 Traverz Translation page loaded successfully!');
-    console.log('📱 Keyboard shortcuts:');
-    console.log('  • Ctrl/Cmd + Enter: Translate');
-    console.log('  • Escape: Clear text');
-    console.log('  • Ctrl/Cmd + Shift + S: Swap languages');
+    console.log( '🌍 Traverz Translation page loaded successfully!' );
+    console.log( '📱 Keyboard shortcuts:' );
+    console.log( '  • Ctrl/Cmd + Enter: Translate' );
+    console.log( '  • Escape: Clear text' );
+    console.log( '  • Ctrl/Cmd + Shift + S: Swap languages' );
   </script>
+  <script src="./js/translate.js"></script>
 </body>
 
 </html>
