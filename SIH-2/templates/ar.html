@@ -3,13 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AR Model - Taj Mahal</title>
+    <title>AR Model</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Import model-viewer -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
-
-    <!-- Basic styling -->
     <style>
         body {
             margin: 0;
@@ -27,10 +23,8 @@
             color: #333;
         }
 
-        model-viewer {
+        iframe {
             width: 100%;
-            max-width: 800px;
-            height: 500px;
             background-color: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -40,14 +34,33 @@
 
 <body>
 
-    <h1>Explore the Taj Mahal in AR</h1>
+    <h1>Explore in 3D</h1>
 
-    <!-- AR Model Viewer -->
-<iframe width="700" height="450" src="https://www.airpano.com/embed.php?3D=barcelona-spain" frameborder="0"
-    marginheight="0" marginwidth="0" scrolling="no" framespacing="0" allowfullscreen>
-</iframe>
-<br>
-<div style="float:right">Courtesy of <a href="https://www.airpano.com/" target="_blank">www.AirPano.com</a></div>
+    <!-- Placeholder iframe -->
+    <iframe id="airpano-frame" 
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; z-index: 9999;"
+        allowfullscreen>
+    </iframe>
+
+    <br>
+    <div style="float:right">
+        Courtesy of <a rel="noopener" href="https://www.airpano.com/" target="_blank">www.AirPano.com</a>
+    </div>
+
+    <script>
+        // Read query parameter `place`
+        const params = new URLSearchParams( window.location.search );
+        const place = params.get( "place" ) || "delhi-india"; // default fallback
+
+        // Build AirPano embed URL
+        const url = `https://www.airpano.com/embed.php?3D=${ place }`;
+
+        // Inject into iframe
+        document.getElementById( "airpano-frame" ).src = url;
+
+        // Update heading dynamically
+        document.querySelector( "h1" ).textContent = `Explore ${ place.replace( /-/g, " " ) } in 3D`;
+    </script>
 
 </body>
 

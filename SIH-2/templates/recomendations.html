@@ -195,163 +195,175 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="placesGrid">
         <!-- Red Fort -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-1')">
-          <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Red Fort" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-            <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
-            </div>
-            <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">Red Fort</h3>
-              <p class="text-sm opacity-90">🏰 Historic Monument</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-slate-600 mb-4">A UNESCO World Heritage site and symbol of India's rich Mughal history.</p>
-            <div class="hidden expanded-content" id="place-1">
-              <div class="fade-in">
-                <p class="text-slate-600 mb-4">The Red Fort, or Lal Qila, served as the main residence of the Mughal
-                  emperors for over 200 years. Built by Emperor Shah Jahan in the 17th century, this magnificent
-                  fortress showcases Indo-Islamic architecture at its finest.</p>
-                <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                  <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Netaji Subhash Marg, Chandni Chowk, New Delhi</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ 9:30 AM - 4:30 PM (Closed on Mondays)</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹35 for Indians, ₹500 for foreigners</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">UNESCO Heritage</span>
-                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Mughal Architecture</span>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Sound & Light Show</span>
-                </div>
-              </div>
-            </div>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
-              <span class="expand-text">Explore More →</span>
-            </button>
-          </div>
+<div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-5')">
+  <div class="relative h-64 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1599661046280-f6cf7a3a32b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      alt="Fatehpur Sikri" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+    <div class="absolute top-4 left-4 z-20">
+      <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+    </div>
+    <div class="absolute bottom-4 left-4 z-20 text-white">
+      <h3 class="text-xl font-semibold">Fatehpur Sikri</h3>
+      <p class="text-sm opacity-90">🏯 Mughal City</p>
+    </div>
+  </div>
+  <div class="p-6">
+    <p class="text-slate-600 mb-4">A UNESCO World Heritage Site, Fatehpur Sikri is a stunning fortified city built by
+      Emperor Akbar, blending Mughal, Persian, and Indian architectural styles.</p>
+    <div class="hidden expanded-content" id="place-5">
+      <div class="fade-in">
+        <p class="text-slate-600 mb-4">Constructed in the late 16th century, Fatehpur Sikri served as the Mughal capital
+          for 14 years. Its highlights include Buland Darwaza, Jama Masjid, Panch Mahal, and the tomb of Salim Chishti.
+          Today, the deserted red sandstone city tells tales of Mughal grandeur.</p>
+        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+          <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
+          <p class="text-sm text-slate-600 mb-1">📌 Fatehpur Sikri, Uttar Pradesh (near Agra)</p>
+          <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset (Closed on Fridays)</p>
+          <p class="text-sm text-slate-600">🎫 Entry Fee: ₹40 for Indians, ₹550 for foreigners</p>
         </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">UNESCO Heritage</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Mughal Capital</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Buland Darwaza</span>
+        </div>
+      </div>
+    </div>
+    <a href="/ar?place=fatehpur-sikri-india">View in 3D</a>
+    <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+      <span class="expand-text">Explore More →</span>
+    </button>
+  </div>
+</div>
+
 
         <!-- India Gate -->
         <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-2')">
           <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="India Gate" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <img
+              src="https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Agra Fort" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
               <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">India Gate</h3>
-              <p class="text-sm opacity-90">🏛️ War Memorial</p>
+              <h3 class="text-xl font-semibold">Agra Fort</h3>
+              <p class="text-sm opacity-90">🏰 Mughal Fortress</p>
             </div>
           </div>
           <div class="p-6">
-            <p class="text-slate-600 mb-4">An iconic war memorial honoring 70,000 Indian soldiers who died in World War
-              I.</p>
+            <p class="text-slate-600 mb-4">A massive red sandstone fort and UNESCO World Heritage Site, once the main residence
+              of the Mughal emperors.</p>
             <div class="hidden expanded-content" id="place-2">
               <div class="fade-in">
-                <p class="text-slate-600 mb-4">Standing 42 meters tall, India Gate is the national monument of India.
-                  Designed by Sir Edwin Lutyens, it's beautifully illuminated at night and surrounded by lush lawns
-                  perfect for evening picnics.</p>
+                <p class="text-slate-600 mb-4">Built in 1573 by Emperor Akbar, Agra Fort is a sprawling walled city featuring
+                  palaces, mosques, and audience halls. It was the seat of Mughal power before the capital shifted to Delhi.</p>
                 <div class="bg-blue-50 p-4 rounded-lg mb-4">
                   <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Rajpath, India Gate, New Delhi</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ Open 24 hours (Best viewed at sunset)</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: Free</p>
+                  <p class="text-sm text-slate-600 mb-1">📌 Rakabganj, Agra, Uttar Pradesh</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ 6:00 AM – 6:00 PM</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹50 for Indians, ₹650 for foreigners</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">War Memorial</span>
-                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Colonial Architecture</span>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Evening Picnics</span>
+                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">UNESCO Heritage</span>
+                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Mughal Architecture</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Red Sandstone</span>
                 </div>
               </div>
             </div>
+            <a href="/ar?place=agra-fort-india">View in 3D</a>
             <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
         </div>
+
 
         <!-- Lotus Temple -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-3')">
+<div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-6')">
+  <div class="relative h-64 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1603262110263-14f8dc5b9cfb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      alt="Jaipur" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+    <div class="absolute top-4 left-4 z-20">
+      <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+    </div>
+    <div class="absolute bottom-4 left-4 z-20 text-white">
+      <h3 class="text-xl font-semibold">Jaipur</h3>
+      <p class="text-sm opacity-90">🌸 The Pink City</p>
+    </div>
+  </div>
+  <div class="p-6">
+    <p class="text-slate-600 mb-4">The capital of Rajasthan, Jaipur is famous for its pink-hued palaces, forts, bazaars,
+      and rich Rajput heritage. It is part of India’s Golden Triangle.</p>
+    <div class="hidden expanded-content" id="place-6">
+      <div class="fade-in">
+        <p class="text-slate-600 mb-4">Founded in 1727 by Maharaja Sawai Jai Singh II, Jaipur blends history with
+          vibrant culture. Must-visits include the Hawa Mahal, Amber Fort, Jantar Mantar (UNESCO site), and City Palace.
+          Known as the "Pink City," its old quarters are painted terracotta pink, symbolizing hospitality.</p>
+        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+          <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
+          <p class="text-sm text-slate-600 mb-1">📌 Jaipur, Rajasthan</p>
+          <p class="text-sm text-slate-600 mb-1">⏰ Best visited: October – March</p>
+          <p class="text-sm text-slate-600">🎫 Entry Fee: Varies by monument (₹50–₹200)</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">UNESCO Heritage</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Rajput Architecture</span>
+          <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">Pink City</span>
+        </div>
+      </div>
+    </div>
+    <a href="/ar?place=jaipur-india">View in 3D</a>
+    <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+      <span class="expand-text">Explore More →</span>
+    </button>
+  </div>
+</div>
+
+
+        <!-- Qutub Minar -->
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-taj')">
           <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Lotus Temple" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <img
+              src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Taj Mahal" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
               <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">Lotus Temple</h3>
-              <p class="text-sm opacity-90">🪷 Spiritual Architecture</p>
+              <h3 class="text-xl font-semibold">Taj Mahal</h3>
+              <p class="text-sm opacity-90">🏛️ Mughal Architecture</p>
             </div>
           </div>
           <div class="p-6">
-            <p class="text-slate-600 mb-4">A Bahá'í House of Worship renowned for its stunning lotus-shaped
-              architecture.</p>
-            <div class="hidden expanded-content" id="place-3">
+            <p class="text-slate-600 mb-4">A UNESCO World Heritage Site and one of the New Seven Wonders of the World, the Taj
+              Mahal is renowned for its white marble beauty and timeless love story.</p>
+            <div class="hidden expanded-content" id="place-taj">
               <div class="fade-in">
-                <p class="text-slate-600 mb-4">The Lotus Temple is a marvel of modern architecture, shaped like a lotus
-                  flower with 27 free-standing marble clad petals. It's a place of worship open to all religions and
-                  offers peaceful meditation spaces.</p>
+                <p class="text-slate-600 mb-4">Built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, the Taj Mahal is
+                  an ivory-white marble mausoleum that attracts millions of visitors every year. Its perfect symmetry,
+                  calligraphy, and gardens make it a masterpiece of Mughal architecture.</p>
                 <div class="bg-blue-50 p-4 rounded-lg mb-4">
                   <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Lotus Temple Rd, Bahapur, Shambhu Dayal Bagh</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ 9:00 AM - 6:00 PM (Closed on Mondays)</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: Free</p>
+                  <p class="text-sm text-slate-600 mb-1">📌 Agra, Uttar Pradesh, India</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset (closed on Fridays)</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹50 for Indians, ₹1100 for foreigners</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Modern Architecture</span>
-                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Spiritual Site</span>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Meditation</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">UNESCO Heritage</span>
+                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Seven Wonders</span>
+                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Symbol of Love</span>
                 </div>
               </div>
             </div>
+            <a href="/ar?place=taj-mahal-india-2">View in 3D</a>
             <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
         </div>
 
-        <!-- Qutub Minar -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-4')">
-          <div class="relative h-64 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                 alt="Qutub Minar" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-            <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
-            </div>
-            <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">Qutub Minar</h3>
-              <p class="text-sm opacity-90">🗼 Medieval Monument</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-slate-600 mb-4">The world's tallest brick minaret and a UNESCO World Heritage Site.</p>
-            <div class="hidden expanded-content" id="place-4">
-              <div class="fade-in">
-                <p class="text-slate-600 mb-4">Standing at 73 meters, Qutub Minar is a victory tower built in the early
-                  13th century. The complex also features the famous Iron Pillar and ruins of ancient structures
-                  showcasing Indo-Islamic architecture.</p>
-                <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                  <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Mehrauli, New Delhi</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹30 for Indians, ₹500 for foreigners</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">UNESCO Heritage</span>
-                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Medieval
-                    Architecture</span>
-                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">Iron Pillar</span>
-                </div>
-              </div>
-            </div>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
-              <span class="expand-text">Explore More →</span>
-            </button>
-          </div>
-        </div>
 
         <!-- Humayun's Tomb -->
         <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-5')">
@@ -387,6 +399,7 @@
                 </div>
               </div>
             </div>
+            <a href="/ar?place=akshardham-india">View in 3D</a>
             <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
               <span class="expand-text">Explore More →</span>
             </button>
@@ -427,6 +440,7 @@
                 </div>
               </div>
             </div>
+            <a href="/ar?place=akshardham-india">View in 3D</a>
             <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
               <span class="expand-text">Explore More →</span>
             </button>
