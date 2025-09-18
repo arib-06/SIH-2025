@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tourist Guides - Traverz</title>
   <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-fixes.css') }}">
+  
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
 </head>
 
 <body class="bg-gray-50 font-sans leading-normal tracking-normal">
@@ -14,7 +18,7 @@
   <div id="navbar-container"></div>
 
   <!-- Hero Section -->
-  <section class="bg-blue-600 text-white py-16">
+  <section class="bg-white-600 text-white py-2">
     <div class="container mx-auto px-6 text-center">
       <h1 class="text-4xl font-bold mb-4">Find the Perfect Tourist Guide</h1>
       <p class="text-lg mb-6">
@@ -22,7 +26,7 @@
       </p>
       <div class="max-w-2xl mx-auto">
         <input type="text" id="search-input" placeholder="Search guides by name, specialty, or location..."
-          class="w-full px-4 py-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          class="w-full px-4 py-3 border border-black rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           oninput="filterGuides(this.value)" />
       </div>
     </div>
@@ -75,13 +79,13 @@
   </section>
 
   <!-- Floating Contact Button -->
-  <button class="fixed bottom-6 right-6 bg-blue-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 transition"
+  <!-- <button class="fixed bottom-6 right-6 bg-blue-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 transition"
     onclick="showContactModal()">
     📞
-  </button>
+  </button> -->
 
   <!-- Contact Modal -->
-  <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+  <!-- <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
     <div class="bg-white rounded-xl p-8 max-w-md w-full shadow-lg">
       <h3 class="text-2xl font-bold text-gray-800 mb-4">Contact Us</h3>
       <p class="text-gray-600 mb-6">
@@ -102,7 +106,7 @@
         Cancel
       </button>
     </div>
-  </div>
+  </div> -->
 
   <!-- Scripts -->
   <script type="module"  src="{{ url_for('static', filename='js/guides.js') }}"></script>

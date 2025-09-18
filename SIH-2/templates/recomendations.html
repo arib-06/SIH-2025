@@ -8,14 +8,144 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <title>Delhi Exploration - Discover the Heart of India</title>
+  <title>{% if search_query %}{{ search_query }} - Travel Recommendations{% else %}Travel Recommendations - Discover Amazing Places{% endif %}</title>
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-fixes.css') }}">
+  <!-- Navbar Loader Script -->
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
   <style>
     :root {
       --primary-color: #0ea5e9;
       --secondary-color: #8b5cf6;
       --accent-color: #06b6d4;
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 16px 16px 0 0;
+    }
+    
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+    
+    .modal-title-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+    }
+    
+    .modal-location {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+    
+    .modal-body {
+      padding: 20px;
+    }
+    
+    .modal-description {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .modal-details {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .modal-tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
 
     body {
@@ -97,86 +227,187 @@
       font-size: 0.75rem;
       font-weight: 600;
     }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8) translateY(50px);
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+
+    .modal-title-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+      padding: 30px 20px 20px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .modal-location {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .modal-body {
+      padding: 25px;
+    }
+
+    .modal-description {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modal-details {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .modal-details h4 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
   </style>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 glass-effect">
-    <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-4">
-        <!-- Logo -->
-        <div class="flex items-center space-x-1">
-          <div class="relative">
-            <div
-              class="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
-                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
-                  fill="none" stroke="currentColor" stroke-width="3" />
-                <circle cx="50" cy="35" r="3" fill="currentColor" />
-              </svg>
-            </div>
-          </div>
-          <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
-        </div>
+  <!-- Navigation Container - Will be populated by navbar-loader.js -->
+  <div id="navbar-container"></div>
+  
+  <!-- Test Button -->
+  <div style="position: fixed; top: 20px; right: 20px; z-index: 2000;">
+    <button onclick="testModal()" class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+      Test Modal
+    </button>
+  </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="modern_traverz_website"
-            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Home
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="modern_traverz_translate"
-            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Translate
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="reel"
-            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Reels
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="perplexitypart2"
-            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            AI Assistance
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="sos"
-            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
-            Emergency
-            <span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-          </a>
+  <!-- Modal -->
+  <div id="placeModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id="modalImage" src="" alt="" class="modal-image">
+        <button class="modal-close" onclick="closeModal()">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="modal-title-overlay">
+          <h2 id="modalTitle" class="modal-title"></h2>
+          <p id="modalLocation" class="modal-location"></p>
         </div>
-
-        <!-- CTA Buttons -->
-        <div class="flex items-center space-x-7">
-          <button onclick="window.location.href='signin';"
-            class="px-4 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
-            Sign In
-          </button>
-          <button onclick="window.location.href='settings';"
-            class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
-            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-            </svg>
-          </button>
+      </div>
+      <div class="modal-body">
+        <p id="modalDescription" class="modal-description"></p>
+        <div id="modalDetails" class="modal-details">
+          <!-- Details will be populated dynamically -->
+        </div>
+        <div id="modalTags" class="modal-tags">
+          <!-- Tags will be populated dynamically -->
         </div>
       </div>
     </div>
-  </nav>
+  </div>
 
   <!-- Hero Section -->
   <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto text-center">
       <h1 class="text-5xl font-display font-bold mb-6">
-        Discover <span class="text-gradient">Delhi</span>
+        {% if search_query %}
+          Results for <span class="text-gradient">{{ search_query }}</span>
+        {% else %}
+          Discover <span class="text-gradient">Amazing Places</span>
+        {% endif %}
       </h1>
       <p class="text-xl text-slate-600 max-w-3xl mx-auto">
         Experience the vibrant heart of India - from historic monuments to bustling markets,
@@ -195,178 +426,166 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="placesGrid">
         <!-- Red Fort -->
-<div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-5')">
-  <div class="relative h-64 overflow-hidden">
-    <img
-      src="https://images.unsplash.com/photo-1599661046280-f6cf7a3a32b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      alt="Fatehpur Sikri" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-    <div class="absolute top-4 left-4 z-20">
-      <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
-    </div>
-    <div class="absolute bottom-4 left-4 z-20 text-white">
-      <h3 class="text-xl font-semibold">Fatehpur Sikri</h3>
-      <p class="text-sm opacity-90">🏯 Mughal City</p>
-    </div>
-  </div>
-  <div class="p-6">
-    <p class="text-slate-600 mb-4">A UNESCO World Heritage Site, Fatehpur Sikri is a stunning fortified city built by
-      Emperor Akbar, blending Mughal, Persian, and Indian architectural styles.</p>
-    <div class="hidden expanded-content" id="place-5">
-      <div class="fade-in">
-        <p class="text-slate-600 mb-4">Constructed in the late 16th century, Fatehpur Sikri served as the Mughal capital
-          for 14 years. Its highlights include Buland Darwaza, Jama Masjid, Panch Mahal, and the tomb of Salim Chishti.
-          Today, the deserted red sandstone city tells tales of Mughal grandeur.</p>
-        <div class="bg-blue-50 p-4 rounded-lg mb-4">
-          <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-          <p class="text-sm text-slate-600 mb-1">📌 Fatehpur Sikri, Uttar Pradesh (near Agra)</p>
-          <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset (Closed on Fridays)</p>
-          <p class="text-sm text-slate-600">🎫 Entry Fee: ₹40 for Indians, ₹550 for foreigners</p>
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Red Fort" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <div class="absolute top-4 left-4 z-20">
+              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+            </div>
+            <div class="absolute bottom-4 left-4 z-20 text-white">
+              <h3 class="text-xl font-semibold">Red Fort</h3>
+              <p class="text-sm opacity-90">🏰 Historic Monument</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-slate-600 mb-4">A UNESCO World Heritage site and symbol of India's rich Mughal history.</p>
+            <div class="hidden expanded-content" id="place-1">
+              <div class="fade-in">
+                <p class="text-slate-600 mb-4">The Red Fort, or Lal Qila, served as the main residence of the Mughal
+                  emperors for over 200 years. Built by Emperor Shah Jahan in the 17th century, this magnificent
+                  fortress showcases Indo-Islamic architecture at its finest.</p>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                  <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
+                  <p class="text-sm text-slate-600 mb-1">📌 Netaji Subhash Marg, Chandni Chowk, New Delhi</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ 9:30 AM - 4:30 PM (Closed on Mondays)</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹35 for Indians, ₹500 for foreigners</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">UNESCO Heritage</span>
+                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Mughal Architecture</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Sound & Light Show</span>
+                </div>
+              </div>
+            </div>
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-1')">
+              <span class="expand-text">Explore More →</span>
+            </button>
+          </div>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">UNESCO Heritage</span>
-          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Mughal Capital</span>
-          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Buland Darwaza</span>
-        </div>
-      </div>
-    </div>
-    <a href="/ar?place=fatehpur-sikri-india">View in 3D</a>
-    <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
-      <span class="expand-text">Explore More →</span>
-    </button>
-  </div>
-</div>
-
 
         <!-- India Gate -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-2')">
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
           <div class="relative h-64 overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="Agra Fort" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="India Gate" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
               <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">Agra Fort</h3>
-              <p class="text-sm opacity-90">🏰 Mughal Fortress</p>
+              <h3 class="text-xl font-semibold">India Gate</h3>
+              <p class="text-sm opacity-90">🏛 War Memorial</p>
             </div>
           </div>
           <div class="p-6">
-            <p class="text-slate-600 mb-4">A massive red sandstone fort and UNESCO World Heritage Site, once the main residence
-              of the Mughal emperors.</p>
+            <p class="text-slate-600 mb-4">An iconic war memorial honoring 70,000 Indian soldiers who died in World War
+              I.</p>
             <div class="hidden expanded-content" id="place-2">
               <div class="fade-in">
-                <p class="text-slate-600 mb-4">Built in 1573 by Emperor Akbar, Agra Fort is a sprawling walled city featuring
-                  palaces, mosques, and audience halls. It was the seat of Mughal power before the capital shifted to Delhi.</p>
+                <p class="text-slate-600 mb-4">Standing 42 meters tall, India Gate is the national monument of India.
+                  Designed by Sir Edwin Lutyens, it's beautifully illuminated at night and surrounded by lush lawns
+                  perfect for evening picnics.</p>
                 <div class="bg-blue-50 p-4 rounded-lg mb-4">
                   <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Rakabganj, Agra, Uttar Pradesh</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ 6:00 AM – 6:00 PM</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹50 for Indians, ₹650 for foreigners</p>
+                  <p class="text-sm text-slate-600 mb-1">📌 Rajpath, India Gate, New Delhi</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ Open 24 hours (Best viewed at sunset)</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: Free</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">UNESCO Heritage</span>
-                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Mughal Architecture</span>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Red Sandstone</span>
+                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">War Memorial</span>
+                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Colonial Architecture</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Evening Picnics</span>
                 </div>
               </div>
             </div>
-            <a href="/ar?place=agra-fort-india">View in 3D</a>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-2')">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
         </div>
 
-
         <!-- Lotus Temple -->
-<div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-6')">
-  <div class="relative h-64 overflow-hidden">
-    <img
-      src="https://images.unsplash.com/photo-1603262110263-14f8dc5b9cfb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      alt="Jaipur" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-    <div class="absolute top-4 left-4 z-20">
-      <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
-    </div>
-    <div class="absolute bottom-4 left-4 z-20 text-white">
-      <h3 class="text-xl font-semibold">Jaipur</h3>
-      <p class="text-sm opacity-90">🌸 The Pink City</p>
-    </div>
-  </div>
-  <div class="p-6">
-    <p class="text-slate-600 mb-4">The capital of Rajasthan, Jaipur is famous for its pink-hued palaces, forts, bazaars,
-      and rich Rajput heritage. It is part of India’s Golden Triangle.</p>
-    <div class="hidden expanded-content" id="place-6">
-      <div class="fade-in">
-        <p class="text-slate-600 mb-4">Founded in 1727 by Maharaja Sawai Jai Singh II, Jaipur blends history with
-          vibrant culture. Must-visits include the Hawa Mahal, Amber Fort, Jantar Mantar (UNESCO site), and City Palace.
-          Known as the "Pink City," its old quarters are painted terracotta pink, symbolizing hospitality.</p>
-        <div class="bg-blue-50 p-4 rounded-lg mb-4">
-          <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-          <p class="text-sm text-slate-600 mb-1">📌 Jaipur, Rajasthan</p>
-          <p class="text-sm text-slate-600 mb-1">⏰ Best visited: October – March</p>
-          <p class="text-sm text-slate-600">🎫 Entry Fee: Varies by monument (₹50–₹200)</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">UNESCO Heritage</span>
-          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Rajput Architecture</span>
-          <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">Pink City</span>
-        </div>
-      </div>
-    </div>
-    <a href="/ar?place=jaipur-india">View in 3D</a>
-    <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
-      <span class="expand-text">Explore More →</span>
-    </button>
-  </div>
-</div>
-
-
-        <!-- Qutub Minar -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-taj')">
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
           <div class="relative h-64 overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="Taj Mahal" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Lotus Temple" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
               <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
-              <h3 class="text-xl font-semibold">Taj Mahal</h3>
-              <p class="text-sm opacity-90">🏛️ Mughal Architecture</p>
+              <h3 class="text-xl font-semibold">Lotus Temple</h3>
+              <p class="text-sm opacity-90">🪷 Spiritual Architecture</p>
             </div>
           </div>
           <div class="p-6">
-            <p class="text-slate-600 mb-4">A UNESCO World Heritage Site and one of the New Seven Wonders of the World, the Taj
-              Mahal is renowned for its white marble beauty and timeless love story.</p>
-            <div class="hidden expanded-content" id="place-taj">
+            <p class="text-slate-600 mb-4">A Bahá'í House of Worship renowned for its stunning lotus-shaped
+              architecture.</p>
+            <div class="hidden expanded-content" id="place-3">
               <div class="fade-in">
-                <p class="text-slate-600 mb-4">Built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, the Taj Mahal is
-                  an ivory-white marble mausoleum that attracts millions of visitors every year. Its perfect symmetry,
-                  calligraphy, and gardens make it a masterpiece of Mughal architecture.</p>
+                <p class="text-slate-600 mb-4">The Lotus Temple is a marvel of modern architecture, shaped like a lotus
+                  flower with 27 free-standing marble clad petals. It's a place of worship open to all religions and
+                  offers peaceful meditation spaces.</p>
                 <div class="bg-blue-50 p-4 rounded-lg mb-4">
                   <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
-                  <p class="text-sm text-slate-600 mb-1">📌 Agra, Uttar Pradesh, India</p>
-                  <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset (closed on Fridays)</p>
-                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹50 for Indians, ₹1100 for foreigners</p>
+                  <p class="text-sm text-slate-600 mb-1">📌 Lotus Temple Rd, Bahapur, Shambhu Dayal Bagh</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ 9:00 AM - 6:00 PM (Closed on Mondays)</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: Free</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">UNESCO Heritage</span>
-                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Seven Wonders</span>
-                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Symbol of Love</span>
+                  <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">Modern Architecture</span>
+                  <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">Spiritual Site</span>
+                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Meditation</span>
                 </div>
               </div>
             </div>
-            <a href="/ar?place=taj-mahal-india-2">View in 3D</a>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-3')">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
         </div>
 
+        <!-- Qutub Minar -->
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Qutub Minar" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <div class="absolute top-4 left-4 z-20">
+              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+            </div>
+            <div class="absolute bottom-4 left-4 z-20 text-white">
+              <h3 class="text-xl font-semibold">Qutub Minar</h3>
+              <p class="text-sm opacity-90">🗼 Medieval Monument</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-slate-600 mb-4">The world's tallest brick minaret and a UNESCO World Heritage Site.</p>
+            <div class="hidden expanded-content" id="place-4">
+              <div class="fade-in">
+                <p class="text-slate-600 mb-4">Standing at 73 meters, Qutub Minar is a victory tower built in the early
+                  13th century. The complex also features the famous Iron Pillar and ruins of ancient structures
+                  showcasing Indo-Islamic architecture.</p>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                  <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
+                  <p class="text-sm text-slate-600 mb-1">📌 Mehrauli, New Delhi</p>
+                  <p class="text-sm text-slate-600 mb-1">⏰ Sunrise to Sunset</p>
+                  <p class="text-sm text-slate-600">🎫 Entry Fee: ₹30 for Indians, ₹500 for foreigners</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs">UNESCO Heritage</span>
+                  <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Medieval
+                    Architecture</span>
+                  <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">Iron Pillar</span>
+                </div>
+              </div>
+            </div>
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-4')">
+              <span class="expand-text">Explore More →</span>
+            </button>
+          </div>
+        </div>
 
         <!-- Humayun's Tomb -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-5')">
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
           <div class="relative h-64 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                  alt="Humayun's Tomb" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
@@ -399,15 +618,14 @@
                 </div>
               </div>
             </div>
-            <a href="/ar?place=akshardham-india">View in 3D</a>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-5')">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
         </div>
 
         <!-- Akshardham Temple -->
-        <div class="interactive-card glass-effect rounded-3xl overflow-hidden" onclick="toggleExpansion('place-6')">
+        <div class="interactive-card glass-effect rounded-3xl overflow-hidden">
           <div class="relative h-64 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1593693411515-c20261bcad6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                  alt="Akshardham Temple" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
@@ -416,7 +634,7 @@
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Akshardham</h3>
-              <p class="text-sm opacity-90">🏛️ Modern Temple Complex</p>
+              <p class="text-sm opacity-90">🏛 Modern Temple Complex</p>
             </div>
           </div>
           <div class="p-6">
@@ -440,8 +658,7 @@
                 </div>
               </div>
             </div>
-            <a href="/ar?place=akshardham-india">View in 3D</a>
-            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2">
+            <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors mt-2" onclick="openModal('place-6')">
               <span class="expand-text">Explore More →</span>
             </button>
           </div>
@@ -452,7 +669,7 @@
         <button
           class="glass-effect px-8 py-4 rounded-full text-slate-700 font-semibold hover:shadow-lg transition-all duration-300"
           onclick="showMorePlaces()">
-          View More Places 🏛️
+          View More Places 🏛
         </button>
 adow-l      </div>
     </div>
@@ -493,7 +710,7 @@ adow-l      </div>
               </div>
             </div>
             <div class="bg-orange-50 p-4 rounded-lg mb-4">
-              <h4 class="font-semibold mb-2 text-orange-800">🍽️ Must-Try Specialties</h4>
+              <h4 class="font-semibold mb-2 text-orange-800">🍽 Must-Try Specialties</h4>
               <ul class="text-sm text-orange-700 space-y-1">
                 <li>• Paranthe Wali Gali - Famous stuffed paranthas</li>
                 <li>• Jalebis at Dariba Kalan</li>
@@ -534,7 +751,7 @@ adow-l      </div>
               </div>
             </div>
             <div class="bg-purple-50 p-4 rounded-lg mb-4">
-              <h4 class="font-semibold mb-2 text-purple-800">🍽️ Must-Try Specialties</h4>
+              <h4 class="font-semibold mb-2 text-purple-800">🍽 Must-Try Specialties</h4>
               <ul class="text-sm text-purple-700 space-y-1">
                 <li>• United Coffee House - Continental cuisine</li>
                 <li>• Wenger's - Famous pastries & cakes</li>
@@ -575,7 +792,7 @@ adow-l      </div>
               </div>
             </div>
             <div class="bg-green-50 p-4 rounded-lg mb-4">
-              <h4 class="font-semibold mb-2 text-green-800">🍽️ Must-Try Specialties</h4>
+              <h4 class="font-semibold mb-2 text-green-800">🍽 Must-Try Specialties</h4>
               <ul class="text-sm text-green-700 space-y-1">
                 <li>• Big Chill Cafe - Italian & desserts</li>
                 <li>• Perch Wine & Coffee Bar</li>
@@ -595,7 +812,7 @@ adow-l      </div>
         <button
           class="glass-effect px-8 py-4 rounded-full text-slate-700 font-semibold hover:shadow-lg transition-all duration-300"
           onclick="showMoreFoodPlaces()">
-          View More Food Places 🍽️
+          View More Food Places 🍽
         </button>
       </div>
     </div>
@@ -987,153 +1204,342 @@ adow-l      </div>
 
       <div class="border-t border-slate-800 mt-12 pt-8 text-center">
         <div class="text-slate-400 text-sm">
-          © 2024 Traverse. All rights reserved. Made with ❤️ for travelers.
+          © 2024 Traverse. All rights reserved. Made with ❤ for travelers.
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    function toggleExpansion( placeId ) {
-      const expandedContent = document.getElementById( placeId );
-      const card = expandedContent.closest( '.interactive-card' );
-      const expandText = card.querySelector( '.expand-text' );
+    // Debug: Log when script loads
+    console.log('Modal script loaded');
 
-      if ( expandedContent.classList.contains( 'hidden' ) ) {
-        expandedContent.classList.remove( 'hidden' );
-        expandText.textContent = 'Show Less ↑';
-        expandedContent.querySelector( '.fade-in' ).style.animation = 'fadeIn 0.6s ease-in-out';
+    // Close modal function
+    function closeModal() {
+      console.log('closeModal called');
+      const modal = document.getElementById('placeModal');
+      if (modal) {
+        console.log('Hiding modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
       } else {
-        expandedContent.classList.add( 'hidden' );
-        expandText.textContent = 'Explore More →';
+        console.warn('Modal element not found when trying to close');
       }
     }
 
-    function showMorePlaces() {
-      alert( 'More places coming soon! Stay tuned for updates on hidden gems and off-beat locations in Delhi.' );
-    }
+    // Function to get place data by ID
+    function getPlaceData(placeId) {
+      console.log('Getting data for place:', placeId);
 
-    function showMoreFoodPlaces() {
-      alert( 'More food places coming soon! Discover street food vendors, fine dining, and local favorites.' );
-    }
-
-    function showMoreEvents() {
-      alert( 'More events coming soon! We\'ll keep you updated with the latest cultural events, concerts, and festivals in Delhi.' );
-    }
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll( 'a[href^="#"]' ).forEach( anchor => {
-      anchor.addEventListener( 'click', function ( e ) {
-        e.preventDefault();
-        const target = document.querySelector( this.getAttribute( 'href' ) );
-        if ( target ) {
-          target.scrollIntoView( {
-            behavior: 'smooth',
-            block: 'start'
-          } );
+      const placesData = {
+        'place-1': {
+          name: 'Red Fort',
+          location: ' Historic Monument',
+          image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'The Red Fort, or Lal Qila, served as the main residence of the Mughal emperors for over 200 years. Built by Emperor Shah Jahan in the 17th century, this magnificent fortress showcases Indo-Islamic architecture at its finest.',
+          address: 'Netaji Subhash Marg, Chandni Chowk, New Delhi',
+          timings: '9:30 AM - 4:30 PM (Closed on Mondays)',
+          entryFee: '₹35 for Indians, ₹500 for foreigners',
+          tags: [
+            { text: 'Mughal Architecture', class: 'bg-purple-100 text-purple-800' },
+            { text: 'Sound & Light Show', class: 'bg-green-100 text-green-800' }
+          ]
+        },
+        'place-2': {
+          name: 'India Gate',
+          location: ' War Memorial',
+          image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'Standing 42 meters tall, India Gate is the national monument of India. Designed by Sir Edwin Lutyens, it\'s beautifully illuminated at night and surrounded by lush lawns perfect for evening picnics.',
+          address: 'Rajpath, India Gate, New Delhi',
+          timings: 'Open 24 hours',
+          entryFee: 'Free',
+          tags: [
+            { text: 'War Memorial', class: 'bg-blue-100 text-blue-800' },
+            { text: 'Tourist Attraction', class: 'bg-yellow-100 text-yellow-800' },
+            { text: 'Picnic Spot', class: 'bg-green-100 text-green-800' }
+          ]
+        },
+        'place-3': {
+          name: 'Lotus Temple',
+          location: ' Bahá\'í House of Worship',
+          image: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1b91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'The Lotus Temple, known for its flowerlike shape, is a Baháʼí House of Worship that was dedicated in December 1986. Notable for its architectural splendor, it has become a prominent attraction in the city.',
+          address: 'Lotus Temple Road, Bahapur, Shambhu Dayal Bagh, New Delhi',
+          timings: '9:30 AM - 5:30 PM (Closed on Mondays)',
+          entryFee: 'Free',
+          tags: [
+            { text: 'Architectural Marvel', class: 'bg-purple-100 text-purple-800' },
+            { text: 'Peaceful Ambience', class: 'bg-blue-100 text-blue-800' },
+            { text: 'Meditation', class: 'bg-green-100 text-green-800' }
+          ]
+        },
+        'place-4': {
+          name: 'Qutub Minar',
+          location: ' UNESCO World Heritage Site',
+          image: 'https://images.unsplash.com/photo-1582972236019-e413025faf82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'The Qutub Minar is a minaret that forms part of the Qutb complex, a UNESCO World Heritage Site in the Mehrauli area of New Delhi. The Qutub Minar is made of red sandstone and marble, and is the tallest minaret in the world built of bricks.',
+          address: 'Mehrauli, New Delhi',
+          timings: '7:00 AM - 5:00 PM',
+          entryFee: '₹35 for Indians, ₹550 for foreigners',
+          tags: [
+            { text: 'UNESCO Site', class: 'bg-yellow-100 text-yellow-800' },
+            { text: 'Historical', class: 'bg-red-100 text-red-800' },
+            { text: 'Photography', class: 'bg-blue-100 text-blue-800' }
+          ]
+        },
+        'place-5': {
+          name: 'Humayun\'s Tomb',
+          location: ' Mughal Mausoleum',
+          image: 'https://images.unsplash.com/photo-1595433707802-6b2626ef1b91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'Humayun\'s tomb is the tomb of the Mughal Emperor Humayun in Delhi, India. The tomb was commissioned by Humayun\'s first wife and chief consort, Empress Bega Begum, in 1569-70, and designed by Mirak Mirza Ghiyas, a Persian architect chosen by Bega Begum.',
+          address: 'Mathura Road, Nizamuddin, New Delhi',
+          timings: 'Sunrise to Sunset',
+          entryFee: '₹35 for Indians, ₹550 for foreigners',
+          tags: [
+            { text: 'Mughal Architecture', class: 'bg-purple-100 text-purple-800' },
+            { text: 'Garden Tomb', class: 'bg-green-100 text-green-800' },
+            { text: 'UNESCO Site', class: 'bg-yellow-100 text-yellow-800' }
+          ]
+        },
+        'place-6': {
+          name: 'Akshardham',
+          location: ' Hindu Temple Complex',
+          image: 'https://images.unsplash.com/photo-1582972236019-e413025faf82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          description: 'Swaminarayan Akshardham is a Hindu temple, and a spiritual-cultural campus in New Delhi, India. The temple is close to the border with Noida. Also referred to as Akshardham Temple or Akshardham Delhi, it was officially opened on 6 November 2005.',
+          address: 'Noida Mor, New Delhi',
+          timings: '9:30 AM - 8:00 PM (Closed on Mondays)',
+          entryFee: 'Free (Exhibition: ₹170 for adults, ₹100 for children)',
+          tags: [
+            { text: 'Spiritual', class: 'bg-blue-100 text-blue-800' },
+            { text: 'Cultural Show', class: 'bg-purple-100 text-purple-800' },
+            { text: 'Architecture', class: 'bg-yellow-100 text-yellow-800' }
+          ]
         }
-      } );
-    } );
+      };
+      
+      return placesData[placeId] || null;
+    }
 
-    // Add scroll effect to navigation
-    window.addEventListener( 'scroll', function () {
-      const nav = document.querySelector( 'nav' );
-      if ( window.scrollY > 100 ) {
-        nav.style.background = 'rgba(255, 255, 255, 0.98)';
-        nav.style.backdropFilter = 'blur(20px)';
-      } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.85)';
-        nav.style.backdropFilter = 'blur(20px)';
+    // Open modal function
+    window.openModal = function(placeId) {
+      console.log('Opening modal for place:', placeId);
+      const modal = document.getElementById('placeModal');
+      
+      if (!modal) {
+        console.error('Modal element not found!');
+        return;
       }
-    } );
-
-    // Intersection Observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      
+      // Get the place data
+      const placeData = getPlaceData(placeId);
+      if (!placeData) {
+        console.error('No data found for place:', placeId);
+        return;
+      }
+      
+      // Update modal content
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalLocation = document.getElementById('modalLocation');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalDetails = document.getElementById('modalDetails');
+      const modalTags = document.getElementById('modalTags');
+      
+      if (modalImage) modalImage.src = placeData.image || '';
+      if (modalTitle) modalTitle.textContent = placeData.name || '';
+      if (modalLocation) modalLocation.textContent = placeData.location || '';
+      if (modalDescription) modalDescription.textContent = placeData.description || '';
+      
+      // Update details
+      if (modalDetails) {
+        modalDetails.innerHTML = `
+          <h4 class="font-semibold mb-2">📍 Location & Timings</h4>
+          <p class="text-sm text-slate-600 mb-1">📌 ${placeData.address || 'Not available'}</p>
+          <p class="text-sm text-slate-600 mb-1">⏰ ${placeData.timings || 'Not available'}</p>
+          <p class="text-sm text-slate-600">🎫 ${placeData.entryFee || 'Not available'}</p>
+        `;
+      }
+      
+      // Update tags
+      if (modalTags) {
+        if (placeData.tags && placeData.tags.length > 0) {
+          const tagsHtml = placeData.tags.map(tag => 
+            `<span class="modal-tag ${tag.class || 'bg-gray-100 text-gray-800'}">${tag.text || ''}</span>`
+          ).join('');
+          modalTags.innerHTML = tagsHtml;
+        } else {
+          modalTags.innerHTML = '';
+        }
+      }
+      
+      // Show the modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     };
 
-    const observer = new IntersectionObserver( ( entries ) => {
-      entries.forEach( entry => {
-        if ( entry.isIntersecting ) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      } );
-    }, observerOptions );
+    // Initialize modal when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM fully loaded, initializing modal functionality');
+      
+      // Close modal when clicking outside the modal content
+      document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOM fully loaded, initializing modal functionality');
 
-    // Observe elements for animation
-    document.querySelectorAll( '.interactive-card' ).forEach( el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.6s ease';
-      observer.observe( el );
-    } );
+  // Single modal reference
+  const modal = document.getElementById('placeModal');
 
-    // Mobile menu toggle (if needed)
-    function toggleMobileMenu() {
-      const mobileMenu = document.getElementById( 'mobileMenu' );
-      if ( mobileMenu ) {
-        mobileMenu.classList.toggle( 'hidden' );
-      }
+  // Close modal function
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+  window.closeModal = closeModal;
+
+  // Open modal function
+  window.openModal = function (placeId) {
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Load place data here if needed
+    }
+  };
+
+  if (modal) {
+    // Close when clicking the X button
+    const closeButton = modal.querySelector('.modal-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeModal);
+    } else {
+      console.warn('Modal close button not found');
     }
 
-    // Initialize page
-    document.addEventListener( 'DOMContentLoaded', function () {
-      // Add any initialization code here
-      console.log( 'Delhi Exploration page loaded successfully!' );
-
-      // Set minimum dates for events
-      const today = new Date().toISOString().split( 'T' )[ 0 ];
-      document.querySelectorAll( 'input[type="date"]' ).forEach( input => {
-        input.setAttribute( 'min', today );
-      } );
-    } );
-
-    // Add click handlers for booking buttons
-    document.querySelectorAll( 'button' ).forEach( button => {
-      if ( button.textContent.includes( 'Book' ) || button.textContent.includes( 'Buy' ) ) {
-        button.addEventListener( 'click', function () {
-          const eventName = this.closest( '.interactive-card' ).querySelector( 'h3' ).textContent;
-          alert( `Redirecting to booking page for: ${ eventName }` );
-          // In a real application, this would redirect to a booking system
-        } );
+    // Close when clicking outside modal content
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeModal();
       }
-    } );
+    });
 
-    // Add hover effects for better interactivity
-    document.querySelectorAll( '.interactive-card' ).forEach( card => {
-      card.addEventListener( 'mouseenter', function () {
-        this.style.transform = 'translateY(-8px)';
-        this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
-      } );
+    // Close with Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  } else {
+    console.error('Modal element not found in the DOM');
+  }
 
-      card.addEventListener( 'mouseleave', function () {
-        if ( !this.querySelector( '.expanded-content' ).classList.contains( 'hidden' ) ) {
-          return; // Don't reset if expanded
-        }
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-      } );
-    } );
+  // Add click handlers to inline Explore More buttons (onclick="openModal(...)")
+  document.querySelectorAll('[onclick^="openModal("]').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const match = this.getAttribute('onclick').match(/openModal\('([^']+)'\)/);
+      if (match && match[1]) {
+        const placeId = match[1];
+        window.openModal(placeId);
+      }
+    });
+  });
 
-    // Add search functionality (basic)
-    function searchDelhi( query ) {
-      if ( !query ) return;
+  // Expand/Collapse content
+  window.toggleExpansion = function (placeId) {
+    const expandedContent = document.getElementById(placeId);
+    if (!expandedContent) return;
+    const card = expandedContent.closest('.interactive-card');
+    const expandText = card.querySelector('.expand-text');
 
-      const sections = [ 'places', 'food', 'events' ];
-      sections.forEach( section => {
-        const cards = document.querySelectorAll( `#${ section }Grid .interactive-card` );
-        cards.forEach( card => {
-          const content = card.textContent.toLowerCase();
-          if ( content.includes( query.toLowerCase() ) ) {
-            card.style.display = 'block';
-            card.scrollIntoView( { behavior: 'smooth', block: 'center' } );
-          }
-        } );
-      } );
+    if (expandedContent.classList.contains('hidden')) {
+      expandedContent.classList.remove('hidden');
+      expandText.textContent = 'Show Less ↑';
+      const fadeInEl = expandedContent.querySelector('.fade-in');
+      if (fadeInEl) fadeInEl.style.animation = 'fadeIn 0.6s ease-in-out';
+    } else {
+      expandedContent.classList.add('hidden');
+      expandText.textContent = 'Explore More →';
     }
-  </script>
-</body>
+  };
 
-</html>
+  // "Show more" alerts
+  window.showMorePlaces = function () {
+    alert('More places coming soon! Stay tuned for updates on hidden gems and off-beat locations in Delhi.');
+  };
+  window.showMoreFoodPlaces = function () {
+    alert('More food places coming soon! Discover street food vendors, fine dining, and local favorites.');
+  };
+  window.showMoreEvents = function () {
+    alert("More events coming soon! We'll keep you updated with the latest cultural events, concerts, and festivals in Delhi.");
+  };
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll effect on navbar
+  window.addEventListener('scroll', function () {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    if (window.scrollY > 100) {
+      nav.style.background = 'rgba(255, 255, 255, 0.98)';
+      nav.style.backdropFilter = 'blur(20px)';
+    } else {
+      nav.style.background = 'rgba(255, 255, 255, 0.85)';
+      nav.style.backdropFilter = 'blur(20px)';
+    }
+  });
+
+  // Set minimum dates
+  const today = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('input[type="date"]').forEach(input => {
+    input.setAttribute('min', today);
+  });
+
+  // Intersection Observer animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.interactive-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Add click handlers for booking buttons
+  document.querySelectorAll('button').forEach(button => {
+    if (button.textContent.includes('Book') || button.textContent.includes('Buy')) {
+      button.addEventListener('click', function () {
+        const eventName = this.closest('.interactive-card').querySelector('h3').textContent;
+        alert(`Redirecting to booking page for: ${eventName}`);
+        // In a real application, replace alert with:
+        // window.location.href = `/booking?event=${encodeURIComponent(eventName)}`;
+      });
+    }
+  });
+
+}); // end DOMContentLoaded
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu) {
+    mobileMenu.classList.toggle('hidden');
+  }
+}
+
+
