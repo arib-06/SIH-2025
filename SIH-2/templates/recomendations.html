@@ -431,7 +431,7 @@
             <img src="./static/images/redfort.cms" 
                  alt="Red Fort" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span onclick="window.location.href='ar.html'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=red-fort-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Red Fort</h3>
@@ -470,7 +470,7 @@
             <img src="./static/images/indiagate.jpg" 
                  alt="India Gate" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=india-gate-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">India Gate</h3>
@@ -510,7 +510,7 @@
             <img src="./static/images/lotustemple2.jpg" 
                  alt="Lotus Temple" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=lotus-temple-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Lotus Temple</h3>
@@ -550,7 +550,7 @@
             <img src="./static/images/qutub.jpg" 
                  alt="Qutub Minar" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=qutub-minar-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Qutub Minar</h3>
@@ -590,7 +590,7 @@
             <img src="./static/images/A-592.webp" 
                  alt="Humayun's Tomb" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=humayuns-tomb-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Humayun's Tomb</h3>
@@ -630,7 +630,7 @@
             <img src="./static/images/akshradham temple.jpg" 
                  alt="Akshardham Temple" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
             <div class="absolute top-4 left-4 z-20">
-              <span class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold">3D View</span>
+              <span onclick="window.location.href='ar.html?place=akshardham-delhi'" class="px-3 py-1 bg-black/60 text-white rounded-full text-xs font-semibold cursor-pointer">3D View</span>
             </div>
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold">Akshardham</h3>
@@ -1556,13 +1556,21 @@
           closeModal();
         }
       });
-    } );
+    });
 
     // Add click handlers for booking buttons
     document.querySelectorAll( 'button' ).forEach( button => {
       if ( button.textContent.includes( 'Book' ) || button.textContent.includes( 'Buy' ) ) {
         button.addEventListener( 'click', function () {
           const eventName = this.closest( '.interactive-card' ).querySelector( 'h3' ).textContent;
-          alert( Redirecting to booking page for: ${ eventName } );
+          alert( `Redirecting to booking page for: ${ eventName }` );
           // In a real application, this would redirect to a booking system
-        } )
+        } );
+      }
+    } );
+  } );
+} );
+```
+</script>
+</body>
+</html>
