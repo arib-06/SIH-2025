@@ -17,7 +17,32 @@
   <!-- Navbar Loader Script -->
   <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
   <!-- Booking functionality -->
-  <script  src="{{ url_for('static', filename='js/booking.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+  <script>
+    // Search functionality
+    function performSearch() {
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (searchTerm) {
+        // Redirect to recomendations page with search query
+        window.location.href = `/recomendations?q=${encodeURIComponent(searchTerm)}`;
+      } else {
+        alert('Please enter a search term');
+      }
+    }
+
+    // Handle Enter key press in search input
+    function handleSearchKeyPress(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        performSearch();
+      }
+    }
+
+    // Quick search function for popular search buttons
+    function searchFor(category) {
+      window.location.href = `/recomendations?q=${encodeURIComponent(category)}`;
+    }
+  </script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">

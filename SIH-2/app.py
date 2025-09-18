@@ -22,7 +22,8 @@ def navbar():
     return render_template('navbar.html')
 @app.get('/recomendations')
 def recomendations():
-    return render_template('recomendations.html')
+    search_query = request.args.get('q', '')  # Get the search query from URL parameters
+    return render_template('recomendations.html', search_query=search_query)
 @app.get('/reel')
 def reel():
     return render_template('reel.html')
