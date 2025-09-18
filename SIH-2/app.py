@@ -13,7 +13,14 @@ def assistant():
     return render_template('assistant.html')
 @app.get('/hotel')
 def hotel():
-    return render_template('hotel-results')
+    return render_template('hotel-results.html')
+
+@app.get('/hotel-results')
+def hotel_results():
+    destination = request.args.get('destination', '')
+    checkin = request.args.get('checkin', '')
+    checkout = request.args.get('checkout', '')
+    return render_template('hotel-results.html', destination=destination, checkin=checkin, checkout=checkout)
 @app.get('/')
 def index():
     return render_template('index.html')

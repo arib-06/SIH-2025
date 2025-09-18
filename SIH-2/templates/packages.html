@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Travel Packages - Traverse</title>
+  <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom CSS Files -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-fixes.css') }}">
+  <!-- Navbar Loader Script -->
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
+  
+  <style>
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: translateY(-2px);
+    }
+    
+    .filter-section {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .package-card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+    
+    .wishlist-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .wishlist-btn.active {
+      color: #ef4444;
+      transform: scale(1.1);
+    }
+    
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #e5e7eb;
+      outline: none;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      border: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+  <!-- Navigation Container -->
+  <div id="navbar-container"></div>
+
+  <!-- Main Content -->
+  <section class="py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8 animate-fadeInUp">
+        <h1 class="text-4xl font-display font-bold mb-4">
+          Discover Amazing <span class="text-gradient">Travel Packages</span>
+        </h1>
+        <p class="text-xl text-slate-600">Find your perfect getaway with our curated travel experiences</p>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <div class="lg:w-1/4">
+          <div class="filter-section rounded-2xl p-6 sticky top-8">
+            <h3 class="text-xl font-semibold mb-6 text-slate-800">Filter Packages</h3>
+            
+            <!-- Duration Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Duration (Nights)</label>
+              <div class="space-y-3">
+                <input type="range" id="durationSlider" class="slider w-full" min="1" max="15" value="5">
+                <div class="flex justify-between text-sm text-slate-600">
+                  <span>1 Night</span>
+                  <span id="durationValue">5 Nights</span>
+                  <span>15+ Nights</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button class="duration-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-duration="2">2N/3D</button>
+                  <button class="duration-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-duration="3">3N/4D</button>
+                  <button class="duration-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-duration="5">5N/6D</button>
+                  <button class="duration-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-duration="7">7N/8D</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flights Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Flights</label>
+              <div class="flex gap-2">
+                <button class="flight-btn flex-1 px-4 py-2 text-sm rounded-lg border border-slate-300 hover:bg-blue-50" data-flight="with">With Flight</button>
+                <button class="flight-btn flex-1 px-4 py-2 text-sm rounded-lg border border-slate-300 hover:bg-blue-50" data-flight="without">Without Flight</button>
+              </div>
+            </div>
+
+            <!-- Budget Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Budget (per person)</label>
+              <div class="space-y-3">
+                <input type="range" id="budgetSlider" class="slider w-full" min="5000" max="100000" value="25000" step="5000">
+                <div class="flex justify-between text-sm text-slate-600">
+                  <span>₹5K</span>
+                  <span id="budgetValue">₹25K</span>
+                  <span>₹1L+</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <button class="budget-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-budget="10000">Under ₹10K</button>
+                  <button class="budget-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-budget="20000">Under ₹20K</button>
+                  <button class="budget-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-budget="50000">Under ₹50K</button>
+                  <button class="budget-btn px-3 py-1 text-sm rounded-full border border-slate-300 hover:bg-blue-50" data-budget="100000">Above ₹50K</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Category Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Hotel Category</label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input type="checkbox" class="hotel-category" value="3" class="mr-2">
+                  <span class="text-sm">⭐⭐⭐ 3 Star & Above</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="hotel-category" value="4" class="mr-2">
+                  <span class="text-sm">⭐⭐⭐⭐ 4 Star & Above</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="hotel-category" value="5" class="mr-2">
+                  <span class="text-sm">⭐⭐⭐⭐⭐ 5 Star Only</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Cities Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Cities</label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input type="checkbox" class="city-filter" value="goa" class="mr-2">
+                  <span class="text-sm">Goa</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="city-filter" value="kerala" class="mr-2">
+                  <span class="text-sm">Kerala</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="city-filter" value="rajasthan" class="mr-2">
+                  <span class="text-sm">Rajasthan</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="city-filter" value="himachal" class="mr-2">
+                  <span class="text-sm">Himachal Pradesh</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="city-filter" value="kashmir" class="mr-2">
+                  <span class="text-sm">Kashmir</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Themes Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Themes</label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input type="checkbox" class="theme-filter" value="beach" class="mr-2">
+                  <span class="text-sm">🏖️ Beach</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="theme-filter" value="mountain" class="mr-2">
+                  <span class="text-sm">🏔️ Mountain</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="theme-filter" value="cultural" class="mr-2">
+                  <span class="text-sm">🏛️ Cultural</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="theme-filter" value="adventure" class="mr-2">
+                  <span class="text-sm">🎯 Adventure</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" class="theme-filter" value="spiritual" class="mr-2">
+                  <span class="text-sm">🕉️ Spiritual</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Package Type Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3 text-slate-700">Package Type</label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input type="radio" name="package-type" value="customizable" class="mr-2">
+                  <span class="text-sm">Customizable</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="package-type" value="group" class="mr-2">
+                  <span class="text-sm">Group Package</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Premium Packages -->
+            <div class="mb-6">
+              <label class="flex items-center">
+                <input type="checkbox" id="premium-packages" class="mr-2">
+                <span class="text-sm font-medium">Premium Packages Only</span>
+              </label>
+            </div>
+
+            <!-- Clear Filters -->
+            <button id="clearFilters" class="w-full py-2 px-4 text-sm border border-slate-300 rounded-lg hover:bg-slate-50">
+              Clear All Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Packages Grid -->
+        <div class="lg:w-3/4">
+          <!-- Sort and Results Header -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+            <div class="mb-4 sm:mb-0">
+              <h2 class="text-2xl font-semibold text-slate-800">
+                <span id="packageCount">24</span> Packages Found
+              </h2>
+            </div>
+            <div class="flex items-center gap-4">
+              <label class="text-sm font-medium text-slate-700">Sort by:</label>
+              <select id="sortBy" class="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="popularity">Popularity</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="duration">Duration</option>
+                <option value="rating">Rating</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Packages Grid -->
+          <div id="packagesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Package cards will be dynamically generated here -->
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-12">
+            <button id="loadMore" class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+              Load More Packages
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-slate-400">© 2024 Traverse. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sample package data
+    const samplePackages = [
+      {
+        id: 1,
+        title: "Hidden Shores of North Goa Beaches",
+        duration: "4N/5D",
+        location: "Goa",
+        theme: "beach",
+        city: "goa",
+        price: 18500,
+        originalPrice: 22000,
+        rating: 4.8,
+        hotelCategory: 4,
+        withFlight: true,
+        customizable: true,
+        premium: true,
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["4 Star Hotel", "All Meals", "Airport Pickup", "Beach Activities"],
+        description: "Experience the pristine beaches of North Goa with luxury accommodation and exclusive beach access."
+      },
+      {
+        id: 2,
+        title: "Kerala Backwaters & Spice Plantations",
+        duration: "5N/6D",
+        location: "Kerala",
+        theme: "cultural",
+        city: "kerala",
+        price: 22500,
+        originalPrice: 28000,
+        rating: 4.9,
+        hotelCategory: 5,
+        withFlight: true,
+        customizable: false,
+        premium: true,
+        image: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["5 Star Resort", "All Meals", "Houseboat Stay", "Spice Tour"],
+        description: "Cruise through the serene backwaters and explore aromatic spice plantations in God's Own Country."
+      },
+      {
+        id: 3,
+        title: "Royal Rajasthan Heritage Tour",
+        duration: "7N/8D",
+        location: "Rajasthan",
+        theme: "cultural",
+        city: "rajasthan",
+        price: 32000,
+        originalPrice: 38000,
+        rating: 4.7,
+        hotelCategory: 4,
+        withFlight: true,
+        customizable: true,
+        premium: false,
+        image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["4 Star Palace Hotels", "All Meals", "Camel Safari", "Cultural Shows"],
+        description: "Discover the royal heritage of Rajasthan with palace stays and desert adventures."
+      },
+      {
+        id: 4,
+        title: "Himachal Hill Station Retreat",
+        duration: "3N/4D",
+        location: "Himachal Pradesh",
+        theme: "mountain",
+        city: "himachal",
+        price: 12500,
+        originalPrice: 15000,
+        rating: 4.6,
+        hotelCategory: 3,
+        withFlight: false,
+        customizable: true,
+        premium: false,
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["3 Star Resort", "Breakfast", "Mountain Views", "Trekking"],
+        description: "Escape to the cool mountains of Himachal Pradesh for a refreshing retreat."
+      },
+      {
+        id: 5,
+        title: "Kashmir Paradise Valley",
+        duration: "6N/7D",
+        location: "Kashmir",
+        theme: "mountain",
+        city: "kashmir",
+        price: 28000,
+        originalPrice: 32000,
+        rating: 4.9,
+        hotelCategory: 5,
+        withFlight: true,
+        customizable: false,
+        premium: true,
+        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["5 Star Hotel", "All Meals", "Shikara Ride", "Gondola Ride"],
+        description: "Experience the breathtaking beauty of Kashmir with luxury accommodation and exclusive experiences."
+      },
+      {
+        id: 6,
+        title: "Adventure Sports in Rishikesh",
+        duration: "2N/3D",
+        location: "Uttarakhand",
+        theme: "adventure",
+        city: "himachal",
+        price: 8500,
+        originalPrice: 10000,
+        rating: 4.5,
+        hotelCategory: 3,
+        withFlight: false,
+        customizable: true,
+        premium: false,
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        features: ["3 Star Hotel", "Breakfast", "River Rafting", "Bungee Jumping"],
+        description: "Get your adrenaline pumping with thrilling adventure sports in the adventure capital of India."
+      }
+    ];
+
+    let filteredPackages = [...samplePackages];
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeFilters();
+      displayPackages();
+      updatePackageCount();
+    });
+
+    // Filter functionality
+    function initializeFilters() {
+      // Duration slider
+      const durationSlider = document.getElementById('durationSlider');
+      const durationValue = document.getElementById('durationValue');
+      
+      durationSlider.addEventListener('input', function() {
+        durationValue.textContent = this.value + ' Nights';
+        applyFilters();
+      });
+
+      // Duration buttons
+      document.querySelectorAll('.duration-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('bg-blue-500', 'text-white'));
+          this.classList.add('bg-blue-500', 'text-white');
+          durationSlider.value = this.dataset.duration;
+          durationValue.textContent = this.dataset.duration + ' Nights';
+          applyFilters();
+        });
+      });
+
+      // Flight buttons
+      document.querySelectorAll('.flight-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.flight-btn').forEach(b => b.classList.remove('bg-blue-500', 'text-white'));
+          this.classList.add('bg-blue-500', 'text-white');
+          applyFilters();
+        });
+      });
+
+      // Budget slider
+      const budgetSlider = document.getElementById('budgetSlider');
+      const budgetValue = document.getElementById('budgetValue');
+      
+      budgetSlider.addEventListener('input', function() {
+        budgetValue.textContent = '₹' + (this.value / 1000) + 'K';
+        applyFilters();
+      });
+
+      // Budget buttons
+      document.querySelectorAll('.budget-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('bg-blue-500', 'text-white'));
+          this.classList.add('bg-blue-500', 'text-white');
+          budgetSlider.value = this.dataset.budget;
+          budgetValue.textContent = '₹' + (this.dataset.budget / 1000) + 'K';
+          applyFilters();
+        });
+      });
+
+      // Other filters
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+        input.addEventListener('change', applyFilters);
+      });
+
+      // Sort dropdown
+      document.getElementById('sortBy').addEventListener('change', applyFilters);
+
+      // Clear filters
+      document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+    }
+
+    function applyFilters() {
+      const duration = parseInt(document.getElementById('durationSlider').value);
+      const budget = parseInt(document.getElementById('budgetSlider').value);
+      const selectedFlight = document.querySelector('.flight-btn.bg-blue-500')?.dataset.flight;
+      const selectedHotelCategories = Array.from(document.querySelectorAll('.hotel-category:checked')).map(cb => parseInt(cb.value));
+      const selectedCities = Array.from(document.querySelectorAll('.city-filter:checked')).map(cb => cb.value);
+      const selectedThemes = Array.from(document.querySelectorAll('.theme-filter:checked')).map(cb => cb.value);
+      const selectedPackageType = document.querySelector('input[name="package-type"]:checked')?.value;
+      const premiumOnly = document.getElementById('premium-packages').checked;
+      const sortBy = document.getElementById('sortBy').value;
+
+      filteredPackages = samplePackages.filter(package => {
+        // Duration filter
+        const packageDuration = parseInt(package.duration.split('N')[0]);
+        if (packageDuration > duration + 1) return false;
+
+        // Budget filter
+        if (package.price > budget) return false;
+
+        // Flight filter
+        if (selectedFlight && package.withFlight !== (selectedFlight === 'with')) return false;
+
+        // Hotel category filter
+        if (selectedHotelCategories.length > 0 && !selectedHotelCategories.includes(package.hotelCategory)) return false;
+
+        // City filter
+        if (selectedCities.length > 0 && !selectedCities.includes(package.city)) return false;
+
+        // Theme filter
+        if (selectedThemes.length > 0 && !selectedThemes.includes(package.theme)) return false;
+
+        // Package type filter
+        if (selectedPackageType && package.customizable !== (selectedPackageType === 'customizable')) return false;
+
+        // Premium filter
+        if (premiumOnly && !package.premium) return false;
+
+        return true;
+      });
+
+      // Sort packages
+      switch (sortBy) {
+        case 'price-low':
+          filteredPackages.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          filteredPackages.sort((a, b) => b.price - a.price);
+          break;
+        case 'duration':
+          filteredPackages.sort((a, b) => parseInt(a.duration.split('N')[0]) - parseInt(b.duration.split('N')[0]));
+          break;
+        case 'rating':
+          filteredPackages.sort((a, b) => b.rating - a.rating);
+          break;
+        default: // popularity
+          filteredPackages.sort((a, b) => b.rating - a.rating);
+      }
+
+      displayPackages();
+      updatePackageCount();
+    }
+
+    function clearAllFilters() {
+      // Reset sliders
+      document.getElementById('durationSlider').value = 5;
+      document.getElementById('durationValue').textContent = '5 Nights';
+      document.getElementById('budgetSlider').value = 25000;
+      document.getElementById('budgetValue').textContent = '₹25K';
+
+      // Reset buttons
+      document.querySelectorAll('.duration-btn, .flight-btn, .budget-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-500', 'text-white');
+      });
+
+      // Reset checkboxes and radio buttons
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+        input.checked = false;
+      });
+
+      // Reset sort
+      document.getElementById('sortBy').value = 'popularity';
+
+      // Reset filters
+      filteredPackages = [...samplePackages];
+      displayPackages();
+      updatePackageCount();
+    }
+
+    function displayPackages() {
+      const grid = document.getElementById('packagesGrid');
+      grid.innerHTML = '';
+
+      filteredPackages.forEach(package => {
+        const packageCard = createPackageCard(package);
+        grid.appendChild(packageCard);
+      });
+    }
+
+    function createPackageCard(package) {
+      const card = document.createElement('div');
+      card.className = 'package-card glass-effect rounded-2xl overflow-hidden hover-lift animate-fadeInUp';
+      
+      const isWishlisted = wishlist.includes(package.id);
+      const discount = Math.round(((package.originalPrice - package.price) / package.originalPrice) * 100);
+      
+      card.innerHTML = `
+        <div class="relative">
+          <img src="${package.image}" alt="${package.title}" class="w-full h-48 object-cover">
+          <div class="absolute top-4 left-4">
+            <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+              ${package.premium ? 'MMT Premium' : 'Best Deal'}
+            </span>
+          </div>
+          <div class="absolute top-4 right-4">
+            <button class="wishlist-btn w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors ${isWishlisted ? 'active' : ''}" 
+                    onclick="toggleWishlist(${package.id})">
+              <svg class="w-5 h-5" fill="${isWishlisted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="absolute bottom-4 left-4">
+            <span class="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+              📍 ${package.location}
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold mb-2 text-slate-800">${package.title}</h3>
+              <div class="flex items-center mb-2">
+                <span class="text-sm text-slate-600 mr-4">${package.duration}</span>
+                <div class="flex items-center">
+                  <div class="flex text-yellow-400 mr-1">
+                    ${generateStars(package.rating)}
+                  </div>
+                  <span class="text-sm text-slate-600">${package.rating}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <div class="flex flex-wrap gap-2 mb-3">
+              ${package.features.map(feature => `<span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">${feature}</span>`).join('')}
+            </div>
+            <p class="text-sm text-slate-600">${package.description}</p>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold text-orange-600">₹${package.price.toLocaleString()}</span>
+                <span class="text-lg text-slate-500 line-through">₹${package.originalPrice.toLocaleString()}</span>
+                <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full">${discount}% OFF</span>
+              </div>
+              <div class="text-sm text-slate-600">per person</div>
+              ${package.originalPrice > package.price ? '<div class="text-xs text-green-600 mt-1">This price is lower than average</div>' : ''}
+            </div>
+            <button class="btn-primary px-6 py-2 rounded-lg text-white font-semibold" onclick="bookPackage(${package.id})">
+              Book Now
+            </button>
+          </div>
+        </div>
+      `;
+      
+      return card;
+    }
+
+    function generateStars(rating) {
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 >= 0.5;
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+      let stars = '';
+      
+      // Full stars
+      for (let i = 0; i < fullStars; i++) {
+        stars += '⭐';
+      }
+      
+      // Half star
+      if (hasHalfStar) {
+        stars += '⭐';
+      }
+      
+      // Empty stars
+      for (let i = 0; i < emptyStars; i++) {
+        stars += '☆';
+      }
+      
+      return stars;
+    }
+
+    function toggleWishlist(packageId) {
+      const index = wishlist.indexOf(packageId);
+      if (index > -1) {
+        wishlist.splice(index, 1);
+      } else {
+        wishlist.push(packageId);
+      }
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      displayPackages(); // Refresh to update heart icons
+    }
+
+    function bookPackage(packageId) {
+      const package = samplePackages.find(p => p.id === packageId);
+      if (package) {
+        alert(`Booking ${package.title}\n\nDuration: ${package.duration}\nPrice: ₹${package.price.toLocaleString()} per person\n\nThis would redirect to the booking page.`);
+      }
+    }
+
+    function updatePackageCount() {
+      document.getElementById('packageCount').textContent = filteredPackages.length;
+    }
+
+    // Load more functionality
+    document.getElementById('loadMore').addEventListener('click', function() {
+      // In a real app, this would load more packages from the server
+      alert('Loading more packages...\n\nIn a real application, this would fetch additional packages from the server.');
+    });
+  </script>
+</body>
+
+</html>

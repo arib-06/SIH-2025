@@ -860,75 +860,75 @@
 
     // Hotel search validation function
     function searchHotels() {
-      const destination = document.getElementById( 'hotelDestination' ).value.trim();
-      const checkin = document.getElementById( 'hotelCheckin' ).value;
-      const checkout = document.getElementById( 'hotelCheckout' ).value;
+  const destination = document.getElementById('hotelDestination').value.trim();
+  const checkin = document.getElementById('hotelCheckin').value;
+  const checkout = document.getElementById('hotelCheckout').value;
 
-      // Validation
-      if ( !destination || !checkin || !checkout ) {
-        alert( 'Please enter full details' );
-        if ( !destination ) document.getElementById( 'hotelDestination' ).focus();
-        else if ( !checkin ) document.getElementById( 'hotelCheckin' ).focus();
-        else document.getElementById( 'hotelCheckout' ).focus();
-        return;
-      }
+  // Validation
+  if (!destination || !checkin || !checkout) {
+    alert('Please enter full details');
+    if (!destination) document.getElementById('hotelDestination').focus();
+    else if (!checkin) document.getElementById('hotelCheckin').focus();
+    else document.getElementById('hotelCheckout').focus();
+    return;
+  }
 
-      // Check if checkout is after checkin
-      if ( new Date( checkout ) <= new Date( checkin ) ) {
-        alert( 'Check-out date must be after check-in date' );
-        document.getElementById( 'hotelCheckout' ).focus();
-        return;
-      }
+  // Check if checkout is after checkin
+  if (new Date(checkout) <= new Date(checkin)) {
+    alert('Check-out date must be after check-in date');
+    document.getElementById('hotelCheckout').focus();
+    return;
+  }
 
-      // Store destination for results page
-      localStorage.setItem( 'hotelDestination', destination );
+  // Store destination for results page
+  localStorage.setItem('hotelDestination', destination);
 
-      // Redirect to hotel results page
-      window.location.href = hotel-results?destination=${ encodeURIComponent( destination ) }&checkin=${ checkin }&checkout=${ checkout };
-    }
+  // Redirect to hotel results page
+  window.location.href = `/hotel-results?destination=${encodeURIComponent(destination)}&checkin=${checkin}&checkout=${checkout}`;
+}
 
-    // Search functionality for recommendations
-    function performSearch() {
-      const searchInput = document.getElementById('searchInput');
-      const searchQuery = searchInput.value.trim();
-      
-      if (!searchQuery) {
-        alert('Please enter a search term');
-        searchInput.focus();
-        return;
-      }
-      
-      // Store the search query in localStorage for the recommendations page
-      localStorage.setItem('searchQuery', searchQuery);
-      
-      // Redirect to recommendations page with search parameter
-      window.location.href = recomendations?search=${encodeURIComponent(searchQuery)};
-    }
+// Search functionality for recommendations
+function performSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const searchQuery = searchInput.value.trim();
 
-    // Handle Enter key press in search input
-    function handleSearchKeyPress(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        performSearch();
-      }
-    }
+  if (!searchQuery) {
+    alert('Please enter a search term');
+    searchInput.focus();
+    return;
+  }
 
-    // Quick search function for popular search buttons
-    function searchFor(category) {
-      const searchInput = document.getElementById('searchInput');
-      searchInput.value = category;
-      performSearch();
-    }
+  // Store the search query in localStorage for the recommendations page
+  localStorage.setItem('searchQuery', searchQuery);
 
-    // Focus search input when clicking on search icon
-    document.addEventListener('DOMContentLoaded', function() {
-      const searchIcon = document.querySelector('.search-icon');
-      if (searchIcon) {
-        searchIcon.addEventListener('click', function() {
-          document.getElementById('searchInput').focus();
-        });
-      }
+  // Redirect to recommendations page with search parameter
+  window.location.href = `/recomendations?search=${encodeURIComponent(searchQuery)}`;
+}
+
+// Handle Enter key press in search input
+function handleSearchKeyPress(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    performSearch();
+  }
+}
+
+// Quick search function for popular search buttons
+function searchFor(category) {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = category;
+  performSearch();
+}
+
+// Focus search input when clicking on search icon
+document.addEventListener('DOMContentLoaded', function() {
+  const searchIcon = document.querySelector('.search-icon');
+  if (searchIcon) {
+    searchIcon.addEventListener('click', function() {
+      document.getElementById('searchInput').focus();
     });
+  }
+});
   </script>
 </body>
 
