@@ -8,7 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <title>Traverz - AI Translation Assistant</title>
+  <title>Traverse - AI Translation Assistant</title>
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
@@ -381,17 +381,14 @@
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center space-x-3 mb-6">
-            <div
-              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
-                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
-                  fill="none" stroke="currentColor" stroke-width="3" />
-                <circle cx="50" cy="35" r="3" fill="currentColor" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-display font-bold">Traverz</h3>
+           <div class="flex items-center space-x-1">
+        <div class="relative">
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img src="initial/ChatGPT Image Sep 18, 2025, 03_12_48 PM.png" alt="Traverse Logo" class="w-full h-full object-cover">
           </div>
+        </div>
+        <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
+      </div>
           <p class="text-slate-400 mb-6 max-w-md">
             Breaking language barriers with AI-powered translation technology.
             Connect with the world, one conversation at a time.
@@ -427,7 +424,7 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">Support</h4>
           <ul class="space-y-2 text-slate-400">
-            <li>📧 help@traverz.com</li>
+            <li>📧 help@Traverse.com</li>
             <li>💬 Live Chat 24/7</li>
             <li>📚 Documentation</li>
             <li>🎓 Tutorials</li>
@@ -439,7 +436,7 @@
 
       <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
         <div class="text-slate-400 text-sm">
-          © 2024 Traverz. All rights reserved. | Privacy Policy | Terms of Service
+          © 2024 Traverse. All rights reserved. | Privacy Policy | Terms of Service
         </div>
         <div class="text-slate-400 text-sm mt-4 md:mt-0">
           Powered by AI ❤️ Built for travelers
@@ -740,7 +737,7 @@
 
     // Auto-save translation history (mock implementation)
     function saveToHistory( input, output, sourceLang, targetLang ) {
-      const history = JSON.parse( localStorage.getItem( 'traverz-translations' ) || '[]' );
+      const history = JSON.parse( localStorage.getItem( 'Traverse-translations' ) || '[]' );
       history.unshift( {
         input,
         output,
@@ -754,7 +751,7 @@
         history.splice( 50 );
       }
 
-      localStorage.setItem( 'traverz-translations', JSON.stringify( history ) );
+      localStorage.setItem( 'Traverse-translations', JSON.stringify( history ) );
     }
 
     // Performance optimization: Debounce translation
@@ -812,7 +809,7 @@
     `;
     document.head.appendChild( mobileStyle );
 
-    console.log( '🌍 Traverz Translation page loaded successfully!' );
+    console.log( '🌍 Traverse Translation page loaded successfully!' );
     console.log( '📱 Keyboard shortcuts:' );
     console.log( '  • Ctrl/Cmd + Enter: Translate' );
     console.log( '  • Escape: Clear text' );
