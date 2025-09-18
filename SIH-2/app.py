@@ -48,13 +48,18 @@ def translate():
 def traverz_gamification():
     return render_template('traverz_gamification.html')
 
+
 @app.post('/translate')
 def transla():
-    data=request.get_json()
-    print(data)
-    translator=Translator(to_lang=data.get('target'))
-    translated_text=(translator.translate(data.get('q')))
-    return translated_text
+    data = request.get_json(silent=True) or {}
+    if 'target' not in data or 'q' not in data:
+        return "", 400
+    try:
+        translator = Translator(to_lang=data['target'])
+        translated_text = translator.translate(data['q'])
+        return translated_text
+    except Exception as e:
+        return str(e), 500
 
 if __name__=="__main__":
     app.run(debug=True)
