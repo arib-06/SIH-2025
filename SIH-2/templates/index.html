@@ -366,7 +366,7 @@
             </div>
           </div>
           <div class="text-center mt-6">
-            <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+            <button onclick="searchPackages()" class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
               Search & Book Now
             </button>
           </div>
@@ -929,6 +929,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Package search functionality
+function searchPackages() {
+  const from = document.querySelector('#packagesBookingForm input[placeholder="Departure city"]').value.trim();
+  const to = document.querySelector('#packagesBookingForm input[placeholder="Destination city"]').value.trim();
+  const departure = document.querySelector('#packagesBookingForm input[type="date"]').value;
+  const passengers = document.querySelector('#packagesBookingForm select').value;
+
+  // Validation
+  if (!from || !to || !departure || !passengers) {
+    alert('Please fill in all package details');
+    return;
+  }
+
+  // Store search parameters
+  localStorage.setItem('packageSearch', JSON.stringify({
+    from: from,
+    to: to,
+    departure: departure,
+    passengers: passengers
+  }));
+
+  // Redirect to packages page with search parameters
+  window.location.href = `/packages?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&departure=${departure}&passengers=${encodeURIComponent(passengers)}`;
+}
   </script>
 </body>
 

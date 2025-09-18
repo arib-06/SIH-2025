@@ -56,6 +56,14 @@ def translate():
 def traverz_gamification():
     return render_template('traverz_gamification.html')
 
+@app.get('/packages')
+def packages():
+    from_city = request.args.get('from', '')
+    to_city = request.args.get('to', '')
+    departure = request.args.get('departure', '')
+    passengers = request.args.get('passengers', '')
+    return render_template('packages.html', from_city=from_city, to_city=to_city, departure=departure, passengers=passengers)
+
 
 @app.post('/translate')
 def transla():
