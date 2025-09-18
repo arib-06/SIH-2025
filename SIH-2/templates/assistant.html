@@ -12,13 +12,13 @@
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/ai-assistant.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ai-assistant.css') }}">
   <!-- CSS styles moved to external files -->
   <!-- Navbar Loader Script -->
-  <script src="js/navbar-loader.js"></script>
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
   <!-- AI Assistant functionality -->
-  <script src="js/ai-assistant.js"></script>
+  <script src="{{ url_for('static', filename='js/ai-assistant.js') }}"></script>
 
 </head>
 
@@ -145,7 +145,7 @@
       </div>
     </div>
   </section>
-  <script type="module" src="./js/ai.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/ai.js') }}"></script>
   <script>
     let isTyping = false;
     const chatMessages = document.getElementById('chatMessages');

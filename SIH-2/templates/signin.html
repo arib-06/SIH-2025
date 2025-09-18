@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traverz - Sign In</title>
+  <!-- Fonts -->
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --accent: #f59e0b;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --border: #e2e8f0;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Animations */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .animate-pulse-slow {
+      animation: pulse 3s infinite;
+    }
+
+    .animate-gradient {
+      animation: gradientShift 8s ease infinite;
+    }
+
+    /* Custom Utilities */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-social {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-social:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .form-input {
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(14, 165, 233, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+      outline: none;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass-effect animate-slideInLeft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse-slow">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
+                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                  fill="none" stroke="currentColor" stroke-width="3" />
+                <circle cx="50" cy="35" r="3" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <h1 class="text-2xl font-display font-bold text-gradient">Traverz</h1>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Home
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="tourist_guide"
+            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Tourist Guide
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="/translate"
+            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Translate
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="assistant"
+            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            AI Assistance
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="sos"
+            class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+            Emergency
+            <span
+              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center space-x-4">
+          <button onclick="window.location.href='signin';"
+            class="hidden sm:block px-6 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
+            Sign In
+          </button>
+
+          <!-- Profile Icon -->
+          <button role="button" onclick="window.location.href='settings';"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex flex-col min-h-screen pt-20">
+    <!-- Sign In Section -->
+    <section class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="w-full max-w-md space-y-8 animate-fadeInUp">
+        <div class="text-center">
+          <h2 class="text-4xl font-display font-bold text-slate-900 mb-2">Welcome Back</h2>
+          <p class="text-lg text-slate-600">Sign in to continue your journey</p>
+        </div>
+
+        <div class="glass-effect p-8 shadow-xl rounded-2xl space-y-6 hover-lift">
+          <!-- Google Sign In -->
+          <button id="signupWithGoogle"
+            class="btn-social w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full text-slate-700 font-medium">
+            <svg class="w-5 h-5" viewBox="0 0 24 24">
+              <path fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+              <path fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            Continue with Google
+          </button>
+
+          <!-- Phone Number Sign In -->
+          <button
+            class="btn-social w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full text-slate-700 font-medium">
+            <i class="fas fa-phone w-5 h-5"></i>
+            Continue with Phone Number
+          </button>
+
+          <!-- Divider -->
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-slate-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-slate-500">Or</span>
+            </div>
+          </div>
+
+          <!-- Email Sign In Form -->
+          <form class="space-y-4" id="signinForm">
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email address</label>
+              <input id="email" name="email" type="email" required
+                class="form-input w-full px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400"
+                placeholder="Enter your email">
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-slate-700 mb-2">Password</label>
+              <div class="relative">
+                <input id="password" name="password" type="password" required
+                  class="form-input w-full px-4 py-3 rounded-lg text-slate-900 placeholder:text-slate-400 pr-12"
+                  placeholder="Enter your password">
+                <button type="button" onclick="togglePassword()"
+                  class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-500 hover:text-slate-700">
+                  <i class="fas fa-eye" id="passwordToggle"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember-me" name="remember-me" type="checkbox"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded">
+                <label for="remember-me" class="ml-2 block text-sm text-slate-700">
+                  Remember me
+                </label>
+              </div>
+              <div class="text-sm">
+                <a href="#" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary w-full py-3 px-6 rounded-full font-semibold text-white">
+              Sign In
+            </button>
+          </form>
+
+          <!-- Sign Up Link -->
+          <div class="text-center">
+            <p class="text-sm text-slate-600">
+              Don't have an account?
+              <a href="traverz_signup (1)" class="font-medium text-blue-600 hover:text-blue-500 hover:underline">Sign
+                up</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Terms and Privacy -->
+        <div class="text-center text-xs text-slate-500">
+          By signing in, you agree to our
+          <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>
+          and
+          <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center space-x-3 mb-4 md:mb-0">
+          <div
+            class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 100 100">
+              <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z"
+                fill="none" stroke="currentColor" stroke-width="3" />
+              <circle cx="50" cy="35" r="3" fill="currentColor" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-display font-bold">Traverz</h3>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <p class="text-slate-400 text-sm">© 2025 Modern Traverz. All rights reserved.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script type="module" src="{{ url_for('static', filename='js/firebase.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/signin.js') }}"></script>
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordInput = document.getElementById( 'password' );
+      const passwordToggle = document.getElementById( 'passwordToggle' );
+
+      if ( passwordInput.type === 'password' ) {
+        passwordInput.type = 'text';
+        passwordToggle.classList.remove( 'fa-eye' );
+        passwordToggle.classList.add( 'fa-eye-slash' );
+      } else {
+        passwordInput.type = 'password';
+        passwordToggle.classList.remove( 'fa-eye-slash' );
+        passwordToggle.classList.add( 'fa-eye' );
+      }
+    }
+    const auth = getAuth( app );
+    const signInUser = async ( email, password ) => {
+      try {
+        await signInWithEmailAndPassword( auth, email, password );
+        showNotification( 'Welcome back! Redirecting...', 'success' );
+        setTimeout( () => {
+          window.location.href = '/';
+        }, 1500 );
+      } catch ( error ) {
+        console.error( 'Error signing in:', error.message );
+        showNotification( 'Wrong Credentials', 'failure' );
+      }
+    };
+
+    // Form submission
+    document.getElementById( 'signinForm' )
+      .addEventListener( 'submit', async e => {
+        e.preventDefault();
+        const email = document.getElementById( 'email' ).value;
+        const password = document.getElementById( 'password' ).value;
+
+        if ( email && password )
+          await signInUser( email, password )
+      } );
+
+    // Social sign in handlers
+    document.querySelectorAll( '.btn-social' ).forEach( button => {
+      button.addEventListener( 'click', function () {
+        const provider = this.textContent.includes( 'Google' ) ? 'Google' : 'Phone';
+        showNotification( `Connecting with ${ provider }...`, 'info' );
+      } );
+    } );
+
+    // Notification system
+    function showNotification( message, type = 'info' ) {
+      const notification = document.createElement( 'div' );
+      notification.className = `fixed top-24 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300 ${ type === 'success' ? 'bg-green-500 text-white' :
+        type === 'error' ? 'bg-red-500 text-white' :
+          'bg-blue-500 text-white'
+        }`;
+      notification.textContent = message;
+
+      document.body.appendChild( notification );
+
+      // Animate in
+      setTimeout( () => {
+        notification.style.transform = 'translateX(0)';
+      }, 100 );
+
+      // Remove after 3 seconds
+      setTimeout( () => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout( () => {
+          document.body.removeChild( notification );
+        }, 300 );
+      }, 3000 );
+    }
+
+    // Add scroll effect to navigation
+    window.addEventListener( 'scroll', function () {
+      const nav = document.querySelector( 'nav' );
+      if ( window.scrollY > 100 ) {
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
+      } else {
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
+      }
+    } );
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver( ( entries ) => {
+      entries.forEach( entry => {
+        if ( entry.isIntersecting ) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      } );
+    }, observerOptions );
+
+    // Observe elements for animation
+    document.querySelectorAll( '.animate-fadeInUp' ).forEach( el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      observer.observe( el );
+    } );
+
+    // Button ripple effect
+    document.querySelectorAll( 'button' ).forEach( button => {
+      button.addEventListener( 'click', function ( e ) {
+        const ripple = document.createElement( 'span' );
+        const rect = this.getBoundingClientRect();
+        const size = Math.max( rect.width, rect.height );
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${ size }px;
+          height: ${ size }px;
+          left: ${ x }px;
+          top: ${ y }px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          pointer-events: none;
+        `;
+
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild( ripple );
+
+        setTimeout( () => {
+          ripple.remove();
+        }, 600 );
+      } );
+    } );
+
+    // Add ripple animation
+    const style = document.createElement( 'style' );
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild( style );
+
+    // Form validation
+    document.querySelectorAll( '.form-input' ).forEach( input => {
+      input.addEventListener( 'blur', function () {
+        if ( this.checkValidity() ) {
+          this.style.borderColor = '#10b981';
+        } else {
+          this.style.borderColor = '#ef4444';
+        }
+      } );
+
+      input.addEventListener( 'input', function () {
+        this.style.borderColor = 'rgba(14, 165, 233, 0.1)';
+      } );
+    } );
+
+  </script>
+</body>
+
+</html>

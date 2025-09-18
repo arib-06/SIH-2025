@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function loadNavbar() {
 	try {
-		const response = await fetch('navbar.html');
+		const response = await fetch('navbar');
 		const navbarHTML = await response.text();
 
 		// Find the navbar placeholder or create one if it doesn't exist
@@ -73,15 +73,15 @@ function createFallbackNavbar() {
                             Home
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="/translate.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="/translate" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             Translate
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="assistant.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="assistant" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             AI Assistance
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="sos.html" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
+                        <a href="sos" class="text-slate-700 hover:text-blue-600 transition-all duration-300 font-medium relative group">
                             Emergency
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                         </a>
@@ -89,10 +89,10 @@ function createFallbackNavbar() {
 
                     <!-- CTA Buttons (always visible) -->
                     <div class="flex items-center space-x-4">
-                        <button onclick="window.location.href='signin.html';" class="px-4 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
+                        <button onclick="window.location.href='signin';" class="px-4 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
                             Sign In
                         </button>
-                        <button onclick="window.location.href='settings.html';" class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <button onclick="window.location.href='settings';" class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                             </svg>
