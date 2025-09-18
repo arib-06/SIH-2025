@@ -15,13 +15,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/sos.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sos.css') }}">
   <!-- CSS styles moved to external files -->
   <!-- Navbar Loader Script -->
-  <script src="js/navbar-loader.js"></script>
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
   <!-- SOS functionality -->
-  <script src="js/sos.js"></script>
+  <script  src="{{ url_for('static', filename='js/sos.js') }}"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
     integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
@@ -436,8 +436,8 @@
                   <div class="flex items-center gap-3">
                     <span class="text-2xl">🌧️</span>
                     <div>
-                      <p class="font-semibold text-blue-800">Heavy Rain Alert</p>
-                      <p class="text-sm text-blue-600">Goa - Next 2 hours</p>
+                      <p class="font-semibold text-blue-800">Rain </p>
+                      <p id="rainText" class="text-sm text-blue-600"></p>
                     </div>
                   </div>
                 </div>
@@ -445,8 +445,8 @@
                   <div class="flex items-center gap-3">
                     <span class="text-2xl">🌊</span>
                     <div>
-                      <p class="font-semibold text-yellow-800">High Tide Warning</p>
-                      <p class="text-sm text-yellow-600">Coastal Areas</p>
+                      <p class="font-semibold text-yellow-800">Humidity</p>
+                      <p id="humidText" class="text-sm text-yellow-600"></p>
                     </div>
                   </div>
                 </div>
@@ -455,7 +455,7 @@
                     <span class="text-2xl">🌡️</span>
                     <div>
                       <p class="font-semibold text-orange-800">Heat Advisory</p>
-                      <p class="text-sm text-orange-600">Temperature: 38°C</p>
+                      <p id="tempText" class="text-sm text-orange-600"></p>
                     </div>
                   </div>
                 </div>
@@ -905,9 +905,9 @@
         closestFireStationName.innerText = closest[ 'fire_station' ][ 'display_name' ]
         closestPoliceStationName.innerText = closest[ 'police' ][ 'display_name' ]
 
-        const fireDistance=document.getElementById('fireDistance')
-        const hospitalDistance=document.getElementById('hospitalDistance')
-        const policeDistance=document.getElementById('policeDistance')
+        const fireDistance = document.getElementById( 'fireDistance' )
+        const hospitalDistance = document.getElementById( 'hospitalDistance' )
+        const policeDistance = document.getElementById( 'policeDistance' )
 
         function formatDistanceAndTime( d ) {
           if ( !d ) return "❌ Not found";
@@ -927,6 +927,36 @@
 
 
     }
+  </script>
+  <script>
+    async function fetchWeather( ) {
+      navigator.geolocation.getCurrentPosition( async ( pos ) => {
+        try {
+          const url = `https://api.open-meteo.com/v1/forecast?latitude=${ pos.coords.latitude }&longitude=${ pos.coords.longitude }&current=temperature_2m,rain,precipitation,relative_humidity_2m`;
+          const res = await fetch( url );
+          const data = await res.json();
+
+          const { temperature_2m, relative_humidity_2m, precipitation } = data.current;
+
+          const temperatureStr = `🌡️ Temperature: ${ temperature_2m } °C`;
+          const humidityStr = `💧 Humidity: ${ relative_humidity_2m }%`;
+          const precipitationStr = `🌧️ Precipitation: ${ precipitation } mm`;
+          document.getElementById('rainText').innerText=precipitationStr
+          document.getElementById('tempText').innerText=temperatureStr
+          document.getElementById('humidText').innerText=humidityStr
+
+
+          return { temperatureStr, humidityStr, precipitationStr };
+        } catch ( err ) {
+          console.error( "Failed to fetch weather:", err );
+        }
+      } )
+    
+    }
+
+    // Example call (Berlin coords from your URL)
+    fetchWeather(  );
+
   </script>
 </body>
 

@@ -12,14 +12,14 @@
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/navbar-fixes.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-fixes.css') }}">
   <!-- Navbar Loader Script -->
-  <script src="js/navbar-loader.js"></script>
+  <script src="{{ url_for('static', filename='js/navbar-loaderjs') }}"></script>
   <!-- Booking functionality -->
-  <script src="js/booking.js"></script>
+  <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
   <!-- Hotel results functionality -->
-  <script src="js/hotel-results.js"></script>
+  <script src="{{ url_for('static', filename='js/hotel-results.js') }}"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
@@ -473,6 +473,6 @@
     });
     
   </script>
-  <script type="module" src="./js/firebase.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/firebase.js') }}"></script>
 </body>
 </html>

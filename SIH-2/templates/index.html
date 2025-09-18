@@ -12,12 +12,12 @@
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS Files -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/navbar-fixes.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-fixes.css') }}">
   <!-- Navbar Loader Script -->
-  <script src="js/navbar-loader.js"></script>
+  <script src="{{ url_for('static', filename='js/navbar-loader.js') }}"></script>
   <!-- Booking functionality -->
-  <script src="js/booking.js"></script>
+  <script  src="{{ url_for('static', filename='js/booking.js') }}"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
@@ -184,44 +184,45 @@
         </div>
 
         <!-- Booking Form (Hidden by default) -->
-      <!-- Booking Form -->
-      <form id="bookingForm" class="hidden max-w-2xl mx-auto mt-6 p-6 glass-effect rounded-lg shadow-lg animate-fadeInUp"
-        action="/book-flight" method="POST">
-        <h3 class="text-2xl font-semibold mb-4 text-primary">Book a Flight</h3>
-      
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label for="from" class="block text-sm font-medium text-gray-700">From</label>
-            <input type="text" id="from" name="from" placeholder="Departure City" required
-              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+        <!-- Booking Form -->
+        <form id="bookingForm"
+          class="hidden max-w-2xl mx-auto mt-6 p-6 glass-effect rounded-lg shadow-lg animate-fadeInUp"
+          action="/book-flight" method="POST">
+          <h3 class="text-2xl font-semibold mb-4 text-primary">Book a Flight</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="from" class="block text-sm font-medium text-gray-700">From</label>
+              <input type="text" id="from" name="from" placeholder="Departure City" required
+                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+            </div>
+            <div>
+              <label for="to" class="block text-sm font-medium text-gray-700">To</label>
+              <input type="text" id="to" name="to" placeholder="Destination City" required
+                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+            </div>
+            <div>
+              <label for="departure" class="block text-sm font-medium text-gray-700">Departure Date</label>
+              <input type="date" id="departure" name="departure" required
+                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+            </div>
+            <div>
+              <label for="return" class="block text-sm font-medium text-gray-700">Return Date</label>
+              <input type="date" id="return" name="return"
+                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+            </div>
+            <div class="md:col-span-2">
+              <label for="passengers" class="block text-sm font-medium text-gray-700">Passengers</label>
+              <input type="number" id="passengers" name="passengers" min="1" value="1" required
+                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+            </div>
           </div>
-          <div>
-            <label for="to" class="block text-sm font-medium text-gray-700">To</label>
-            <input type="text" id="to" name="to" placeholder="Destination City" required
-              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
-          </div>
-          <div>
-            <label for="departure" class="block text-sm font-medium text-gray-700">Departure Date</label>
-            <input type="date" id="departure" name="departure" required
-              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
-          </div>
-          <div>
-            <label for="return" class="block text-sm font-medium text-gray-700">Return Date</label>
-            <input type="date" id="return" name="return"
-              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
-          </div>
-          <div class="md:col-span-2">
-            <label for="passengers" class="block text-sm font-medium text-gray-700">Passengers</label>
-            <input type="number" id="passengers" name="passengers" min="1" value="1" required
-              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
-          </div>
-        </div>
-      
-        <button type="submit"
-          class="mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out hover-lift">
-          Search Flights
-        </button>
-      </form>
+
+          <button type="submit"
+            class="mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out hover-lift">
+            Search Flights
+          </button>
+        </form>
 
 
         <!-- Hotel Booking Form (Hidden by default) -->
@@ -233,8 +234,11 @@
               <div class="relative">
                 <input type="text" id="hotelDestination" placeholder="City, Property Name or Location"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
             </div>
@@ -243,8 +247,11 @@
               <div class="relative">
                 <input type="date" id="hotelCheckin"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
             </div>
@@ -253,15 +260,19 @@
               <div class="relative">
                 <input type="date" id="hotelCheckout"
                   class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">Rooms & Guests</label>
               <div class="relative">
-                <select class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
+                <select
+                  class="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none">
                   <option>1 Room, 2 Guests</option>
                   <option>1 Room, 1 Guest</option>
                   <option>1 Room, 3 Guests</option>
@@ -270,11 +281,17 @@
                   <option>2 Rooms, 6 Guests</option>
                   <option>3 Rooms, 6 Guests</option>
                 </select>
-                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z">
+                  </path>
                 </svg>
-                <svg class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                <svg
+                  class="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                  fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </div>
             </div>
@@ -341,7 +358,8 @@
         </div>
 
         <!-- Tourist Guide Booking Form (Hidden by default) -->
-        <div id="touristGuideBookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl">
+        <div id="touristGuideBookingForm"
+          class="hidden mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl">
           <h4 class="text-2xl font-semibold mb-6 text-center">🗺️ Book Your Tourist Guide</h4>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
@@ -377,10 +395,10 @@
             </div>
           </div>
           <div class="text-center mt-6">
-            <button onclick="window.location.href='tourist_guide.html';" 
-        class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
-  Search & Book Now
-</button>
+            <button onclick="window.location.href='tourist_guide';"
+              class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+              Search & Book Now
+            </button>
 
           </div>
         </div>
@@ -400,9 +418,7 @@
         <div class="group interactive-card glass-effect rounded-3xl overflow-hidden hover-lift">
           <div class="relative h-64 overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-            <img
-              src=""
-              alt="Majestic Mountains"
+            <img src="" alt="Majestic Mountains"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold mb-1">Swiss Alps</h3>
@@ -491,7 +507,8 @@
           <div class="flex mb-4">
             ⭐⭐⭐⭐⭐
           </div>
-          <p class="text-slate-600 italic">"Traverse made my entire 3-week Southeast Asia trip planning effortless. Every
+          <p class="text-slate-600 italic">"Traverse made my entire 3-week Southeast Asia trip planning effortless.
+            Every
             recommendation was perfect, and I discovered places I never would have found on my own!"</p>
         </div>
 
@@ -584,13 +601,13 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1 md:col-span-2">
           <div class="flex items-center space-x-1">
-        <div class="relative">
-          <div class="w-8 h-10 rounded-full overflow-hidden">
-            <img style="height: inherit; width: auto" src="./images/Logo.png">
+            <div class="relative">
+              <div class="w-8 h-10 rounded-full overflow-hidden">
+                <img style="height: inherit; width: auto" src="./images/Logo.png">
+              </div>
+            </div>
+            <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
           </div>
-        </div>
-        <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
-      </div>
           <p class="text-slate-400 mb-6 max-w-md">
             Your ultimate travel companion for seamless bookings, expert guides, and unforgettable adventures.
             Available on all platforms with 24/7 support.
@@ -653,36 +670,36 @@
   <!-- JavaScript for Interactive Features -->
   <script>
     function toggleBookingOptions() {
-      const bookingOptions = document.getElementById('bookingOptions');
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
+      const bookingOptions = document.getElementById( 'bookingOptions' );
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
 
-      if (bookingOptions.classList.contains('hidden')) {
-        bookingOptions.classList.remove('hidden');
-        bookingForm.classList.add('hidden');
-        hotelBookingForm.classList.add('hidden');
-        packagesBookingForm.classList.add('hidden');
+      if ( bookingOptions.classList.contains( 'hidden' ) ) {
+        bookingOptions.classList.remove( 'hidden' );
+        bookingForm.classList.add( 'hidden' );
+        hotelBookingForm.classList.add( 'hidden' );
+        packagesBookingForm.classList.add( 'hidden' );
       } else {
-        bookingOptions.classList.add('hidden');
-        bookingForm.classList.add('hidden');
-        hotelBookingForm.classList.add('hidden');
-        packagesBookingForm.classList.add('hidden');
+        bookingOptions.classList.add( 'hidden' );
+        bookingForm.classList.add( 'hidden' );
+        hotelBookingForm.classList.add( 'hidden' );
+        packagesBookingForm.classList.add( 'hidden' );
       }
     }
 
-    function showBookingForm(type) {
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
-      const bookingTitle = document.getElementById('bookingTitle');
-      const classSelect = document.getElementById('classSelect');
+    function showBookingForm( type ) {
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
+      const bookingTitle = document.getElementById( 'bookingTitle' );
+      const classSelect = document.getElementById( 'classSelect' );
 
-      hotelBookingForm.classList.add('hidden');
-      packagesBookingForm.classList.add('hidden');
-      bookingForm.classList.remove('hidden');
+      hotelBookingForm.classList.add( 'hidden' );
+      packagesBookingForm.classList.add( 'hidden' );
+      bookingForm.classList.remove( 'hidden' );
 
-      switch (type) {
+      switch ( type ) {
         case 'flight':
           bookingTitle.textContent = '✈️ Book Your Flight';
           classSelect.innerHTML = `
@@ -715,99 +732,99 @@
     }
 
     function showHotelBookingForm() {
-      const bookingOptions = document.getElementById('bookingOptions');
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
-      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
+      const bookingOptions = document.getElementById( 'bookingOptions' );
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
+      const touristGuideBookingForm = document.getElementById( 'touristGuideBookingForm' );
 
       // Toggle hotel booking form
-      if (hotelBookingForm.classList.contains('hidden')) {
-        bookingOptions.classList.add('hidden');
-        bookingForm.classList.add('hidden');
-        packagesBookingForm.classList.add('hidden');
-        touristGuideBookingForm.classList.add('hidden');
-        hotelBookingForm.classList.remove('hidden');
+      if ( hotelBookingForm.classList.contains( 'hidden' ) ) {
+        bookingOptions.classList.add( 'hidden' );
+        bookingForm.classList.add( 'hidden' );
+        packagesBookingForm.classList.add( 'hidden' );
+        touristGuideBookingForm.classList.add( 'hidden' );
+        hotelBookingForm.classList.remove( 'hidden' );
       } else {
-        hotelBookingForm.classList.add('hidden');
+        hotelBookingForm.classList.add( 'hidden' );
       }
     }
 
     function showPackagesBookingForm() {
-      const bookingOptions = document.getElementById('bookingOptions');
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
-      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
+      const bookingOptions = document.getElementById( 'bookingOptions' );
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
+      const touristGuideBookingForm = document.getElementById( 'touristGuideBookingForm' );
 
       // Toggle packages booking form
-      if (packagesBookingForm.classList.contains('hidden')) {
-        bookingOptions.classList.add('hidden');
-        bookingForm.classList.add('hidden');
-        hotelBookingForm.classList.add('hidden');
-        touristGuideBookingForm.classList.add('hidden');
-        packagesBookingForm.classList.remove('hidden');
+      if ( packagesBookingForm.classList.contains( 'hidden' ) ) {
+        bookingOptions.classList.add( 'hidden' );
+        bookingForm.classList.add( 'hidden' );
+        hotelBookingForm.classList.add( 'hidden' );
+        touristGuideBookingForm.classList.add( 'hidden' );
+        packagesBookingForm.classList.remove( 'hidden' );
       } else {
-        packagesBookingForm.classList.add('hidden');
+        packagesBookingForm.classList.add( 'hidden' );
       }
     }
 
     function showTouristGuideBookingForm() {
-      const bookingOptions = document.getElementById('bookingOptions');
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
-      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
+      const bookingOptions = document.getElementById( 'bookingOptions' );
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
+      const touristGuideBookingForm = document.getElementById( 'touristGuideBookingForm' );
 
       // Toggle tourist guide booking form
-      if (touristGuideBookingForm.classList.contains('hidden')) {
-        bookingOptions.classList.add('hidden');
-        bookingForm.classList.add('hidden');
-        hotelBookingForm.classList.add('hidden');
-        packagesBookingForm.classList.add('hidden');
-        touristGuideBookingForm.classList.remove('hidden');
+      if ( touristGuideBookingForm.classList.contains( 'hidden' ) ) {
+        bookingOptions.classList.add( 'hidden' );
+        bookingForm.classList.add( 'hidden' );
+        hotelBookingForm.classList.add( 'hidden' );
+        packagesBookingForm.classList.add( 'hidden' );
+        touristGuideBookingForm.classList.remove( 'hidden' );
       } else {
-        touristGuideBookingForm.classList.add('hidden');
+        touristGuideBookingForm.classList.add( 'hidden' );
       }
     }
 
     function closeAllBookingForms() {
-      const bookingOptions = document.getElementById('bookingOptions');
-      const bookingForm = document.getElementById('bookingForm');
-      const hotelBookingForm = document.getElementById('hotelBookingForm');
-      const packagesBookingForm = document.getElementById('packagesBookingForm');
-      const touristGuideBookingForm = document.getElementById('touristGuideBookingForm');
+      const bookingOptions = document.getElementById( 'bookingOptions' );
+      const bookingForm = document.getElementById( 'bookingForm' );
+      const hotelBookingForm = document.getElementById( 'hotelBookingForm' );
+      const packagesBookingForm = document.getElementById( 'packagesBookingForm' );
+      const touristGuideBookingForm = document.getElementById( 'touristGuideBookingForm' );
 
-      bookingOptions.classList.add('hidden');
-      bookingForm.classList.add('hidden');
-      hotelBookingForm.classList.add('hidden');
-      packagesBookingForm.classList.add('hidden');
-      touristGuideBookingForm.classList.add('hidden');
+      bookingOptions.classList.add( 'hidden' );
+      bookingForm.classList.add( 'hidden' );
+      hotelBookingForm.classList.add( 'hidden' );
+      packagesBookingForm.classList.add( 'hidden' );
+      touristGuideBookingForm.classList.add( 'hidden' );
     }
 
     // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll( 'a[href^="#"]' ).forEach( anchor => {
+      anchor.addEventListener( 'click', function ( e ) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
+        const target = document.querySelector( this.getAttribute( 'href' ) );
+        if ( target ) {
+          target.scrollIntoView( {
             behavior: 'smooth',
             block: 'start'
-          });
+          } );
         }
-      });
-    });
+      } );
+    } );
 
     // Add scroll effect to navigation
-    window.addEventListener('scroll', function () {
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 100) {
+    window.addEventListener( 'scroll', function () {
+      const nav = document.querySelector( 'nav' );
+      if ( window.scrollY > 100 ) {
         nav.style.background = 'rgba(255, 255, 255, 0.98)';
       } else {
         nav.style.background = 'rgba(255, 255, 255, 0.95)';
       }
-    });
+    } );
 
     // Intersection Observer for animations
     const observerOptions = {
@@ -815,49 +832,49 @@
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const observer = new IntersectionObserver( ( entries ) => {
+      entries.forEach( entry => {
+        if ( entry.isIntersecting ) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
         }
-      });
-    }, observerOptions);
+      } );
+    }, observerOptions );
 
     // Observe elements for animation
-    document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight').forEach(el => {
+    document.querySelectorAll( '.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight' ).forEach( el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
-      observer.observe(el);
-    });
+      observer.observe( el );
+    } );
 
     // Hotel search validation function
     function searchHotels() {
-      const destination = document.getElementById('hotelDestination').value.trim();
-      const checkin = document.getElementById('hotelCheckin').value;
-      const checkout = document.getElementById('hotelCheckout').value;
+      const destination = document.getElementById( 'hotelDestination' ).value.trim();
+      const checkin = document.getElementById( 'hotelCheckin' ).value;
+      const checkout = document.getElementById( 'hotelCheckout' ).value;
 
       // Validation
-      if (!destination || !checkin || !checkout) {
-        alert('Please enter full details');
-        if (!destination) document.getElementById('hotelDestination').focus();
-        else if (!checkin) document.getElementById('hotelCheckin').focus();
-        else document.getElementById('hotelCheckout').focus();
+      if ( !destination || !checkin || !checkout ) {
+        alert( 'Please enter full details' );
+        if ( !destination ) document.getElementById( 'hotelDestination' ).focus();
+        else if ( !checkin ) document.getElementById( 'hotelCheckin' ).focus();
+        else document.getElementById( 'hotelCheckout' ).focus();
         return;
       }
 
       // Check if checkout is after checkin
-      if (new Date(checkout) <= new Date(checkin)) {
-        alert('Check-out date must be after check-in date');
-        document.getElementById('hotelCheckout').focus();
+      if ( new Date( checkout ) <= new Date( checkin ) ) {
+        alert( 'Check-out date must be after check-in date' );
+        document.getElementById( 'hotelCheckout' ).focus();
         return;
       }
 
       // Store destination for results page
-      localStorage.setItem('hotelDestination', destination);
-      
+      localStorage.setItem( 'hotelDestination', destination );
+
       // Redirect to hotel results page
-      window.location.href = `hotel-results.html?destination=${encodeURIComponent(destination)}&checkin=${checkin}&checkout=${checkout}`;
+      window.location.href = `hotel-results?destination=${ encodeURIComponent( destination ) }&checkin=${ checkin }&checkout=${ checkout }`;
     }
 
     // Search functionality for recommendations
