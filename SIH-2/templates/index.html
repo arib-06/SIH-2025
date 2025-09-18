@@ -892,7 +892,7 @@
       localStorage.setItem('searchQuery', searchQuery);
       
       // Redirect to recommendations page with search parameter
-      window.location.href = `recomendations.html?search=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `recomendations?search=${encodeURIComponent(searchQuery)}`;
     }
 
     // Handle Enter key press in search input
