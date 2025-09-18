@@ -24,14 +24,53 @@
   <!-- Navigation Container - Will be populated by navbar-loader.js -->
   <div id="navbar-container"></div>
 
+  <!-- Search Section -->
+  
+
   <!-- Planning Section -->
   <section class="py-32 px-4 sm:px-6 lg:px-8 bgimg">
+    <section class="py-16 px-4 sm:px-6 lg:px-8 ">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="animate-fadeInUp">
+          
+          
+          <!-- Search Bar -->
+          <div class="relative max-w-2xl mx-auto">
+            <div class="glass-effect rounded-full p-2 shadow-lg">
+              <div class="flex items-center">
+                <div class="flex-1 relative">
+                  <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-slate-400 pointer-events-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </div>
+                  <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search destinations, activities, or experiences..."
+                    class="w-full pl-14 pr-6 py-4 text-lg bg-transparent border-none outline-none text-slate-700 placeholder-slate-500"
+                    onkeypress="handleSearchKeyPress(event)"
+                  />
+                </div>
+                <button 
+                  onclick="performSearch()" 
+                  class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover-lift ml-2"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          
+            
+        </div>
+      </div>
+    </section>
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16 animate-fadeInUp">
         <h2 class="text-4xl font-display font-bold mb-4">Plan Your Perfect Journey</h2>
-        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
-          Choose from our comprehensive travel services to create your ideal adventure
-        </p>
+        
       </div>
 
       <div class="glass-effect rounded-3xl p-8 sm:p-12 mb-16 hover-lift">
@@ -819,6 +858,49 @@
       // Redirect to hotel results page
       window.location.href = `hotel-results.html?destination=${encodeURIComponent(destination)}&checkin=${checkin}&checkout=${checkout}`;
     }
+
+    // Search functionality for recommendations
+    function performSearch() {
+      const searchInput = document.getElementById('searchInput');
+      const searchQuery = searchInput.value.trim();
+      
+      if (!searchQuery) {
+        alert('Please enter a search term');
+        searchInput.focus();
+        return;
+      }
+      
+      // Store the search query in localStorage for the recommendations page
+      localStorage.setItem('searchQuery', searchQuery);
+      
+      // Redirect to recommendations page with search parameter
+      window.location.href = `recomendations.html?search=${encodeURIComponent(searchQuery)}`;
+    }
+
+    // Handle Enter key press in search input
+    function handleSearchKeyPress(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        performSearch();
+      }
+    }
+
+    // Quick search function for popular search buttons
+    function searchFor(category) {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.value = category;
+      performSearch();
+    }
+
+    // Focus search input when clicking on search icon
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchIcon = document.querySelector('.search-icon');
+      if (searchIcon) {
+        searchIcon.addEventListener('click', function() {
+          document.getElementById('searchInput').focus();
+        });
+      }
+    });
   </script>
 </body>
 
