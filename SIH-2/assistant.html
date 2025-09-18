@@ -144,47 +144,11 @@
       </div>
     </div>
   </section>
-
+  <script type="module" src="./js/ai.js"></script>
   <script>
     let isTyping = false;
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
-
-    // Sample AI responses
-    const aiResponses = [
-      {
-        trigger: ['paris', 'france'],
-        response: "🇫🇷 **Paris - The City of Light!** Here's a perfect 5-day itinerary:\n\n**Day 1: Classic Paris**\n• Morning: Eiffel Tower & Trocadéro Gardens\n• Afternoon: Seine River cruise\n• Evening: Champs-Élysées & Arc de Triomphe\n\n**Day 2: Art & Culture**\n• Morning: Louvre Museum (book skip-the-line!)\n• Afternoon: Île de la Cité & Notre-Dame area\n• Evening: Latin Quarter dining\n\n**Day 3: Montmartre Magic**\n• Morning: Sacré-Cœur Basilica\n• Afternoon: Artist squares & cafés\n• Evening: Moulin Rouge district\n\n**Day 4: Royal Versailles**\n• Full day: Palace of Versailles (day trip)\n• Evening: Return to Paris, relaxed dinner\n\n**Day 5: Hidden Gems**\n• Morning: Marais district exploration\n• Afternoon: Luxembourg Gardens\n• Evening: River Seine sunset walk\n\n**🏨 Where to Stay:**\n• Luxury: Le Meurice, Four Seasons\n• Mid-range: Hotel des Grands Boulevards\n• Budget: Hotel Jeanne d'Arc\n\n**💡 Pro Tips:**\n• Buy a Museum Pass for skip-the-line access\n• Metro day passes save money\n• Try authentic bistros in residential areas\n\nWould you like specific restaurant recommendations or help booking accommodations?"
-      },
-      {
-        trigger: ['tokyo', 'japan'],
-        response: "🇯🇵 **Tokyo - An Amazing Choice!** Here's your ultimate guide:\n\n**🏙️ Best Districts to Explore:**\n• **Shibuya**: Famous crossing, vibrant nightlife\n• **Harajuku**: Youth culture, quirky fashion\n• **Ginza**: Luxury shopping, fine dining\n• **Asakusa**: Traditional temples, old Tokyo charm\n• **Shinjuku**: Neon lights, entertainment district\n• **Akihabara**: Electronics, anime culture\n\n**🍜 Must-Try Food Experiences:**\n• **Tsukiji Outer Market**: Fresh sushi breakfast\n• **Ramen**: Try Ichiran or Ippudo\n• **Kaiseki**: Traditional multi-course dining\n• **Street Food**: Takoyaki, taiyaki, yakitori\n• **Department Store Food Courts**: High-quality, affordable\n\n**🏯 Top Attractions:**\n• Senso-ji Temple (oldest in Tokyo)\n• Tokyo Skytree or Tokyo Tower\n• Meiji Shrine & Harajuku\n• Imperial Palace Gardens\n• Teamlab Borderless (digital art)\n\n**🚅 Transportation:**\n• Get a JR Pass for unlimited train travel\n• Tokyo Metro 24/48/72-hour passes\n• IC Cards (Suica/Pasmo) for convenience\n\n**🌸 Best Time to Visit:**\n• **Spring (Mar-May)**: Cherry blossoms, mild weather\n• **Fall (Sep-Nov)**: Comfortable temps, autumn colors\n• **Avoid**: July-August (very hot & humid)\n\n**💰 Budget Estimates (per day):**\n• Budget: $50-80\n• Mid-range: $120-200\n• Luxury: $300+\n\nNeed help with specific bookings, JR Pass, or neighborhood recommendations?"
-      },
-      {
-        trigger: ['hotel', 'accommodation', 'stay', 'booking'],
-        response: "🏨 **Let me help you find the perfect accommodation!**\n\n**🌟 Luxury Hotels ($$$$)**\n• Four Seasons, Ritz-Carlton, Park Hyatt\n• Average: $400-1000/night\n• Features: Spa, concierge, premium locations\n\n**🎯 Boutique Hotels ($$$)**\n• Unique design, local character\n• Average: $150-350/night\n• Features: Personalized service, Instagram-worthy\n\n**🏙️ Business Hotels ($$)**\n• Reliable chains: Marriott, Hilton, Hyatt\n• Average: $80-200/night\n• Features: Business centers, consistent quality\n\n**🎒 Budget Options ($)**\n• Hostels, guesthouses, capsule hotels\n• Average: $20-80/night\n• Features: Social atmosphere, basic amenities\n\n**📍 Location Strategy:**\n• **City Center**: Walking distance to attractions\n• **Transportation Hubs**: Easy airport/train access\n• **Residential Areas**: Authentic local experience\n• **Business Districts**: Convenient for work travel\n\n**💡 Booking Tips:**\n• Book 2-8 weeks ahead for best rates\n• Check cancellation policies\n• Read recent reviews (last 6 months)\n• Compare prices across multiple platforms\n• Consider package deals (flight + hotel)\n\n**🔍 What I Need to Help:**\n• Destination city\n• Check-in/out dates\n• Number of guests\n• Budget range\n• Preferred neighborhood/features\n\nShare these details and I'll find perfect options for you!"
-      },
-      {
-        trigger: ['emergency', 'help', 'urgent', 'sos'],
-        response: "🆘 **24/7 Emergency Support Available**\n\n**🚨 IMMEDIATE EMERGENCIES:**\nIf you're in immediate danger, call local emergency services first!\n\n**📞 Universal Emergency Numbers:**\n• **Europe**: 112\n• **US/Canada**: 911\n• **UK**: 999\n• **Australia**: 000\n• **Japan**: 110 (police), 119 (fire/medical)\n\n**🏥 Medical Emergencies:**\n• Locate nearest hospital/clinic\n• Contact travel insurance provider\n• Keep important documents accessible\n• Know your blood type & allergies\n\n**🆔 Lost Documents:**\n• **Passport**: Contact nearest embassy/consulate immediately\n• **ID/Cards**: Report to local police, get police report\n• **Credit Cards**: Call bank emergency hotlines\n• **Phone**: Remote wipe, contact carrier\n\n**💳 Financial Emergencies:**\n• Emergency cash via Western Union/MoneyGram\n• Contact bank for emergency card replacement\n• Embassy can provide emergency loans (citizens)\n\n**🛡️ Safety Features I Provide:**\n• Real-time safety alerts for your location\n• Embassy contact information\n• Local emergency services directory\n• Travel insurance claim assistance\n• Emergency contact notifications\n\n**📱 Offline Emergency Info:**\nAlways save important numbers offline:\n• Local emergency services\n• Embassy contact\n• Travel insurance hotline\n• Family emergency contact\n\n**🌍 Current Status Check:**\nAre you currently experiencing an emergency? Please share:\n• Your location\n• Nature of emergency\n• Immediate assistance needed\n\nI'll provide specific local emergency contacts and guidance immediately!"
-      },
-      {
-        trigger: ['bali', 'indonesia'],
-        response: "🌴 **Bali - Paradise Found!** Here's your complete guide:\n\n**🌤️ Best Time to Visit:**\n• **Dry Season (Apr-Oct)**: Perfect weather, sunny days\n• **Peak Season (Jul-Aug)**: Crowded but ideal conditions\n• **Shoulder Season (May-Jun, Sep-Oct)**: Best balance\n• **Wet Season (Nov-Mar)**: Lower prices, afternoon showers\n\n**🏖️ Top Regions:**\n• **South Bali**: Beaches, nightlife, surfing\n  - Seminyak: Upscale, beach clubs\n  - Canggu: Surf culture, hip cafés\n  - Uluwatu: Clifftop temples, luxury resorts\n• **Central Bali**: Culture, nature\n  - Ubud: Rice terraces, yoga retreats, art\n  - Tegallalang: Instagram-famous rice fields\n• **East Bali**: Authentic, less touristy\n  - Amed: Diving, snorkeling, quiet beaches\n• **North Bali**: Mountains, waterfalls\n  - Munduk: Cool climate, coffee plantations\n\n**🛕 Must-Do Experiences:**\n• Sunrise at Mount Batur (volcano hike)\n• Temple hopping: Tanah Lot, Uluwatu, Besakih\n• Traditional Balinese massage & spa\n• Cooking class in Ubud\n• Sekumpul Waterfalls\n• Tegallalang Rice Terraces swing\n\n**🍽️ Food Adventures:**\n• Nasi Goreng (fried rice)\n• Satay & Rendang\n• Fresh tropical fruits\n• Balinese coffee tasting\n• Warung (local eatery) experiences\n\n**💰 Budget Estimates (per day):**\n• Budget: $25-40\n• Mid-range: $60-120\n• Luxury: $200+\n\nWhat specific aspect of Bali interests you most? Beach life, cultural experiences, or adventure activities?"
-      },
-      {
-        trigger: ['budget', 'cheap', 'affordable', 'money'],
-        response: "💰 **Smart Budget Travel Guide**\n\n**✈️ Flight Savings:**\n• Book 6-8 weeks ahead for international\n• Use flexible date searches\n• Consider nearby airports\n• Tuesday/Wednesday departures often cheaper\n• Use airline miles and credit card points\n\n**🏠 Accommodation Hacks:**\n• Mix hostels, guesthouses, and budget hotels\n• Book longer stays for discounts\n• Use loyalty programs\n• Consider home-sharing platforms\n• Stay in residential neighborhoods\n\n**🌍 Budget-Friendly Destinations:**\n• **Southeast Asia**: Thailand, Vietnam, Cambodia\n  - Daily budget: $20-40\n• **Eastern Europe**: Poland, Czech Republic, Hungary\n  - Daily budget: $30-60\n• **Central America**: Guatemala, Nicaragua\n  - Daily budget: $25-45\n• **South Asia**: India, Nepal, Sri Lanka\n  - Daily budget: $15-35\n\n**🍴 Food Budget Tips:**\n• Eat where locals eat\n• Street food and local markets\n• Cook your own meals occasionally\n• Lunch specials vs dinner prices\n• Free hotel breakfast\n\n**🚌 Transportation Savings:**\n• Public transport passes\n• Walking and cycling\n• Overnight buses/trains (save accommodation)\n• Group tours for remote areas\n• Local buses over tourist shuttles\n\n**🆓 Free Activities:**\n• Free walking tours\n• Museums with free days\n• Parks, beaches, hiking trails\n• Local festivals and events\n• Free city viewpoints\n\n**💡 Money Management:**\n• Notify banks of travel plans\n• Use cards with no foreign fees\n• Keep emergency cash separate\n• Track spending with apps\n• Negotiate longer-stay discounts\n\n**📊 Sample Daily Budgets:**\n• **Ultra Budget**: $15-30\n• **Backpacker**: $30-50\n• **Mid-range**: $80-150\n• **Comfort**: $150-300\n\nWhat's your target budget and preferred destinations? I'll create a customized savings plan!"
-      },
-      {
-        trigger: ['visa', 'passport', 'documents'],
-        response: "📋 **Visa & Document Guide**\n\n**📕 Passport Requirements:**\n• Must be valid for 6+ months from travel date\n• Have at least 2-3 blank pages\n• Check expiration date early (renewal takes time)\n• Some countries require specific page types\n\n**🌍 Visa Categories:**\n• **Visa-Free**: No visa needed (check duration limits)\n• **Visa on Arrival**: Pay at airport/border\n• **eVisa**: Apply online before travel\n• **Embassy Visa**: Apply at consulate/embassy\n• **Transit Visa**: For layovers in some countries\n\n**⏰ Processing Times:**\n• **eVisa**: 1-7 days\n• **Standard Embassy**: 1-4 weeks\n• **Rush Processing**: 1-3 days (extra cost)\n• **Visa on Arrival**: Immediate (at border)\n\n**📄 Common Required Documents:**\n• Valid passport\n• Completed application form\n• Recent passport photos\n• Flight itinerary\n• Hotel bookings/invitation letter\n• Bank statements (proof of funds)\n• Travel insurance (some countries)\n• Vaccination certificates (certain regions)\n\n**💡 Pro Tips:**\n• Apply early - don't risk delays\n• Make copies of all documents\n• Store digital copies in cloud\n• Check embassy websites for latest requirements\n• Some visas allow multiple entries\n• Transit visas needed for some layovers\n\n**🚨 Special Considerations:**\n• **COVID**: Check current health requirements\n• **Dual Citizens**: Which passport to use?\n• **Criminal Record**: May affect visa eligibility\n• **Previous Overstays**: Can impact applications\n\n**🔍 Quick Visa Check:**\nTo give you specific requirements, I need:\n• Your nationality\n• Destination country\n• Purpose of travel\n• Planned duration\n\nShare these details for personalized visa guidance!"
-      },
-      {
-        trigger: ['flight', 'airplane', 'airline'],
-        response: "✈️ **Flight Booking Master Guide**\n\n**💰 Best Booking Times:**\n• **Domestic**: 1-3 months ahead\n• **International**: 2-8 months ahead\n• **Peak Season**: Book even earlier\n• **Last Minute**: Sometimes deals 1-2 weeks before\n\n**📅 Cheapest Days:**\n• **Fly**: Tuesday, Wednesday, Saturday\n• **Book**: Tuesday afternoons often best\n• **Avoid**: Friday/Sunday departures\n\n**🔍 Price Comparison Strategy:**\n• Use multiple search engines\n• Clear browser cookies between searches\n• Try incognito/private browsing\n• Check airline websites directly\n• Set price alerts for routes\n\n**🎯 Money-Saving Tips:**\n• **Flexible Dates**: Use calendar views\n• **Nearby Airports**: Check alternatives\n• **Connecting Flights**: Often cheaper than direct\n• **Red-Eye Flights**: Less convenient = cheaper\n• **Basic Economy**: If you don't need extras\n\n**🛫 Airline Categories:**\n• **Full Service**: Meals, baggage, seat selection included\n• **Low Cost**: Pay for extras, no-frills\n• **Premium**: Extra legroom, priority boarding\n• **Budget Long-Haul**: Affordable international options\n\n**💺 Seat Selection Tips:**\n• Exit rows: Extra legroom (restrictions apply)\n• Avoid seats near bathrooms\n• Window vs Aisle preference\n• Check seatmaps before booking\n• Consider paying for preferred seats\n\n**🎒 Baggage Strategy:**\n• Check size/weight limits carefully\n• Carry-on only saves money\n• Pack essentials in carry-on\n• Know international liquid rules\n• Consider baggage insurance\n\n**🛡️ Travel Protection:**\n• Travel insurance recommended\n• Flight delay/cancellation coverage\n• Medical emergency coverage\n• Trip interruption protection\n\n**✅ Booking Checklist:**\n• Passport valid 6+ months\n• Visa requirements checked\n• Correct name spelling\n• Contact information updated\n• Special meal requests\n• Seat preferences\n\nNeed help finding flights for a specific route? Share your departure city, destination, and travel dates!"
-      }
-    ];
 
     function handleKeyPress(event) {
       if (event.key === 'Enter' && !event.shiftKey) {
@@ -211,9 +175,9 @@
       showTypingIndicator();
 
       // Simulate AI response delay
-      setTimeout(() => {
+      setTimeout(async() => {
         hideTypingIndicator();
-        const response = generateAIResponse(message);
+        const response = await generateAIResponse(message);
         addMessage(response, 'ai');
       }, 1500 + Math.random() * 1000);
     }
@@ -293,37 +257,6 @@
       isTyping = false;
     }
 
-    function generateAIResponse(userMessage) {
-      const message = userMessage.toLowerCase();
-      
-      // Find matching response
-      for (const response of aiResponses) {
-        if (response.trigger.some(trigger => message.includes(trigger))) {
-          return response.response;
-        }
-      }
-
-      // Common greeting responses
-      if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
-        return "👋 **Hello there!** I'm excited to help you plan your next adventure.\n\n✨ I can assist with:\n• **Trip Planning**: Detailed itineraries for any destination\n• **Bookings**: Flights, hotels, activities\n• **Local Insights**: Hidden gems and authentic experiences\n• **Budget Tips**: Make your money go further\n• **Emergency Support**: 24/7 assistance\n\nWhat destination has caught your interest, or do you have a specific travel question?";
-      }
-      
-      if (message.includes('thank') || message.includes('thanks')) {
-        return "😊 **You're very welcome!** I'm here whenever you need travel assistance.\n\nFeel free to ask about:\n• Specific destinations\n• Travel logistics\n• Budget planning\n• Safety concerns\n• Local recommendations\n\nHave a fantastic journey, and don't hesitate to reach out if you need anything else! ✈️🌍";
-      }
-
-      if (message.includes('weather') || message.includes('climate')) {
-        return "🌤️ **Weather & Climate Information**\n\n**To give you accurate weather advice, I need:**\n• Your destination\n• Travel dates/months\n• Activities you're planning\n\n**General Climate Tips:**\n• **Tropical**: Wet & dry seasons vary by region\n• **Mediterranean**: Hot summers, mild winters\n• **Continental**: Four distinct seasons\n• **Monsoon**: Heavy rainfall periods in Asia\n• **Desert**: Extreme temperature variations\n\n**Packing Considerations:**\n• Check seasonal weather patterns\n• Layer clothing for temperature changes\n• Waterproof gear for rainy seasons\n• Sun protection year-round\n\nShare your destination and I'll provide specific weather insights!";
-      }
-
-      if (message.includes('food') || message.includes('cuisine') || message.includes('restaurant')) {
-        return "🍽️ **Culinary Travel Guide**\n\n**Food Experience Types:**\n• **Street Food**: Authentic, affordable local flavors\n• **Fine Dining**: Michelin-starred, special occasions\n• **Local Markets**: Fresh ingredients, cultural immersion\n• **Cooking Classes**: Learn traditional techniques\n• **Food Tours**: Guided culinary exploration\n\n**Dietary Considerations:**\n• **Vegetarian/Vegan**: Research local options\n• **Allergies**: Learn key phrases in local language\n• **Religious Restrictions**: Halal, Kosher availability\n• **Health Concerns**: Water safety, food hygiene\n\n**Regional Specialties to Try:**\n• **Asia**: Ramen, pho, curry, dim sum\n• **Europe**: Pasta, pastries, cheese, wine\n• **Americas**: BBQ, ceviche, tacos, craft beer\n• **Africa**: Tagines, injera, braai\n\n**Safety Tips:**\n• Eat where locals eat\n• Hot, fresh-cooked food is safest\n• Be cautious with raw foods\n• Bottled water in developing countries\n\nWhich destination's cuisine interests you most? I'll share specific recommendations!";
-      }
-
-      // Default helpful response
-      return `🤔 **Great question!** I'd love to help you with that.\n\n**I can provide detailed assistance with:**\n\n🌍 **Destination Planning**\n• Complete itineraries and must-see attractions\n• Best times to visit and seasonal considerations\n• Cultural insights and local customs\n\n✈️ **Travel Logistics**\n• Flight booking strategies and deals\n• Accommodation recommendations by budget\n• Transportation options and passes\n\n💰 **Budget & Money**\n• Daily budget estimates by destination\n• Money-saving tips and strategies\n• Currency exchange and payment methods\n\n🛡️ **Safety & Support**\n• Emergency contacts and procedures\n• Health and vaccination requirements\n• Travel insurance recommendations\n\n**Could you provide more specific details about:**\n• Your destination of interest\n• Travel dates or duration\n• Budget range\n• Type of experience you're seeking\n\nWith more context, I can give you much more personalized and detailed advice! 🚀`;
-    }
-
     function clearChat() {
       chatMessages.innerHTML = `
         <div class="ai-message p-5 animate-messageSlideIn">
@@ -399,12 +332,6 @@
         autoResize(chatInput);
       }
     });
-
-    console.log('🤖 Traverz AI Assistant loaded successfully!');
-    console.log('💡 Tips:');
-    console.log('   • Press Ctrl+K (Cmd+K on Mac) to focus chat');
-    console.log('   • Press Escape to clear input');
-    console.log('   • Press Shift+Enter for new line');
   </script>
 </body>
 
