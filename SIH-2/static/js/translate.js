@@ -1,16 +1,15 @@
 // Translation functionality
-const API_BASE = 'http://localhost:5000';
 
 async function translateText(text, targetLang) {
     try {
-        const response = await fetch(`${API_BASE}/translate`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                q: text,
-                target: targetLang
-            })
-        });
+        const response = await fetch(`http://localhost:5000/translate`, {
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				q: text,
+				target: targetLang,
+			}),
+		});
         
         const data = await response.json();
         

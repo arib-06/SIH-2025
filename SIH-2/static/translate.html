@@ -19,7 +19,7 @@
   <script src="js/navbar-loader.js"></script>
   <!-- Translation functionality -->
   <script src="js/translate.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
@@ -44,7 +44,8 @@
         <div class="bg-gradient-to-r from-purple-500 to-blue-600 p-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <select title="Source Language" id="sourceLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
+              <select title="Source Language" id="sourceLanguage"
+                class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
                 <option value="French">French</option>
@@ -65,7 +66,8 @@
                 </svg>
               </button>
 
-              <select title="Target Language" id="targetLanguage" class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
+              <select title="Target Language" id="targetLanguage"
+                class="language-selector rounded-lg px-4 py-2 text-slate-700 font-medium">
                 <option value="Spanish">Spanish</option>
                 <option value="English">English</option>
                 <option value="Hindi">Hindi</option>
@@ -89,6 +91,9 @@
                     d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z" />
                 </svg>
               </button>
+              <video id="video" width="320" height="240" autoplay playsinline style="display:none;"></video>
+              <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+              <button id="captureBtn">Capture</button>
               <button onclick="openCamera()"
                 class="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-all duration-300 text-white"
                 title="Camera Translate">
@@ -486,8 +491,8 @@
       const outputDiv = document.getElementById( 'outputText' );
       const charCount = document.getElementById( 'charCount' );
       const confidence = document.getElementById( 'confidence' );
-      const targetLanguage=document.getElementById('targetLanguage').value
-      const sourceLanguage=document.getElementById('sourceLanguage').value
+      const targetLanguage = document.getElementById( 'targetLanguage' ).value
+      const sourceLanguage = document.getElementById( 'sourceLanguage' ).value
       // Update character count
       charCount.textContent = `${ inputText.length }/500 characters`;
       if ( !inputText.trim() ) {
@@ -500,7 +505,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( {
-          q:inputText,
+          q: inputText,
           target: targetLanguage,
           source: sourceLanguage
         } )
@@ -535,35 +540,90 @@
       }
     }
 
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';       // Language
+    recognition.interimResults = true; // Show partial results
+    recognition.continuous = true;    // Keep listening
+
+    recognition.onresult = ( event ) => {
+      let transcript = '';
+      for ( let i = event.resultIndex; i < event.results.length; i++ ) {
+        transcript += event.results[ i ][ 0 ].transcript;
+      }
+      console.log(transcript)
+    };
+
+    recognition.onerror = ( e ) => {
+      conole.error(e.error)
+    };
+
     function startVoiceInput() {
       const voiceBtn = document.getElementById( 'voiceBtn' );
-
+    
       if ( !isRecording ) {
         isRecording = true;
         voiceBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></svg>';
         voiceBtn.classList.add( 'voice-recording' );
         showNotification( 'Listening... Speak now!' );
-
-        // Simulate voice recognition
-        setTimeout( () => {
-          document.getElementById( 'inputText' ).value = 'Hello, how are you today?';
-          translateText();
-          stopVoiceInput();
-        }, 3000 );
-      } else {
-        stopVoiceInput();
-      }
+        recognition.start()
     }
+    else
+      stopVoiceInput()
+  }
 
     function stopVoiceInput() {
       isRecording = false;
       const voiceBtn = document.getElementById( 'voiceBtn' );
       voiceBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></svg>';
       voiceBtn.classList.remove( 'voice-recording' );
+      recognition.stop();
+
     }
 
     function openCamera() {
-      showNotification( 'Camera translation feature coming soon!' );
+      const video = document.getElementById( 'video' )
+      const canvas = document.getElementById( 'canvas' );
+      const ctx = canvas.getContext( '2d' );
+      const captureBtn=document.getElementById('captureBtn')
+      
+      video.style.display = 'block'
+
+      navigator.mediaDevices.getUserMedia( { video: true } )
+        .then( stream => {
+          video.srcObject = stream;
+        } )
+        .catch( err => {
+          alert( "Camera access denied: " + err );
+        } );
+
+        // 2. Initialize Tesseract worker once
+        let worker;
+      ( async () => {
+        worker = await Tesseract.createWorker();
+        await worker.load();
+        await worker.loadLanguage( 'eng' );
+        await worker.initialize( 'eng' );
+      } )();
+
+      // 3. Capture + OCR
+      captureBtn.addEventListener( 'click', async () => {
+        ctx.drawImage( video, 0, 0, canvas.width, canvas.height );
+
+        const dataUrl = canvas.toDataURL( "image/png" );
+
+        try {
+          const { data: { text } } = await worker.recognize( dataUrl );
+          console.log(text);
+        } catch ( err ) {
+          console.error(err.message)
+        }
+      } );
+
+      // Optional: cleanup worker when leaving page
+      window.addEventListener( "beforeunload", async () => {
+        if ( worker ) await worker.terminate();
+      } );
     }
 
     function startConversation() {
@@ -632,6 +692,8 @@
     // Add scroll effect to navigation
     window.addEventListener( 'scroll', function () {
       const nav = document.querySelector( 'nav' );
+      if(!nav)
+        return;
       if ( window.scrollY > 100 ) {
         nav.style.background = 'rgba(255, 255, 255, 0.98)';
       } else {

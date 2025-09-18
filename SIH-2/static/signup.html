@@ -486,24 +486,11 @@
       </div>
     </div>
   </footer>
+  <script type="module" src="./js/signin.js"></script>
+  <script type="module" src="./js/signup.js"></script>
+  <script>
 
-  <!-- JavaScript -->
-  <script type="module">
-    // Firebase imports (assuming these match your existing structure)
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
-    import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
-    
-    // Firebase configuration (you'll need to add your actual config)
-    const firebaseConfig = {
-      // Add your Firebase config here
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Form validation state
-    const validationState = {
+const validationState = {
       fullName: false,
       email: false,
       password: false,

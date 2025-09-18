@@ -67,5 +67,6 @@ async function logout() {
 
 document.getElementById('signupWithGoogle')
 .addEventListener('click', e=>googleLogin());
+window.auth=auth
 window.googleLogin = googleLogin;
 window.logout = logout;
