@@ -68,13 +68,11 @@
       </div>
     </section>
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 animate-fadeInUp">
-        <div id="planning"></div>
-        <h2 class="text-4xl font-display font-bold mb-4">Plan Your Perfect Journey</h2>
-        
+      <div class="text-center mb-8 animate-fadeInUp">
+        <h2 class="text-4xl font-display font-bold">Plan Your Perfect Journey</h2>
       </div>
 
-      <div class="glass-effect rounded-3xl p-8 sm:p-12 mb-16 hover-lift">
+      <div class="glass-effect rounded-3xl p-8 sm:p-12 mb-4 hover-lift">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Bookings -->
           <div
@@ -89,7 +87,7 @@
               </svg>
             </div>
             <h3 class="text-xl font-semibold mb-2">Bookings</h3>
-            <p class="text-slate-600">Flight, Train & Bus reservations</p>
+            <p class="text-slate-600">Flight, Train & Cab reservations</p>
           </div>
 
           <!-- Packages -->
@@ -169,60 +167,64 @@
               </div>
             </div>
 
-            <!-- Bus Booking -->
+            <!-- Cab Booking -->
             <div class="border rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
-              onclick="showBookingForm('bus')">
+              onclick="showBookingForm('cab')">
               <div class="text-center">
                 <div class="w-12 h-12 mx-auto mb-3 bg-orange-100 rounded-full flex items-center justify-center">
-                  🚌
+                  🚕
                 </div>
-                <h5 class="font-semibold mb-2">Bus Booking</h5>
-                <p class="text-sm text-slate-600">Book comfortable bus journeys</p>
+                <h5 class="font-semibold mb-2">Cab Booking</h5>
+                <p class="text-sm text-slate-600">Book reliable cab rides</p>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Booking Form (Hidden by default) -->
-        <!-- Booking Form -->
-        <form id="bookingForm"
-          class="hidden max-w-2xl mx-auto mt-6 p-6 glass-effect rounded-lg shadow-lg animate-fadeInUp"
-          action="/book-flight" method="POST">
-          <h3 class="text-2xl font-semibold mb-4 text-primary">Book a Flight</h3>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="bookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
+          <h4 id="bookingTitle" class="text-2xl font-semibold mb-6 text-center">✈️ Book Your Flight</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label for="from" class="block text-sm font-medium text-gray-700">From</label>
-              <input type="text" id="from" name="from" placeholder="Departure City" required
-                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              <label class="block text-sm font-medium mb-2">From</label>
+              <input type="text" id="bookingFrom" placeholder="Departure city"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
             <div>
-              <label for="to" class="block text-sm font-medium text-gray-700">To</label>
-              <input type="text" id="to" name="to" placeholder="Destination City" required
-                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              <label class="block text-sm font-medium mb-2">To</label>
+              <input type="text" id="bookingTo" placeholder="Destination city"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
             <div>
-              <label for="departure" class="block text-sm font-medium text-gray-700">Departure Date</label>
-              <input type="date" id="departure" name="departure" required
-                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              <label class="block text-sm font-medium mb-2">Departure Date</label>
+              <input type="date" id="bookingDeparture"
+                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
             <div>
-              <label for="return" class="block text-sm font-medium text-gray-700">Return Date</label>
-              <input type="date" id="return" name="return"
-                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
-            </div>
-            <div class="md:col-span-2">
-              <label for="passengers" class="block text-sm font-medium text-gray-700">Passengers</label>
-              <input type="number" id="passengers" name="passengers" min="1" value="1" required
-                class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              <label class="block text-sm font-medium mb-2">Passengers</label>
+              <div class="relative">
+                <select id="bookingPassengers" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none pr-10">
+                  <option>1 Passenger</option>
+                  <option>2 Passengers</option>
+                  <option>3 Passengers</option>
+                  <option>4 Passengers</option>
+                  <option>5 Passengers</option>
+                  <option>6 Passengers</option>
+                </select>
+                <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
-
-          <button type="submit"
-            class="mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out hover-lift">
-            Search Flights
-          </button>
-        </form>
+          <div class="text-center mt-6">
+            <button onclick="searchTransportation()" class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
+              Search & Book Now
+            </button>
+          </div>
+        </div>
 
 
         <!-- Hotel Booking Form (Hidden by default) -->
@@ -407,13 +409,11 @@
   </section>
 
   <!-- Recommended Places -->
-  <section id="planning" class="py-32 px-4 sm:px-6 lg:px-8 bgimg">
+  <section id="planning" class="pt-4 pb-12 px-4 sm:px-6 lg:px-8 bgimg">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 animate-fadeInUp">
-        <h2 class="text-4xl font-display font-bold mb-4">Plan Your Perfect Journey</h2>
-        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
-          Choose from our comprehensive travel services to create your ideal adventure
-
+      <div class="text-center mb-12 animate-fadeInUp">
+        <h2 class="text-4xl font-display font-bold">Recommended Places to Visit</h2>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="group interactive-card glass-effect rounded-3xl overflow-hidden hover-lift">
           <div class="relative h-64 overflow-hidden">
@@ -634,7 +634,7 @@
           <ul class="space-y-2 text-slate-400">
             <li>Flight Booking</li>
             <li>Hotel Reservations</li>
-            <li>Train & Bus Tickets</li>
+            <li>Train & Cab Tickets</li>
             <li>Tourist Guides</li>
             <li>Travel Packages</li>
             <li>Local Experiences</li>
@@ -658,7 +658,7 @@
       <!-- Bottom Footer -->
       <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
         <div class="text-slate-400 text-sm">
-          © 2024 Traverse. All rights reserved. | Privacy Policy | Terms of Service
+          &copy; 2024 Traverse. All rights reserved. | Privacy Policy | Terms of Service
         </div>
         <div class="text-slate-400 text-sm mt-4 md:mt-0">
           Made with care for travelers worldwide
@@ -719,13 +719,13 @@
             <option>AC 1 Tier</option>
           `;
           break;
-        case 'bus':
-          bookingTitle.textContent = '🚌 Book Your Bus';
+        case 'cab':
+          bookingTitle.textContent = '🚕 Book Your Cab';
           classSelect.innerHTML = `
-            <option>Standard</option>
-            <option>Semi-Deluxe</option>
-            <option>Deluxe</option>
-            <option>Volvo AC</option>
+            <option>Economy</option>
+            <option>Comfort</option>
+            <option>Premium</option>
+            <option>Luxury</option>
           `;
           break;
       }
