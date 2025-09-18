@@ -142,56 +142,45 @@
         </div>
 
         <!-- Booking Form (Hidden by default) -->
-        <div id="bookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl">
-          <h4 class="text-2xl font-semibold mb-6 text-center" id="bookingTitle">Book Your Journey</h4>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div>
-              <label class="block text-sm font-medium mb-2">From</label>
-              <input type="text" placeholder="Departure city"
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-2">To</label>
-              <input type="text" placeholder="Destination city"
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            </div>
-            <div>
-              <label for="departureDate" class="block text-sm font-medium mb-2">Departure Date</label>
-              <input id="departureDate" type="date"
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-2">Return Date</label>
-              <input type="date"
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            </div>
+      <!-- Booking Form -->
+      <form id="bookingForm" class="hidden max-w-2xl mx-auto mt-6 p-6 glass-effect rounded-lg shadow-lg animate-fadeInUp"
+        action="/book-flight" method="POST">
+        <h3 class="text-2xl font-semibold mb-4 text-primary">Book a Flight</h3>
+      
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="from" class="block text-sm font-medium text-gray-700">From</label>
+            <input type="text" id="from" name="from" placeholder="Departure City" required
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label class="block text-sm font-medium mb-2">Passengers</label>
-              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                <option>1 Passenger</option>
-                <option>2 Passengers</option>
-                <option>3 Passengers</option>
-                <option>4+ Passengers</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-2">Class</label>
-              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                id="classSelect">
-                <option>Economy</option>
-                <option>Business</option>
-                <option>First Class</option>
-              </select>
-            </div>
+          <div>
+            <label for="to" class="block text-sm font-medium text-gray-700">To</label>
+            <input type="text" id="to" name="to" placeholder="Destination City" required
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
           </div>
-          <div class="text-center mt-6">
-            <button class="btn-primary px-8 py-3 rounded-full text-white font-semibold">
-              Search & Book Now
-            </button>
+          <div>
+            <label for="departure" class="block text-sm font-medium text-gray-700">Departure Date</label>
+            <input type="date" id="departure" name="departure" required
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+          </div>
+          <div>
+            <label for="return" class="block text-sm font-medium text-gray-700">Return Date</label>
+            <input type="date" id="return" name="return"
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+          </div>
+          <div class="md:col-span-2">
+            <label for="passengers" class="block text-sm font-medium text-gray-700">Passengers</label>
+            <input type="number" id="passengers" name="passengers" min="1" value="1" required
+              class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
           </div>
         </div>
+      
+        <button type="submit"
+          class="mt-6 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out hover-lift">
+          Search Flights
+        </button>
+      </form>
+
 
         <!-- Hotel Booking Form (Hidden by default) -->
         <div id="hotelBookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl">
