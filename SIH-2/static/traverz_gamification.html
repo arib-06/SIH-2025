@@ -8,7 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <title>Traverz Rewards - Gamify Your Journey</title>
+  <title>Traverse Rewards - Gamify Your Journey</title>
   <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -169,61 +169,21 @@
       -webkit-backdrop-filter: blur(20px);
     }
   </style>
+  <script src="js/navbar-loader.js"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
   
-  <!-- Navigation -->
-  <nav class="fixed w-full z-50 nav-blur border-b border-white/20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
-              <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" fill="none" stroke="currentColor" stroke-width="3"/>
-              <circle cx="50" cy="35" r="3" fill="currentColor"/>
-            </svg>
-          </div>
-          <h1 class="text-2xl font-display font-bold">Traverz Rewards</h1>
-        </div>
-        
-        <div class="flex items-center space-x-6">
-          <a href="#" class="text-slate-700 hover:text-blue-600 font-medium transition-colors">Home</a>
-          <a href="#" class="text-slate-700 hover:text-blue-600 font-medium transition-colors">My Trips</a>
-          <a href="#" class="text-slate-700 hover:text-blue-600 font-medium transition-colors">Profile</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  
 
   <!-- Hero Section -->
-  <section class="py-32 px-4 sm:px-6 lg:px-8 bgimg relative min-h-screen flex items-center">
-    <div class="relative z-10 max-w-6xl mx-auto text-center w-full">
-      <div class="animate-fadeInUp">
-        <h2 class="text-5xl font-display font-bold mb-6 text-white">
-          Level Up Your <span class="text-yellow-300">Journey</span>
-        </h2>
-        <p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-          Earn badges, complete missions, and unlock exclusive rewards as you explore the world with Traverz
-        </p>
-        <div class="flex justify-center space-x-4 flex-wrap gap-4">
-          <div class="glass-effect px-6 py-3 rounded-full text-white">
-            <span class="font-semibold">Level 7</span> Explorer
-          </div>
-          <div class="glass-effect px-6 py-3 rounded-full text-white">
-            <span class="font-semibold" id="heroPoints">2,847</span> Points
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Points & Rewards Section -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-display font-bold mb-4">Your Progress</h2>
-        <p class="text-xl text-slate-600">Track your journey and redeem amazing rewards</p>
+      <div class="text-center mb-12 ">
+        <h2 class="text-4xl font-display font-bold mb-4 mt-9">Your Progress</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -620,7 +580,7 @@
             </div>
             <div class="flex-1">
               <h3 class="font-semibold text-lg mb-1">Social Traveler</h3>
-              <p class="text-sm text-slate-600">Share 10 travel photos with #Traverz</p>
+              <p class="text-sm text-slate-600">Share 10 travel photos with #Traverse</p>
             </div>
             <div class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-medium">ACTIVE</div>
           </div>
@@ -725,41 +685,21 @@
     </div>
   </section>
 
-  <!-- Call to Action -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-700">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl sm:text-5xl font-display font-bold mb-6 text-white">
-        Ready to Level Up Your Travel Game?
-      </h2>
-      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-        Join the Traverz community and start earning points, collecting badges, and unlocking exclusive rewards today!
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors hover:scale-105 transform">
-          Start Your Journey
-        </button>
-        <button class="glass-effect px-10 py-4 rounded-full text-white font-semibold text-lg hover-lift">
-          Learn More
-        </button>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Footer -->
   <footer class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center space-x-3 mb-6">
-            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 100 100">
-                <path d="M50 10 C35 10, 25 20, 25 35 C25 55, 50 85, 50 85 C50 85, 75 55, 75 35 C75 20, 65 10, 50 10 Z" fill="none" stroke="currentColor" stroke-width="3"/>
-                <circle cx="50" cy="35" r="3" fill="currentColor"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-display font-bold">Traverz</h3>
+          <div class="flex items-center space-x-1">
+        <div class="relative">
+          <div class="w-8 h-10 rounded-full overflow-hidden">
+            <img src="./images/Logo.png">
           </div>
+        </div>
+        <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
+      </div>
           <p class="text-slate-400 mb-6 max-w-md">
             Gamify your travel experience with points, badges, and exclusive rewards. Your adventure starts here.
           </p>
@@ -803,7 +743,7 @@
 
       <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
         <div class="text-slate-400 text-sm">
-          © 2024 Traverz. All rights reserved. Made for adventurous travelers.
+          © 2024 Traverse. All rights reserved. Made for adventurous travelers.
         </div>
         <div class="text-slate-400 text-sm mt-4 md:mt-0">
           🎮 Gamify Your Journey • 🌍 Explore • 🏆 Achieve
@@ -958,7 +898,7 @@
       `;
       document.head.appendChild(style);
 
-      console.log('✅ Traverz Gamification Page Loaded Successfully!');
+      console.log('✅ Traverse Gamification Page Loaded Successfully!');
     });
   </script>
 

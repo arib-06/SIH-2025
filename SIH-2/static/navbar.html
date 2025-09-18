@@ -4,8 +4,9 @@
       <!-- Logo -->
       <div class="flex items-center space-x-1">
         <div class="relative">
-          <div class="w-10 h-10 rounded-full overflow-hidden">
-            <img src="images/Logo.jpg" alt="Traverse Logo" class="w-full h-full object-cover">
+          <div class="w-8 h-10 rounded-full overflow-hidden">
+            <img style="height: inherit;" src="./images/Logo.jpg
+            ">
           </div>
         </div>
         <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
@@ -46,12 +47,14 @@
       </div>
 
       <!-- CTA Buttons (always visible now) -->
-      <div class="flex items-center space-x-7">
+      <div class="flex items-center space-x-6">
         <!-- Sign In: visible on all screen sizes -->
         <button onclick="window.location.href='signin.html';"
           class="px-4 py-2 bg-[#0ea5e9] text-white font-semibold hover:bg-[#0284c7] transition-colors rounded-lg">
           Sign In
         </button>
+
+        
 
         <!-- Profile Icon: already always visible -->
         <button onclick="window.location.href='settings.html';"
@@ -61,7 +64,26 @@
               d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
           </svg>
         </button>
+
+        <!-- Gamification Badge Icon -->
+        <button onclick="window.location.href='traverz_gamification.html';"
+          class="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group">
+          <!-- Badge Icon -->
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L14.5 8.5L22 9L16 15L17.5 22L12 18.5L6.5 22L8 15L2 9L9.5 8.5L12 2Z"/>
+          </svg>
+          
+          <!-- Points indicator (small number badge) -->
+          <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold animate-pulse">
+            7
+          </div>
+          
+          <!-- Tooltip -->
+          <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            Level 7 • 2,847 pts
+            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+          </div>
+        </button>
       </div>
     </div>
   </div>
-</nav>
