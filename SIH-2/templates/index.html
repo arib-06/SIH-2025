@@ -148,7 +148,7 @@
               onclick="showBookingForm('flight')">
               <div class="text-center">
                 <div class="w-12 h-12 mx-auto mb-3 bg-blue-100 rounded-full flex items-center justify-center">
-                  ✈️
+                  ✈
                 </div>
                 <h5 class="font-semibold mb-2">Flight Booking</h5>
                 <p class="text-sm text-slate-600">Book domestic and international flights</p>
@@ -183,7 +183,7 @@
 
         <!-- Booking Form (Hidden by default) -->
         <div id="bookingForm" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
-          <h4 id="bookingTitle" class="text-2xl font-semibold mb-6 text-center">✈️ Book Your Flight</h4>
+          <h4 id="bookingTitle" class="text-2xl font-semibold mb-6 text-center">✈ Book Your Flight</h4>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label class="block text-sm font-medium mb-2">From</label>
@@ -327,28 +327,16 @@
                 class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
             </div>
             <div>
-              <label class="block text-sm font-medium mb-2">Return Date</label>
-              <input type="date"
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
               <label class="block text-sm font-medium mb-2">Passengers</label>
               <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
                 <option>1 Passenger</option>
                 <option>2 Passengers</option>
                 <option>3 Passengers</option>
-                <option>4+ Passengers</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-2">Class</label>
-              <select class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                <option>Economy Package</option>
-                <option>Premium Package</option>
-                <option>Luxury Package</option>
-                <option>Deluxe Package</option>
+                <option>4 Passengers</option>
+                <option>5 Passengers</option>
+                <option>6 Passengers</option>
+                <option>7 Passengers</option>
+                <option>8+ Passengers</option>
               </select>
             </div>
           </div>
@@ -362,7 +350,7 @@
         <!-- Tourist Guide Booking Form (Hidden by default) -->
         <div id="touristGuideBookingForm"
           class="hidden mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl">
-          <h4 class="text-2xl font-semibold mb-6 text-center">🗺️ Book Your Tourist Guide</h4>
+          <h4 class="text-2xl font-semibold mb-6 text-center">🗺 Book Your Tourist Guide</h4>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label class="block text-sm font-medium mb-2">From Date</label>
@@ -443,7 +431,7 @@
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
             <div class="absolute bottom-4 left-4 z-20 text-white">
               <h3 class="text-xl font-semibold mb-1">Taj Mahal</h3>
-              <p class="text-sm opacity-90">🏛️ Agra, India</p>
+              <p class="text-sm opacity-90">🏛 Agra, India</p>
             </div>
           </div>
           <div class="p-6">
@@ -494,10 +482,10 @@
         <div class="glass-effect rounded-2xl p-8 hover-lift">
           <div class="flex items-center mb-6">
             <img
-              src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+              src="../static/images/premium_photo-1722682239201-21c8173e776b.avif"
               alt="Sarah" class="w-12 h-12 rounded-full object-cover">
             <div class="ml-4">
-              <h4 class="font-semibold">Sarah Chen</h4>
+              <h4 class="font-semibold">Karan Ahlawat</h4>
               <p class="text-sm text-slate-600">Digital Nomad</p>
             </div>
           </div>
@@ -600,7 +588,7 @@
           <div class="flex items-center space-x-1">
             <div class="relative">
               <div class="w-8 h-10 rounded-full overflow-hidden">
-                <img style="height: inherit; width: auto" src="{{ url_for('static', filename='images/Logo.png') }}"  alt="Logo">
+                <img style="height: inherit; width: auto" src="../static/images/Logo.png">
               </div>
             </div>
             <h1 class="text-2xl font-display font-bold text-gradient">Traverse</h1>
@@ -698,7 +686,7 @@
 
       switch ( type ) {
         case 'flight':
-          bookingTitle.textContent = '✈️ Book Your Flight';
+          bookingTitle.textContent = '✈ Book Your Flight';
           classSelect.innerHTML = `
             <option>Economy</option>
             <option>Premium Economy</option>
@@ -871,7 +859,7 @@
       localStorage.setItem( 'hotelDestination', destination );
 
       // Redirect to hotel results page
-      window.location.href = `hotel-results?destination=${ encodeURIComponent( destination ) }&checkin=${ checkin }&checkout=${ checkout }`;
+      window.location.href = hotel-results?destination=${ encodeURIComponent( destination ) }&checkin=${ checkin }&checkout=${ checkout };
     }
 
     // Search functionality for recommendations
@@ -889,7 +877,7 @@
       localStorage.setItem('searchQuery', searchQuery);
       
       // Redirect to recommendations page with search parameter
-      window.location.href = `recomendations?search=${encodeURIComponent(searchQuery)}`;
+      window.location.href = recomendations?search=${encodeURIComponent(searchQuery)};
     }
 
     // Handle Enter key press in search input
